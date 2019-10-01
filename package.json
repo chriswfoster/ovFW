@@ -1,0 +1,22 @@
+{
+  "name": "unch-gadget",
+  "version": "1.0.0",
+  "private": true,
+  "repository": "git@gitlab.com:unch/unch-gadget.git",
+  "author": "rajeev dasara <rajeev.d@spinsci.com>",
+  "license": "UNLICENSED",
+  "scripts": {
+    "mod:clean": "rimraf ./node_modules",
+    "pkg:clean": "rimraf ./_packages",
+    "pkg:install": "git clone --branch unch-sprints git@gitlab.com:spinsci/one-view/one-view2.git ./_packages",
+    "prj:clean": "yarn run mod:clean && yarn run pkg:clean",
+    "prj:init": "yarn run pkg:install && npx lerna bootstrap",
+    "prj:re-init": "yarn run prj:clean && yarn run prj:init"
+  },
+  "workspaces": [
+    "packages/*",
+    "_packages/packages/*",
+    "_packages/plugins/*",
+    "_packages/tools/*"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+    "media": {
+        "voice": {
+            "cvmap": {
+                "callVariable1": "match",
+                "callVariable2": "type"
+            }
+        }
+    },
+    
+    "servers": {
+        "monitor": false,
+        "locations": [
+            {
+                "base": "https://10.3.74.200/"
+            }
+        ]
+    },
+
+    "hotkeys": {
+        "map": [
+            {"label": "Scheduling", "type": "blind", "dn": "1082"},
+            {"label": "Referral", "type": "blind", "dn": "1082"},
+            {"label": "Billing", "type": "blind", "dn": "1082"},
+            {"label": "PAC", "type": "blind", "dn": "1082"},
+            {"label": "Nurse Triage", "type": "blind", "dn": "1082"},
+            {"label": "Emer. Clinic", "type": "warm", "dn": "1082"}
+        ]
+    }
+}

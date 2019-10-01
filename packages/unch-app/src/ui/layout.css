@@ -1,0 +1,69 @@
+.sideBarMain {
+    background-image: url('../images/navigationbg.jpg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    height: 100vh;
+    display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	align-items: stretch;
+    align-content: stretch;
+    overflow-y: scroll;
+}
+
+.sideBarImg{
+    width: 56%;
+    margin-left: 20%;
+    margin-top: 10%;
+    height: 60px;
+	align-content: center;
+	text-align: center;
+}
+
+.sideBarBottomBox {
+    width: 100%;
+    text-align: center;
+    
+    margin-bottom: 10%;
+
+}
+.sideBarBottomBox span {
+    width: 120%;
+    text-align: center;
+    font-size: 9px;
+    color: white;
+    font-weight: lighter;
+}
+.sideBarBottomBox div {
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px;
+    background-color: white;
+    width: 75%;
+    height: 95px;
+    display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: center;
+    align-content: stretch;
+    margin-left: 12.5%;
+    margin-bottom: 10px;
+}
+
+.transparenter {
+    background-color: transparent;
+}
+
+.testerBg > ul {
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+.leftAlignColumn {
+    display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: flex-start;
+	align-items: stretch;
+	align-content: stretch;
+}

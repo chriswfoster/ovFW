@@ -1,0 +1,28 @@
+{
+  "name": "unch-app-web",
+  "version": "1.0.0",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "antd": "^3.20.0",
+    "one-interact": "^1.0.0",
+    "one-micro-patient": "^1.0.0",
+    "one-server-ha": "^1.0.0",
+    "one-ui-styles": "^1.0.0",
+    "unch-app": "^1.0.0"
+  },
+  "scripts": {
+    "start": "rimraf ./dist && parcel ./src/index.html --port=9090 --open"
+  },
+  "devDependencies": {
+    "less": "^2.7.1",
+    "one-tsc": "^1.0.0",
+    "parcel-bundler": "^1.12.3",
+    "parcel-plugin-static-files-copy": "^2.1.2",
+    "typescript": "^3.5.2"
+  },
+  "staticFiles": {
+    "staticPath": [
+      "src-settings"
+    ]
+  }
+}

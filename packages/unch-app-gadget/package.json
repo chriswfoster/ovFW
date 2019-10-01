@@ -1,0 +1,42 @@
+{
+  "name": "unch-app-gadget",
+  "version": "1.0.0",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "one-interact": "^1.0.0",
+    "one-server-ha": "^1.0.0",
+    "one-web-ie11": "^1.0.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-redux": "^7.1.0",
+    "redux": "^4.0.1",
+    "regenerator-runtime": "^0.13.2",
+    "unch-app": "^1.0.0"
+  },
+  "scripts": {
+    "build": "rimraf ./dist && parcel build ./src/index.ts --no-minify"
+  },
+  "devDependencies": {
+    "@types/react": "^16.8.22",
+    "@types/react-dom": "^16.8.4",
+    "@types/react-redux": "^7.1.1",
+    "@types/redux": "^3.6.0",
+    "less": "^2.7.1",
+    "one-tsc": "^1.0.0",
+    "parcel-bundler": "^1.12.3",
+    "parcel-plugin-gadget-builder": "^2.0.0",
+    "parcel-plugin-static-files-copy": "^2.1.2",
+    "typescript": "^3.5.2"
+  },
+  "gadget-builder": {
+    "title": "UNCH",
+    "description": "UNCH Gadget",
+    "scrolling": true,
+    "height": 800
+  },
+  "staticFiles": {
+    "staticPath": [
+      "src-settings"
+    ]
+  }
+}
