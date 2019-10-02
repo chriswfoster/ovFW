@@ -14,7 +14,7 @@ class Main extends React.Component {
     render(){
         const { Header, Content, Sider } = Layout;
         return (
-            <Layout>
+            <Layout style={{height: '100vh'}}>
                 <Sider
                     style={{backgroundColor: 'transparent', width: '300px', height: '100%' }} 
                     width='300px'
@@ -23,13 +23,14 @@ class Main extends React.Component {
                     <PortalSideBar />
                   </Content>
                 </Sider>
-                <Layout >
+                <Layout style={{height: '100vh'}}>
     
-                <Header id="mainLayoutHeader" style={{height: '156px', backgroundColor: '#f0f2f5', padding: '0px'}}>
-                  {/* <GlobalHeader /> */}
-                </Header >
-                <Content style={{ margin: '30px'}}>
-                    {this.props.children}
+                {/* <Header id="mainLayoutHeader" style={{height: '156px', backgroundColor: '#f0f2f5', padding: '0px'}}>
+                  <GlobalHeader />
+                </Header > */}
+                <Content style={{ margin: '30px', height: '100vh', overflowY: 'scroll'}}>
+                    {/* {this.props.children} */}
+                    {innerRouter}
                 </Content>
                 </Layout>
     

@@ -6,6 +6,7 @@ import {
 } from 'one-ui-layout';
 import { useDispatch } from 'react-redux';
 import { useCtx } from 'one-ui-provider';
+import {BrowserRouter as Router} from 'react-router-dom';
 import Main from './ui/main';
 import innerRouter from './router/innerRouter';
 import Campaigns from './components/Campaigns';
@@ -18,8 +19,10 @@ export const App = (props: Props) => {
     // const dispatch = useDispatch();
     // const { resolver } = useCtx();
     return (
-        <div>
-            {innerRouter}
-        </div>
+        <Router>
+            {/* {innerRouter} */}
+            <Main />
+            {/* <Campaigns /> */}
+        </Router>
     )
 }

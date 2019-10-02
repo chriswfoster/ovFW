@@ -13,9 +13,9 @@ export default class PortalSideBar extends React.Component<any, any> {
         super(props)
     }
 
-    scrollToTop = () => {
-            document.getElementById('mainLayoutHeader').scrollIntoView({ block: 'start'})
-    }
+    // scrollToTop = () => {
+    //         document.getElementById('mainLayoutHeader').scrollIntoView({ block: 'start'})
+    // }
 
 
     public render() {
@@ -25,7 +25,7 @@ export default class PortalSideBar extends React.Component<any, any> {
                 <img className="sideBarImg" src={require('../images/spinsciTrans.png')}/>
                 <Menu
                 //   style={{width: '100%'}}
-                    onClick={this.scrollToTop}
+                    // onClick={this.scrollToTop}
                     defaultSelectedKeys={['1']}
                     defaultOpenKeys={['sub1']}
                     mode="inline"
@@ -33,6 +33,9 @@ export default class PortalSideBar extends React.Component<any, any> {
                     style={{background: 'transparent'}}
                     theme="dark"
                 >
+                    {/* <Menu.Item key="0"><span>Home</span></Menu.Item>
+                    <Menu.Item key="1"><span>Campaigns</span></Menu.Item>
+                    <Menu.Item key="2"><span>Audiences</span></Menu.Item> */}
                     <Menu.Item key="0"><Link to="/">Home</Link></Menu.Item>
                     <Menu.Item key="1"><Link to="/campaigns">Campaigns</Link></Menu.Item>
                     <Menu.Item key="2"><Link to="/audiences">Audiences</Link></Menu.Item>
