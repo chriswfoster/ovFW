@@ -1,0 +1,56 @@
+{
+    "media": {
+        "voice": {
+            "cvmap": {
+                "callVariable1": "match",
+                "callVariable2": "callertype"
+            }
+        }
+    },
+
+    "servers": {
+        "monitor": false,
+        "locations": [
+            {
+                "base": "https://10.2.74.31/unch/v1/"
+            }
+        ]
+    },
+    "epicservers": {
+        "monitor": false,
+        "locations": [
+            {
+                "base": "https://10.2.74.31/ehrregistry/screenPop"
+            }
+        ]
+    },
+    "hotkeys": {
+        "map": [
+            {"label": "Scheduling", "type": "blind", "dn": "1082"},
+            {"label": "Referral", "type": "blind", "dn": "1082"},
+            {"label": "Billing", "type": "blind", "dn": "1082"},
+            {"label": "PAC", "type": "blind", "dn": "1082"},
+            {"label": "Nurse Triage", "type": "blind", "dn": "1082"},
+            {"label": "Emer. Clinic", "type": "warm", "dn": "1082"}
+        ]
+    },
+    "screenpop": {
+        "map": [
+            {"label": "Scheduling", "url": "http://spinsci.com"},
+            {"label": "Referral", "url": "https://google.com"},
+            {"label": "Billing", "url": "https://yahoo.com"},
+            {"label": "PAC", "url": "https://msn.com"},
+            {"label": "Nurse Triage", "url": "https://mail.google.com"},
+            {"label": "Emer. Clinic", "url": "https://spinsci.com"}
+        ]
+    },
+    "mapdetails" : {
+        "defaultaddress": "101 Manning Dr, Chapel Hill, NC 27514, USA",
+        "lat": "35.9033812",
+        "lon": "-79.0502578"
+    },
+    "epic_config" : {
+        "location": "POC",
+        "activityId": "UCW_SNAPSHOT"
+    }
+}

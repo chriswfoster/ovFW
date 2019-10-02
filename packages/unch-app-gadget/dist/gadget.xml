@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Module>
+    <ModulePrefs 
+        title="UNCH"
+        description="UNCH Gadget"
+        scrolling="true"
+        height="800">
+        
+        <Require feature="settitle" />
+        <Require feature="pubsub-2" />
+        <Require feature="setprefs" />
+        <Require feature="dynamic-height"/>
+    </ModulePrefs>
+    <Content href="gadget.html"></Content>
+</Module>

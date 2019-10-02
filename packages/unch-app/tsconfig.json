@@ -1,0 +1,14 @@
+{
+    "extends": "one-tsc",
+    "compilerOptions": {
+        "jsx": "react",
+        "target": "es5",
+        "outDir": "./dist",
+        "declarationDir": "./dist",
+        "allowSyntheticDefaultImports": true
+    },
+    "include": [
+        "index.ts",
+        "src/**/*"
+    ]
+}
