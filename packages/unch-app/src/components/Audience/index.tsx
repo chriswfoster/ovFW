@@ -29,35 +29,35 @@ const Audience = () => {
             name: 'John',
             pharmName: "Pharmacy Pharm",
             preference: 'SMS',
-            delete: (<Button type="danger">Delete</Button>)
+            delete: "Information"
         },
         {
             phoneNumber: "(214) 532-7658",
             name: 'David',
             pharmName: "Pharmacy Pharm",
             preference: 'SMS',
-            delete: (<Button type="danger">Delete</Button>)
+            delete: "Information"
         },
         {
             phoneNumber: "(214) 139-0298",
             name: 'Kevin',
             pharmName: "Pharmacy Pharm",
             preference: 'SMS',
-            delete: (<Button type="danger">Delete</Button>)
+            delete: "Information"
         },
         {
             phoneNumber: "(214) 629-3947",
             name: 'Susan',
             pharmName: "Pharmacy Pharm",
             preference: 'SMS',
-            delete: (<Button type="danger">Delete</Button>)
+            delete: "Information"
         },
         {
             phoneNumber: "(214) 251-2038",
             name: 'Ashley',
             pharmName: "Pharmacy Pharm",
             preference: 'SMS',
-            delete: (<Button type="danger">Delete</Button>)
+            delete: "Information"
         },
     ];
 
@@ -89,27 +89,38 @@ const Audience = () => {
 
     return (
         <div>
-            Audience
-            <Row gutter={24}>
-                <Col span={12}>
-                    <Search
+            <Row type="flex" justify="end" gutter={24}>
+                <Col span={8}>
+                    {/* <Search
                         placeholder="input search text"
                         enterButton="Search"
-                        size="large"
+                        size="default"
                         onSearch={value => console.log(value)}
-                        style={{ width: "400px" }}
-                    />
+                        style={{ width: "300px" }}
+                    /> */}
                 </Col>
-                <Col span={12}>
+                <Col span={6}>
                     <Button
                         type="primary"
                         shape="round"
                         icon="plus"
-                        size="large"
+                        size="default"
                         style={{ height: "40px" }}
                         onClick={showModal}
                     >
                         Add A New Audience
+        </Button>
+                </Col>
+                <Col span={6}>
+                    <Button
+                        type="danger"
+                        shape="round"
+                        icon="plus"
+                        size="default"
+                        style={{ height: "40px" }}
+                        onClick={showModal}
+                    >
+                        Delete Audience
         </Button>
                 </Col>
             </Row>
@@ -122,36 +133,13 @@ const Audience = () => {
                 width="75vw"
                 bodyStyle={{ height: "60vh" }}
             >
-                <Row gutter={18}>
-                    <Col span={6} >
-                        <Button
-                            type="primary"
-                            style={{ height: "150px", width: "200px" }}
-                        >Choose List
-                </Button>
-                    </Col>
-                    <Col span={6} >
-                        <Button
-                            type="primary"
-                            style={{ height: "150px", width: "200px" }}>
-                            Upload CSV
-                  </Button>
-                    </Col>
-                    <Col span={6} >
-                        <Button
-                            type="primary"
-                            style={{ height: "150px", width: "200px" }}>
-                            FTP
-                  </Button>
-                    </Col>
-                    <Col span={6} >
-                        <Button
-                            type="primary"
-                            style={{ height: "150px", width: "200px" }}>
-                            Add Manually
-                  </Button>
-                    </Col>
-                </Row>
+                <Search
+                    placeholder="input search text"
+                    enterButton="Search"
+                    size="default"
+                    onSearch={value => console.log(value)}
+                    style={{ width: "300px" }}
+                />
             </Modal>
         </div>
     )
