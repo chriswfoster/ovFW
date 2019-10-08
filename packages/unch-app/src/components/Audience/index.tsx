@@ -24,10 +24,7 @@ const Audience = () => {
     };
     ////////// Modal Methods //////////
 
-    ////////// New Campaign Methods //////////
-
-    ////////// New Campaign Methods //////////
-
+    ////////// New Methods //////////
 
     const campaignRowSelection = {
         onChange: (selectedRowKeys, selectedRows) => {
@@ -189,7 +186,6 @@ const Audience = () => {
                     <Table dataSource={dataSource} columns={columns} pagination={false} />
                 </Col>
             </Row>
-            <Table dataSource={dataSource} columns={columns} pagination={false} />
             <Modal
                 title="Add A New Audience"
                 visible={visible}
@@ -198,6 +194,24 @@ const Audience = () => {
                 width="75vw"
                 bodyStyle={{ height: "60vh" }}
             >
+                <Row type="flex" justify="center" gutter={20}>
+                    <Col span={4}>
+                        <Button size="large" icon="plus" type="primary">Create Table</Button>
+                    </Col>
+                    <Col span={3}>
+                        <Button size="large" icon="copy" type="primary">Set FTP</Button>
+                    </Col>
+                    <Col span={4}>
+                        <Button size="large" icon="folder-add" type="primary">Shared Drive</Button>
+                    </Col>
+                    <Col span={3}>
+                        <Button size="large" icon="upload" type="primary">Upload</Button>
+                    </Col>
+                    <Col span={4}>
+                        <Button size="large" icon="form" type="primary">Manual Entry</Button>
+                    </Col>
+                </Row>
+                {/* <Table dataSource={dataSource} columns={columns} pagination={false} /> */}
             </Modal>
         </div>
     )
