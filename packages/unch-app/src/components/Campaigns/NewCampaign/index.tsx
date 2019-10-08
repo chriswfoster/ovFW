@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import First from './Steps/First'
 import Second from './Steps/Second'
+import Third from './Steps/Third'
 import { Steps, Button, Modal, message } from 'antd';
 
 
@@ -42,8 +43,8 @@ class NewCampaign extends React.Component <any, any> {
             },
             {
                 key: 3,
-              title: 'Last',
-              content: 'Last-content',
+              title: 'Voice/SMS Settings',
+              content: <Third />,
             },
         ];
         return(
