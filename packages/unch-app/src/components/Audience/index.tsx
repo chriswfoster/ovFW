@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { Table, Button, Input, Icon, Modal, Row, Col } from 'antd';
+import { Table, Button, Input, Icon, Modal, Row, Col, List, Typography } from 'antd';
 
 const Audience = () => {
 
     ///////// Hooks /////////
 
     const [visible, setVisible] = useState(false)
+    const [showNewAudience, setShowNewAudience] = useState(false)
 
     ///////// Hooks /////////
 
@@ -23,6 +24,57 @@ const Audience = () => {
     };
     ////////// Modal Methods //////////
 
+    ////////// New Campaign Methods //////////
+
+    ////////// New Campaign Methods //////////
+
+
+    const campaignRowSelection = {
+        onChange: (selectedRowKeys, selectedRows) => {
+            console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
+        },
+        getCheckboxProps: record => ({
+            disabled: record.name === 'Disabled User', // Column configuration not to be checked
+            name: record.name,
+        }),
+    };
+
+    ////////// Campaign Data //////////
+    const campaignColumns = [
+        {
+            title: 'Name',
+            dataIndex: 'name',
+            render: (text: any) => <a>{text}</a>,
+        },
+        {
+            title: 'Campaign Name',
+            dataIndex: 'campaignName',
+        }
+    ];
+
+    const campaignData = [
+        {
+            key: '1',
+            campaignName: 'Campaign 1'
+        },
+        {
+            key: '2',
+            campaignName: 'Campaign 2'
+        },
+        {
+            key: '3',
+            campaignName: 'Campaign 3'
+        },
+        {
+            key: '4',
+            campaignName: 'Campaign 4'
+        },
+    ];
+    ////////// Campaign Data //////////
+
+
+
+    ///////////// Columns and Data for Audience ///////////////
     const dataSource = [
         {
             phoneNumber: "(214) 842-1337",
@@ -83,6 +135,7 @@ const Audience = () => {
             dataIndex: 'delete',
         },
     ];
+    ///////////// Columns and Data for Audience ///////////////
 
 
     const { Search } = Input;
@@ -91,13 +144,6 @@ const Audience = () => {
         <div>
             <Row type="flex" justify="end" gutter={24}>
                 <Col span={8}>
-                    {/* <Search
-                        placeholder="input search text"
-                        enterButton="Search"
-                        size="default"
-                        onSearch={value => console.log(value)}
-                        style={{ width: "300px" }}
-                    /> */}
                 </Col>
                 <Col span={6}>
                     <Button
@@ -124,7 +170,26 @@ const Audience = () => {
         </Button>
                 </Col>
             </Row>
-            <Table dataSource={dataSource} columns={columns} />
+            <Row>
+                <Col span={12}>
+                    <Table rowSelection={campaignRowSelection} columns={campaignColumns} dataSource={campaignData} pagination={false} />
+                    <Row gutter={12}>
+                        <Col span={5}>
+                            <Button icon="stop" type="danger">Stop</Button>
+                        </Col>
+                        <Col span={5}>
+                            <Button icon="pause" type="default">Pause</Button>
+                        </Col>
+                        <Col span={5}>
+                            <Button icon="caret-right" type="primary">Resume</Button>
+                        </Col>
+                    </Row>
+                </Col>
+                <Col span={12}>
+                    <Table dataSource={dataSource} columns={columns} pagination={false} />
+                </Col>
+            </Row>
+            <Table dataSource={dataSource} columns={columns} pagination={false} />
             <Modal
                 title="Add A New Audience"
                 visible={visible}
@@ -133,16 +198,19 @@ const Audience = () => {
                 width="75vw"
                 bodyStyle={{ height: "60vh" }}
             >
-                <Search
-                    placeholder="input search text"
-                    enterButton="Search"
-                    size="default"
-                    onSearch={value => console.log(value)}
-                    style={{ width: "300px" }}
-                />
             </Modal>
         </div>
     )
 }
 
 export default Audience;
+
+
+
+
+
+
+
+
+
+
