@@ -25,12 +25,12 @@ const Third = () => {
                     </Descriptions.Item>
                     <Descriptions.Item>
                         <Select defaultValue={1}>
-                                <Select.Option value={1} key={1}>
-                                    Drop Message
-                                </Select.Option>
-                                <Select.Option value={2} key={2}>
-                                    Hang Up
-                                </Select.Option>
+                            <Select.Option value={1} key={1}>
+                                Drop Message
+                            </Select.Option>
+                            <Select.Option value={2} key={2}>
+                                Hang Up
+                            </Select.Option>
                         </Select>
                     </Descriptions.Item>
                     <Descriptions.Item label="Retries">
