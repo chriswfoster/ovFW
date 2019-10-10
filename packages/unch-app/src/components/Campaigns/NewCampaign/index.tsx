@@ -1,7 +1,8 @@
 import React, { Fragment } from 'react';
-import First from './Steps/First'
-import Second from './Steps/Second'
-import Third from './Steps/Third'
+import First from './Steps/First';
+import Second from './Steps/Second';
+import Third from './Steps/Third';
+import Fourth from './Steps/Fourth';
 import { Steps, Button, Modal, message } from 'antd';
 
 
@@ -46,12 +47,18 @@ class NewCampaign extends React.Component <any, any> {
               title: 'Voice/SMS Settings',
               content: <Third />,
             },
+            {
+                key: 4,
+              title: 'Campaign Roles',
+              content: <Fourth />,
+            },
         ];
         return(
             <div style={{maxWidth: '100vw', maxHeight: '100vh'}}>
                 <Button  
                     onClick={this.props.showModal}
-                    style={{marginBottom: 20}} type="primary" size="large">
+                    style={{marginBottom: 20}} type="primary" size="large"
+                >
                     New Campaign
                 </Button>
                 <Modal 

@@ -17,8 +17,8 @@ const Third = () => {
         <div style={{overflowY: 'scroll'}} id="outerCampaignCardDiv" className="descriptionListColumn">
             <Card title="Voice Settings" style={cardStyles}>
                 <Descriptions column={1} layout="horizontal" className="descriptionListColumn">
-                    <Descriptions.Item label="CPS">
-                        <Switch />
+                    <Descriptions.Item label="Calls Per Second">
+                        <Input />
                     </Descriptions.Item>
                     <Descriptions.Item label="AMD Detection">
                         <Switch />
