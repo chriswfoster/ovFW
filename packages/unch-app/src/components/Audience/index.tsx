@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Table, Button, Input, Icon, Modal, Row, Col, List, Typography, Tabs, Upload, message } from 'antd';
+import { Table, Button, Input, Icon, Modal, Row, Col, List, Typography, Tabs, Upload, message, Collapse } from 'antd';
 import FTP from "./AudienceComponents/FTP"
 import AddColumns from "./AudienceComponents/AddColumns"
 import SharedDrive from "./AudienceComponents/SharedDrive"
@@ -11,7 +11,7 @@ const Audience = () => {
     const [visible, setVisible] = useState(false)
     const [showNewAudience, setShowNewAudience] = useState(false)
 
-    ///////// Hooks /////////
+    //////////////////
 
     ////////// Modal Methods //////////
     const showModal = () => {
@@ -25,9 +25,13 @@ const Audience = () => {
     const handleCancel = (e: any) => {
         setVisible(false)
     };
-    ////////// Modal Methods //////////
+    ////////////////////
 
     function callback(key) {
+        console.log(key);
+    }
+
+    function dropdownCallback(key) {
         console.log(key);
     }
 
@@ -65,37 +69,32 @@ const Audience = () => {
 
     ////////// Campaign Data //////////
     const campaignColumns = [
-        // {
-        //     title: 'Name',
-        //     dataIndex: 'name',
-        //     render: (text: any) => <a>{text}</a>,
-        // },
         {
-            title: 'Campaign Name',
-            dataIndex: 'campaignName',
+            title: 'Audience Name',
+            dataIndex: 'audienceName',
         }
     ];
 
     const campaignData = [
         {
             key: '1',
-            campaignName: 'Campaign 1'
+            audienceName: 'Audience 1'
         },
         {
             key: '2',
-            campaignName: 'Campaign 2'
+            audienceName: 'Audience 2'
         },
         {
             key: '3',
-            campaignName: 'Campaign 3'
+            audienceName: 'Audience 3'
         },
         {
             key: '4',
-            campaignName: 'Campaign 4'
+            audienceName: 'Audience 4'
         },
         {
             key: '5',
-            campaignName: 'Campaign 5'
+            audienceName: 'Audience 5'
         },
     ];
     ////////// Campaign Data //////////
@@ -203,37 +202,65 @@ const Audience = () => {
 
     const { Search } = Input;
     const { TabPane } = Tabs;
+    const { Panel } = Collapse;
+    const text = `
+  A dog is a type of domesticated animal.
+  Known for its loyalty and faithfulness,
+  it can be found as a welcome guest in many households across the world.
+`;
 
 
     return (
         <div>
-            <Row type="flex" justify="end" gutter={24}>
-                <Col span={6}>
-                    <Button
-                        type="primary"
-                        shape="round"
-                        icon="plus"
-                        size="default"
-                        style={{ height: "40px" }}
-                        onClick={showModal}
-                    >
-                        Add A New Audience
-                    </Button>
-                </Col>
-                <Col span={6}>
-                    <Button
-                        type="danger"
-                        shape="round"
-                        icon="delete"
-                        size="default"
-                        style={{ height: "40px" }}
-                        onClick={showModal}
-                    >
-                        Delete Audience
-                    </Button>
-                </Col>
-            </Row>
             <Row>
+                <Row type="flex" justify="start" gutter={8}>
+                    <Col span={5}>
+                        <Button
+                            type="primary"
+                            shape="round"
+                            icon="plus"
+                            size="default"
+                            style={{ height: "40px" }}
+                            onClick={showModal}
+                        >
+                            Add A New Audience
+                    </Button>
+                    </Col>
+                    <Col span={8}>
+                        <Button
+                            type="danger"
+                            shape="round"
+                            icon="delete"
+                            size="default"
+                            style={{ height: "40px" }}
+                            onClick={showModal}
+                        >
+                            Delete Audience
+                    </Button>
+                    </Col>
+                    <Col span={5}>
+                        <Button
+                            type="primary"
+                            icon="upload"
+                            size="default"
+                            style={{ height: "40px" }}
+                            onClick={showModal}
+                        >
+                            Upload Form
+                    </Button>
+                    </Col>
+                    <Col span={5}>
+                        <Button
+                            type="primary"
+                            icon="form"
+                            size="default"
+                            style={{ height: "40px" }}
+                            onClick={showModal}
+                        >
+                            Manual Entry
+                    </Button>
+                    </Col>
+                </Row>
                 <Col span={12}>
                     <Table rowSelection={campaignRowSelection} columns={campaignColumns} dataSource={campaignData} pagination={false} />
                     <Row gutter={12}>
@@ -258,98 +285,21 @@ const Audience = () => {
                 onOk={handleOk}
                 onCancel={handleCancel}
                 width="75vw"
-                bodyStyle={{ height: "60vh" }}
+                bodyStyle={{ height: "60vh", overflowY: "scroll" }}
+
             >
-                <Tabs defaultActiveKey="1" onChange={callback}>
-                    <TabPane
-                        tab={
-                            <span>
-                                <Icon type="plus" />
-                                Details
-                        </span>
-                        }
-                        key="1"
-                    >
-                        Campaign Name <Input placeholder="Campaign Name" />
-                    </TabPane>
-                    <TabPane
-                        tab={
-                            <span>
-                                <Icon type="plus" />
-                                Create Table
-                        </span>
-                        }
-                        key="2"
-                    >
-                        <AddColumns />
-                    </TabPane>
-                    <TabPane
-                        tab={
-                            <span>
-                                <Icon type="copy" />
-                                Set FTP
-                        </span>
-                        }
-                        key="3"
-                    >
+                <div>
+                    Campaign Name <Input placeholder="Campaign Name" />
+                </div>
+                <AddColumns />
+                <Collapse defaultActiveKey={['1']} onChange={callback}>
+                    <Panel header="FTP" key="1">
                         <FTP />
-                    </TabPane>
-                    <TabPane
-                        tab={
-                            <span>
-                                <Icon type="folder-add" />
-                                Shared Drive
-                        </span>
-                        }
-                        key="4"
-                    >
+                    </Panel>
+                    <Panel header="Network Drive" key="2">
                         <SharedDrive />
-                    </TabPane>
-                    <TabPane
-                        tab={
-                            <span>
-                                <Icon type="upload" />
-                                Upload
-                        </span>
-                        }
-                        key="5"
-                    >
-                        <Upload {...props}>
-                            <Button>
-                                <Icon type="upload" /> Click to Upload
-                             </Button>
-                        </Upload>
-                    </TabPane>
-                    <TabPane
-                        tab={
-                            <span>
-                                <Icon type="form" />
-                                Manual Entry
-                        </span>
-                        }
-                        key="6"
-                    >
-                        Manual Entry
-                    </TabPane>
-                </Tabs>
-                {/* <Row type="flex" justify="center" gutter={20}>
-                    <Col span={4}>
-                        <Button size="large" icon="plus" type="primary">Create Table</Button>
-                    </Col>
-                    <Col span={3}>
-                        <Button size="large" icon="copy" type="primary">Set FTP</Button>
-                    </Col>
-                    <Col span={4}>
-                        <Button size="large" icon="folder-add" type="primary">Shared Drive</Button>
-                    </Col>
-                    <Col span={3}>
-                        <Button size="large" icon="upload" type="primary">Upload</Button>
-                    </Col>
-                    <Col span={4}>
-                        <Button size="large" icon="form" type="primary">Manual Entry</Button>
-                    </Col>
-                </Row> */}
-                {/* <Table dataSource={dataSource} columns={columns} pagination={false} /> */}
+                    </Panel>
+                </Collapse>
             </Modal>
         </div >
     )
