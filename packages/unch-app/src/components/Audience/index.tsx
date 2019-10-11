@@ -197,18 +197,12 @@ const Audience = () => {
             dataIndex: 'status',
         },
     ];
-    ///////////// Columns and Data for Audience ///////////////
+    ////////////////////////////
 
 
     const { Search } = Input;
     const { TabPane } = Tabs;
     const { Panel } = Collapse;
-    const text = `
-  A dog is a type of domesticated animal.
-  Known for its loyalty and faithfulness,
-  it can be found as a welcome guest in many households across the world.
-`;
-
 
     return (
         <div>
@@ -239,15 +233,16 @@ const Audience = () => {
                     </Button>
                     </Col>
                     <Col span={5}>
-                        <Button
-                            type="primary"
-                            icon="upload"
-                            size="default"
-                            style={{ height: "40px" }}
-                            onClick={showModal}
-                        >
-                            Upload Form
+                        <Upload {...props}>
+                            <Button
+                                type="primary"
+                                icon="upload"
+                                size="default"
+                                style={{ height: "40px" }}
+                            >
+                                Upload Form
                     </Button>
+                        </Upload>
                     </Col>
                     <Col span={5}>
                         <Button
@@ -255,7 +250,6 @@ const Audience = () => {
                             icon="form"
                             size="default"
                             style={{ height: "40px" }}
-                            onClick={showModal}
                         >
                             Manual Entry
                     </Button>
@@ -292,7 +286,7 @@ const Audience = () => {
                     Campaign Name <Input placeholder="Campaign Name" />
                 </div>
                 <AddColumns />
-                <Collapse defaultActiveKey={['1']} onChange={callback}>
+                <Collapse onChange={callback}>
                     <Panel header="FTP" key="1">
                         <FTP />
                     </Panel>
