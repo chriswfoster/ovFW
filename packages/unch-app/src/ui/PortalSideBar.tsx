@@ -24,7 +24,7 @@ export default class PortalSideBar extends React.Component<any, any> {
             <div className="sideBarMain">
                 <img className="sideBarImg" src={require('../images/spinsciTrans.png')}/>
                 <Menu
-                //   style={{width: '100%'}}
+                    // style={{width: '100%'}}
                     // onClick={this.scrollToTop}
                     defaultSelectedKeys={['1']}
                     defaultOpenKeys={['sub1']}
