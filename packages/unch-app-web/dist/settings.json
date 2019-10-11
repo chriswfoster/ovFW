@@ -7,16 +7,23 @@
             }
         }
     },
-    
+
     "servers": {
         "monitor": false,
         "locations": [
             {
-                "base": "https://10.3.74.200/"
+                "base": "https://10.2.74.31/unch/v1/"
             }
         ]
     },
-
+    "epicservers": {
+        "monitor": false,
+        "locations": [
+            {
+                "base": "https://10.2.74.31/ehrregistry/screenPop"
+            }
+        ]
+    },
     "hotkeys": {
         "map": [
             {"label": "Scheduling", "type": "blind", "dn": "1082"},
@@ -26,5 +33,25 @@
             {"label": "Nurse Triage", "type": "blind", "dn": "1082"},
             {"label": "Emer. Clinic", "type": "warm", "dn": "1082"}
         ]
+    },
+    "screenpop": {
+        "map": [
+            {"label": "Scheduling", "url": "https://www.spinsci.com"},
+            {"label": "Referral", "url": "https://www.spinsci.com"},
+            {"label": "Billing", "url": "https://www.spinsci.com"},
+            {"label": "PAC", "url": "https://www.spinsci.com"},
+            {"label": "Nurse Triage", "url": "https://www.spinsci.com"},
+            {"label": "Emer. Clinic", "url": "https://www.spinsci.com"}
+        ]
+    },
+
+    "mapdetails" : {
+        "defaultaddress": "101 Manning Dr, Chapel Hill, NC 27514, USA",
+        "lat": "35.9033812",
+        "lon": "-79.0502578"
+    },
+    "epic_config" : {
+        "location": "POC",
+        "activityId": "UCW_SNAPSHOT"
     }
 }
