@@ -3,6 +3,7 @@ import First from './Steps/First';
 import Second from './Steps/Second';
 import Third from './Steps/Third';
 import Fourth from './Steps/Fourth';
+import Fifth from './Steps/Fifth';
 import { Steps, Button, Modal, message } from 'antd';
 
 
@@ -51,6 +52,11 @@ class NewCampaign extends React.Component <any, any> {
                 key: 4,
               title: 'Campaign Roles',
               content: <Fourth />,
+            },
+            {
+                key: 5,
+                title: 'Audio',
+                content: <Fifth />
             },
         ];
         return(

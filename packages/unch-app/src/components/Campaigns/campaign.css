@@ -27,6 +27,16 @@
 	align-content: stretch;
 }
 
+.descriptionListColumnNoHeight {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: flex-start;
+	align-items: flex-start;
+	align-content: stretch;
+}
+
 .divFlexColumns {
 	width: 100%;
 	height: 100%;
