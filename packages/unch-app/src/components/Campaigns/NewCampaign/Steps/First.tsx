@@ -8,15 +8,17 @@ const First = () => {
     }
     const cardStyles = {
         width: '50%',
-        height: '50%'
+        height: '50%',
+        overflow: 'scroll'
     }
     const cardBodyStyles = {
-        height: '100%'
+        height: '100%',
+        overflow: 'scroll'
     }
 
     const cardGridStyles = {
         width: '50%',
-        height: '100%'
+        height: '90%'
     }
 
     const workflows = ["Schedule", "Billing",  "Rx", "Other"]
@@ -111,25 +113,69 @@ const First = () => {
                 </Card.Grid>
             </Card>
             <Card bodyStyle={cardBodyStyles} title="IVR Application" style={cardStyles}>
-                <Descriptions column={1} layout="horizontal" className="descriptionListColumn" title="">
-                    <Descriptions.Item label="Please Select a Survey:">
-                        <Select style={inputStyles}>
-                            <Select.Option key={1}>
-                                First
-                            </Select.Option>
-                            <Select.Option key={2}>
-                                Second
-                            </Select.Option>
-                            <Select.Option key={3}>
-                                Third
-                            </Select.Option>
-                        </Select>
-                    </Descriptions.Item>
-                </Descriptions>
-                <Button>
-                    View Audience
-                </Button>
+                <Card.Grid style={cardGridStyles}>
+                    <Descriptions column={1} layout="horizontal" className="descriptionListColumnNoHeight" title="">
+                        <Descriptions.Item label="Please Select a Survey:">
+                            <Select style={inputStyles}>
+                                <Select.Option key={1}>
+                                    Voice
+                                </Select.Option>
+                                <Select.Option key={2}>
+                                    SMS
+                                </Select.Option>
+                                <Select.Option key={3}>
+                                    Voice & SMS
+                                </Select.Option>
+                            </Select>
+                        </Descriptions.Item>
+                    </Descriptions>
+                    <Button style={{marginBottom: 10}} type="primary">Create New Outbound Message</Button>
+                </Card.Grid>
+                <Card.Grid style={cardGridStyles}>
+                    <Descriptions column={1} layout="horizontal" className="descriptionListColumnNoHeight" title="Outbound Message Variables">
+                        <Descriptions.Item label="First Name">
+                            <Select style={inputStyles}>
+                                <Select.Option key={1}>
+                                    First_Name_Column
+                                </Select.Option>
+                                <Select.Option key={2}>
+                                    Last_Name_Column
+                                </Select.Option>
+                                <Select.Option key={3}>
+                                    Phone_Number_Column
+                                </Select.Option>
+                            </Select>
+                        </Descriptions.Item>
+                        <Descriptions.Item label="Last Name">
+                            <Select style={inputStyles}>
+                                <Select.Option key={1}>
+                                    First_Name_Column
+                                </Select.Option>
+                                <Select.Option key={2}>
+                                    Last_Name_Column
+                                </Select.Option>
+                                <Select.Option key={3}>
+                                    Phone_Number_Column
+                                </Select.Option>
+                            </Select>
+                        </Descriptions.Item>
+                        <Descriptions.Item label="Phone Number">
+                            <Select style={inputStyles}>
+                                <Select.Option key={1}>
+                                    First_Name_Column
+                                </Select.Option>
+                                <Select.Option key={2}>
+                                    Last_Name_Column
+                                </Select.Option>
+                                <Select.Option key={3}>
+                                    Phone_Number_Column
+                                </Select.Option>
+                            </Select>
+                        </Descriptions.Item>
+                    </Descriptions>
+                </Card.Grid>
             </Card>
+            <div style={cardStyles} /> {/* Space keeping div */}
         </div>
     )
 }
