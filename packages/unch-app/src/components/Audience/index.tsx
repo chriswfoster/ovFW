@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Table, Button, Input, Icon, Modal, Row, Col, List, Typography, Tabs, Upload, message, Collapse } from 'antd';
+import { Table, Button, Input, Icon, Modal, Row, Col, Tabs, Upload, message, Collapse, Divider, Menu, Dropdown, Tabs } from 'antd';
 import FTP from "./AudienceComponents/FTP"
 import AddColumns from "./AudienceComponents/AddColumns"
 import SharedDrive from "./AudienceComponents/SharedDrive"
@@ -7,7 +7,6 @@ import SharedDrive from "./AudienceComponents/SharedDrive"
 const Audience = () => {
 
     ///////// Hooks /////////
-
     const [visible, setVisible] = useState(false)
     const [showNewAudience, setShowNewAudience] = useState(false)
 
@@ -27,16 +26,14 @@ const Audience = () => {
     };
     ////////////////////
 
+    ////////// Collapse Methods //////////
     function callback(key) {
         console.log(key);
     }
+    ////////////////////
 
-    function dropdownCallback(key) {
-        console.log(key);
-    }
 
     ////////// New Audience Methods //////////
-
     const campaignRowSelection = {
         onChange: (selectedRowKeys, selectedRows) => {
             console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
@@ -46,7 +43,7 @@ const Audience = () => {
             name: record.name,
         }),
     };
-    ////////// New Audience Methods //////////
+    ////////////////////
 
     const props = {
         name: 'file',
@@ -97,7 +94,7 @@ const Audience = () => {
             audienceName: 'Audience 5'
         },
     ];
-    ////////// Campaign Data //////////
+    ////////////////////
 
 
 
@@ -270,7 +267,17 @@ const Audience = () => {
                     </Row>
                 </Col>
                 <Col span={12}>
-                    <Table dataSource={dataSource} columns={columns} pagination={false} />
+                    <Tabs defaultActiveKey="1" onChange={callback}>
+                        <TabPane tab="Tab 1" key="1">
+                            Content of Tab Pane 1
+                    </TabPane>
+                        <TabPane tab="Tab 2" key="2">
+                            Content of Tab Pane 2
+                    </TabPane>
+                        <TabPane tab="Tab 3" key="3">
+                            Content of Tab Pane 3
+                    </TabPane>
+                    </Tabs>
                 </Col>
             </Row>
             <Modal
@@ -278,14 +285,24 @@ const Audience = () => {
                 visible={visible}
                 onOk={handleOk}
                 onCancel={handleCancel}
-                width="75vw"
+                width="65vw"
                 bodyStyle={{ height: "60vh", overflowY: "scroll" }}
 
             >
-                <div>
-                    Campaign Name <Input placeholder="Campaign Name" />
+                <div style={{
+                    display: "flex",
+                    flexdirection: "row",
+                    flexwrap: "nowrap",
+                    justifycontent: "flex-start",
+                    alignitems: "center",
+                    aligncontent: "center",
+                    paddingBottom: "20px"
+                }}>
+                    Campaign Name:  <Input placeholder="Campaign Name" size="small" style={{ width: "300px" }} />
                 </div>
+                <Divider />
                 <AddColumns />
+                <Divider />
                 <Collapse onChange={callback}>
                     <Panel header="FTP" key="1">
                         <FTP />
