@@ -254,29 +254,52 @@ const Audience = () => {
                 </Row>
                 <Col span={12}>
                     <Table rowSelection={campaignRowSelection} columns={campaignColumns} dataSource={campaignData} pagination={false} />
-                    <Row gutter={12}>
-                        <Col span={5}>
-                            <Button icon="stop" type="danger">Stop</Button>
-                        </Col>
-                        <Col span={5}>
-                            <Button icon="pause" type="default">Pause</Button>
-                        </Col>
-                        <Col span={5}>
-                            <Button icon="caret-right" type="primary">Resume</Button>
-                        </Col>
-                    </Row>
                 </Col>
                 <Col span={12}>
-                    <Tabs defaultActiveKey="1" onChange={callback}>
-                        <TabPane tab="Tab 1" key="1">
-                            Content of Tab Pane 1
-                    </TabPane>
-                        <TabPane tab="Tab 2" key="2">
-                            Content of Tab Pane 2
-                    </TabPane>
-                        <TabPane tab="Tab 3" key="3">
-                            Content of Tab Pane 3
-                    </TabPane>
+                    <Tabs defaultActiveKey="1" onChange={callback} size="large">
+                        <TabPane tab="Details" key="1">
+                            <h3>Name of Audience: Audience 1</h3>
+                            <h3>Created On: 09/20/2019</h3>
+                            <h3>Created By: Kevin Smith</h3>
+                            <h3>Current Campaign: BSW_Campaign</h3>
+                            <h3>Current State: In Progress</h3>
+                            <Row gutter={12}>
+                                <Col span={5}>
+                                    <Button icon="stop" type="danger">Stop</Button>
+                                </Col>
+                                <Col span={5}>
+                                    <Button icon="pause" type="default">Pause</Button>
+                                </Col>
+                                <Col span={5}>
+                                    <Button icon="caret-right" type="primary">Resume</Button>
+                                </Col>
+                            </Row>
+                            <Divider />
+                            <AddColumns />
+                            <Divider />
+                            <Collapse onChange={callback}>
+                                <Panel header="FTP" key="1">
+                                    <FTP />
+                                </Panel>
+                                <Panel header="Network Drive" key="2">
+                                    <SharedDrive />
+                                </Panel>
+                            </Collapse>
+                        </TabPane>
+                        <TabPane tab="Dial List" key="2">
+                            <Table columns={columns} dataSource={dataSource} pagination={false} />
+                        </TabPane>
+                        <TabPane tab="Do Not Call List" key="3">
+                            <Collapse onChange={callback}>
+                                <Panel header="FTP" key="1">
+                                    <FTP />
+                                </Panel>
+                                <Panel header="Network Drive" key="2">
+                                    <SharedDrive />
+                                </Panel>
+                            </Collapse>
+                            <Table columns={columns} dataSource={dataSource} pagination={false} />
+                        </TabPane>
                     </Tabs>
                 </Col>
             </Row>
