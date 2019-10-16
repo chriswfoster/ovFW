@@ -51,7 +51,7 @@ const AddColumns = (props: any) => {
                         className="dynamic-delete-button"
                         type="minus-circle-o"
                     />
-                    <Input placeholder="Basic usage" />
+                    <Input placeholder="Basic usage" size="small" />
                     <Select defaultValue="lucy" style={{ width: 120 }} onChange={handleChange}>
                         <Option value="jack">Type</Option>
                         <Option value="lucy">Type</Option>
@@ -71,7 +71,7 @@ const AddColumns = (props: any) => {
                         className="dynamic-delete-button"
                         type="minus-circle-o"
                     />
-                    <Input placeholder="Basic usage" />
+                    <Input placeholder="Basic usage" size="small" />
                     <Select defaultValue="lucy" style={{ width: 120 }} onChange={handleChange}>
                         <Option value="jack">Type</Option>
                         <Option value="lucy">Type</Option>
@@ -97,7 +97,7 @@ const AddColumns = (props: any) => {
                             fontsize: "24px",
                         }}
                     />
-                    <Input placeholder="Basic usage" />
+                    <Input placeholder="Basic usage" size="small" />
                     <Select defaultValue="lucy" style={{ width: 120 }} onChange={handleChange}>
                         <Option value="jack">Type</Option>
                         <Option value="lucy">Type</Option>
