@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Descriptions, Radio, Divider, Select } from 'antd';
+import { Button, Descriptions, Radio, Divider, Select, Card } from 'antd';
 import AudioElement from './AudioElement';
 import AudioOptionsElement from './AudioOptionsElement';
 import DataElement from './DataElement';
@@ -38,16 +38,22 @@ export default class Fifth extends React.Component<any, any> {
         }
     }
 
+    removeCompFromList = (ind) => {
+        let tempArr = this.state.compList;
+        tempArr.splice(ind, 1);
+        this.setState({compList: tempArr})
+    }
+
     compListBuilder = (typeOfComp, i) => {
         switch (typeOfComp) {
             case "audio":
-            return <AudioElement key={i} />
+            return <AudioElement key={i} index={i} delete={this.removeCompFromList}/>
 
             case "data":
-            return <DataElement key={i} />
+            return <DataElement key={i} index={i} delete={this.removeCompFromList}/>
 
             case "audio-options":
-            return <AudioOptionsElement key={i} />
+            return <AudioOptionsElement key={i} index={i} delete={this.removeCompFromList}/>
 
             default: break;
         }
@@ -85,8 +91,8 @@ export default class Fifth extends React.Component<any, any> {
                     {compList.map((item, i) => {
                         return this.compListBuilder(item, i)
                     })}
-                    <div>
-                        <Select style={inputStyles} onChange={val => this.setState({dataToAdd: val})}>
+                    <Card style={{width: '30vw', marginTop: 30, minWidth: 405}}>
+                        <Select style={{...inputStyles, marginRight: 20}} onChange={val => this.setState({dataToAdd: val})}>
                             <Select.Option value={"audio"} key={1}>
                                 Audio
                             </Select.Option>
@@ -98,7 +104,7 @@ export default class Fifth extends React.Component<any, any> {
                             </Select.Option>
                         </Select>
                         <Button onClick={this.addToCompList} type="primary">Add Element</Button>
-                    </div>
+                    </Card>
                 </div>
             </div>
         )
