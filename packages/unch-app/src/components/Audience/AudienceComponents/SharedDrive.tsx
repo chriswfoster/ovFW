@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, Input, Radio, Descriptions } from "antd";
+import { Row, Col, Input, Radio, Descriptions, Button } from "antd";
 
 class SharedDrive extends React.Component<any, any> {
     constructor(props: any) {
@@ -50,6 +50,7 @@ class SharedDrive extends React.Component<any, any> {
                                 Updated at regular intervals throughout the day
                         </Radio>
                         </Radio.Group>
+                        <Button type="primary">Upload</Button>
                     </Col>
                 </Row>
             </div>

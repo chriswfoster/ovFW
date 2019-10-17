@@ -45,7 +45,8 @@ const AddColumns = (props: any) => {
                     flexwrap: "wrap",
                     justifycontent: "space-around",
                     alignitems: "center",
-                    aligncontent: "center"
+                    aligncontent: "center",
+                    paddingBottom: "10px"
                 }}>
                     <Icon
                         className="dynamic-delete-button"
@@ -65,7 +66,8 @@ const AddColumns = (props: any) => {
                     flexwrap: "wrap",
                     justifycontent: "space-around",
                     alignitems: "center",
-                    aligncontent: "center"
+                    aligncontent: "center",
+                    paddingBottom: "10px"
                 }}>
                     <Icon
                         className="dynamic-delete-button"
@@ -85,7 +87,8 @@ const AddColumns = (props: any) => {
                     flexwrap: "wrap",
                     justifycontent: "space-around",
                     alignitems: "center",
-                    aligncontent: "center"
+                    aligncontent: "center",
+                    paddingBottom: "10px"
                 }}>
                     <Icon
                         className="dynamic-delete-button"

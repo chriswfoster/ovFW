@@ -69,21 +69,43 @@ const Audience = () => {
         {
             title: 'Audience Name',
             dataIndex: 'audienceName',
+        },
+        {
+            title: "Campaign Status",
+            dataIndex: "status"
         }
     ];
 
     const campaignData = [
         {
             key: '1',
-            audienceName: 'Audience 1'
+            audienceName: 'Audience 1',
+            status: (
+                <div>
+                    <Icon type="play-circle" theme="twoTone" twoToneColor="#52c41a" style={{ paddingRight: "5px" }} />
+                    Running
+                </div>
+            )
         },
         {
             key: '2',
-            audienceName: 'Audience 2'
+            audienceName: 'Audience 2',
+            status: (
+                <div>
+                    <Icon type="pause-circle" theme="twoTone" style={{ paddingRight: "5px" }} />
+                    Paused
+                </div>
+            )
         },
         {
             key: '3',
-            audienceName: 'Audience 3'
+            audienceName: 'Audience 3',
+            status: (
+                <div>
+                    <Icon type="close-circle" theme="twoTone" twoToneColor="#eb2f96" style={{ paddingRight: "5px" }} />
+                    Stopped
+                </div>
+            )
         },
         {
             key: '4',
@@ -257,7 +279,12 @@ const Audience = () => {
                 </Col>
                 <Col span={12}>
                     <Tabs defaultActiveKey="1" onChange={callback} size="large">
-                        <TabPane tab="Details" key="1">
+                        <TabPane tab={
+                            <span>
+                                <Icon type="control" />
+                                Details
+                            </span>
+                        } key="1">
                             <h3>Name of Audience: Audience 1</h3>
                             <h3>Created On: 09/20/2019</h3>
                             <h3>Created By: Kevin Smith</h3>
@@ -286,10 +313,20 @@ const Audience = () => {
                                 </Panel>
                             </Collapse>
                         </TabPane>
-                        <TabPane tab="Dial List" key="2">
+                        <TabPane tab={
+                            <span>
+                                <Icon type="menu" />
+                                Dial List
+                            </span>
+                        } key="2">
                             <Table columns={columns} dataSource={dataSource} pagination={false} />
                         </TabPane>
-                        <TabPane tab="Do Not Call List" key="3">
+                        <TabPane tab={
+                            <span>
+                                <Icon type="control" />
+                                Do Not Call List
+                            </span>
+                        } key="3">
                             <Collapse onChange={callback}>
                                 <Panel header="FTP" key="1">
                                     <FTP />
