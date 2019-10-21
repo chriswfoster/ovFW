@@ -1,11 +1,10 @@
-import React from 'react';
-import { Button, Descriptions, Radio, Divider, Select, Card } from 'antd';
+import React from 'react'
+import { Button, Timeline, Radio, Divider, Select, Card, Icon } from 'antd';
 import AudioElement from './AudioElement';
 import AudioOptionsElement from './AudioOptionsElement';
 import DataElement from './DataElement';
 
-
-export default class Fifth extends React.Component<any, any> {
+class Fifth extends React.Component<any, any>{
     constructor(props: any){
         super(props)
         this.state = {
@@ -14,7 +13,6 @@ export default class Fifth extends React.Component<any, any> {
             dataToAdd: ''
         }
     }
-
     addToCompList = () => {
         const {dataToAdd, compList} = this.state;
         let tempArr = compList;
@@ -47,13 +45,22 @@ export default class Fifth extends React.Component<any, any> {
     compListBuilder = (typeOfComp, i) => {
         switch (typeOfComp) {
             case "audio":
-            return <AudioElement key={i} index={i} delete={this.removeCompFromList}/>
+            return  <Timeline.Item dot={<Icon type="sound" style={{ fontSize: '16px' }} />}>
+                        {/* {typeOfComp} */}
+                        <AudioElement key={i} index={i} delete={this.removeCompFromList}/>
+                    </Timeline.Item>
 
             case "data":
-            return <DataElement key={i} index={i} delete={this.removeCompFromList}/>
+            return  <Timeline.Item dot={<Icon type="file-unknown" style={{ fontSize: '16px' }} />}>
+                        {/* {typeOfComp} */}
+                        <DataElement key={i} index={i} delete={this.removeCompFromList}/>
+                    </Timeline.Item>
 
             case "audio-options":
-            return <AudioOptionsElement key={i} index={i} delete={this.removeCompFromList}/>
+            return  <Timeline.Item dot={<Icon type="sound" style={{ fontSize: '16px' }} />}>
+                        {/* {typeOfComp} */}
+                        <AudioOptionsElement key={i} index={i} delete={this.removeCompFromList}/>
+                    </Timeline.Item>
 
             default: break;
         }
@@ -70,8 +77,9 @@ export default class Fifth extends React.Component<any, any> {
         const inputStyles = {
             width: 220
         }
-        return (
+        return(
             <div style={{overflowY: 'scroll'}} id="outerCampaignCardDiv" className="divFlexRowsNoWrap">
+                {/* Left side of page */}
                 <div style={{width: 220}}>
                     <h3>Select Message Type:</h3>
                     <Radio.Group value={radioSelected} style={{marginLeft: 50}} onChange={e => this.setState({radioSelected: e.target.value})}>
@@ -85,13 +93,33 @@ export default class Fifth extends React.Component<any, any> {
                             Other?
                         </Radio>
                     </Radio.Group>
+                    <Divider type="horizontal" style={{width: '100%'}}/>
+                    <h3>Add Step: </h3>
+                    <Select style={{...inputStyles, marginBottom: 20}} onChange={val => this.setState({dataToAdd: val})}>
+                            <Select.Option value={"audio"} key={1}>
+                                Audio
+                            </Select.Option>
+                            <Select.Option value={"data"} key={2}>
+                                Data
+                            </Select.Option>
+                            <Select.Option value={"audio-options"} key={3}>
+                                Audio with Options
+                            </Select.Option>
+                        </Select>
+                        <Button disabled={!dataToAdd} onClick={this.addToCompList} type="primary">Add Element</Button>
                 </div>
-                    <Divider style={{height: '100%'}} type="vertical" />
-                <div className="audioColumns">
-                    {compList.map((item, i) => {
-                        return this.compListBuilder(item, i)
-                    })}
-                    <Card style={{width: '30vw', marginTop: 30, minWidth: 405}}>
+                <Divider style={{height: '100%'}} type="vertical" />
+                {/* Right side of page */}
+                <div className="audioColumnsAlternative">
+                    <Timeline >
+
+                        {compList.map((item, i) => {
+                            return this.compListBuilder(item, i)
+                        })}
+                    </Timeline>
+
+                </div>
+                    {/* <Card style={{width: '30vw', marginTop: 30, minWidth: 405}}>
                         <Select style={{...inputStyles, marginRight: 20}} onChange={val => this.setState({dataToAdd: val})}>
                             <Select.Option value={"audio"} key={1}>
                                 Audio
@@ -104,9 +132,9 @@ export default class Fifth extends React.Component<any, any> {
                             </Select.Option>
                         </Select>
                         <Button onClick={this.addToCompList} type="primary">Add Element</Button>
-                    </Card>
-                </div>
+                    </Card> */}
             </div>
         )
     }
 }
+export default Fifth

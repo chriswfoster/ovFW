@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import First from './Steps/First';
 import Second from './Steps/Second';
 import Third from './Steps/Third';
-import Fourth from './Steps/Fourth';
+import Fourth from './Steps/Fourth/Fourth';
 import Fifth from './Steps/Fifth/Fifth';
 import { Steps, Button, Modal, message } from 'antd';
 
@@ -11,7 +11,7 @@ class NewCampaign extends React.Component <any, any> {
     constructor(props: any){
         super(props)
         this.state = {
-            current: 0,
+            current: 3,
         }
         
     }
