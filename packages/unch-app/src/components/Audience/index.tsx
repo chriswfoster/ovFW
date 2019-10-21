@@ -69,21 +69,43 @@ const Audience = () => {
         {
             title: 'Audience Name',
             dataIndex: 'audienceName',
+        },
+        {
+            title: "Campaign Status",
+            dataIndex: "status"
         }
     ];
 
     const campaignData = [
         {
             key: '1',
-            audienceName: 'Audience 1'
+            audienceName: 'Audience 1',
+            status: (
+                <div>
+                    <Icon type="play-circle" theme="twoTone" twoToneColor="#52c41a" style={{ paddingRight: "5px" }} />
+                    Running
+                </div>
+            )
         },
         {
             key: '2',
-            audienceName: 'Audience 2'
+            audienceName: 'Audience 2',
+            status: (
+                <div>
+                    <Icon type="pause-circle" theme="twoTone" style={{ paddingRight: "5px" }} />
+                    Paused
+                </div>
+            )
         },
         {
             key: '3',
-            audienceName: 'Audience 3'
+            audienceName: 'Audience 3',
+            status: (
+                <div>
+                    <Icon type="close-circle" theme="twoTone" twoToneColor="#eb2f96" style={{ paddingRight: "5px" }} />
+                    Stopped
+                </div>
+            )
         },
         {
             key: '4',
@@ -254,29 +276,67 @@ const Audience = () => {
                 </Row>
                 <Col span={12}>
                     <Table rowSelection={campaignRowSelection} columns={campaignColumns} dataSource={campaignData} pagination={false} />
-                    <Row gutter={12}>
-                        <Col span={5}>
-                            <Button icon="stop" type="danger">Stop</Button>
-                        </Col>
-                        <Col span={5}>
-                            <Button icon="pause" type="default">Pause</Button>
-                        </Col>
-                        <Col span={5}>
-                            <Button icon="caret-right" type="primary">Resume</Button>
-                        </Col>
-                    </Row>
                 </Col>
                 <Col span={12}>
-                    <Tabs defaultActiveKey="1" onChange={callback}>
-                        <TabPane tab="Tab 1" key="1">
-                            Content of Tab Pane 1
-                    </TabPane>
-                        <TabPane tab="Tab 2" key="2">
-                            Content of Tab Pane 2
-                    </TabPane>
-                        <TabPane tab="Tab 3" key="3">
-                            Content of Tab Pane 3
-                    </TabPane>
+                    <Tabs defaultActiveKey="1" onChange={callback} size="large">
+                        <TabPane tab={
+                            <span>
+                                <Icon type="control" />
+                                Details
+                            </span>
+                        } key="1">
+                            <h3>Name of Audience: Audience 1</h3>
+                            <h3>Created On: 09/20/2019</h3>
+                            <h3>Created By: Kevin Smith</h3>
+                            <h3>Current Campaign: BSW_Campaign</h3>
+                            <h3>Current State: In Progress</h3>
+                            <Row gutter={12}>
+                                <Col span={5}>
+                                    <Button icon="stop" type="danger">Stop</Button>
+                                </Col>
+                                <Col span={5}>
+                                    <Button icon="pause" type="default">Pause</Button>
+                                </Col>
+                                <Col span={5}>
+                                    <Button icon="caret-right" type="primary">Resume</Button>
+                                </Col>
+                            </Row>
+                            <Divider />
+                            <AddColumns />
+                            <Divider />
+                            <Collapse onChange={callback}>
+                                <Panel header="FTP" key="1">
+                                    <FTP />
+                                </Panel>
+                                <Panel header="Network Drive" key="2">
+                                    <SharedDrive />
+                                </Panel>
+                            </Collapse>
+                        </TabPane>
+                        <TabPane tab={
+                            <span>
+                                <Icon type="menu" />
+                                Dial List
+                            </span>
+                        } key="2">
+                            <Table columns={columns} dataSource={dataSource} pagination={false} />
+                        </TabPane>
+                        <TabPane tab={
+                            <span>
+                                <Icon type="control" />
+                                Do Not Call List
+                            </span>
+                        } key="3">
+                            <Collapse onChange={callback}>
+                                <Panel header="FTP" key="1">
+                                    <FTP />
+                                </Panel>
+                                <Panel header="Network Drive" key="2">
+                                    <SharedDrive />
+                                </Panel>
+                            </Collapse>
+                            <Table columns={columns} dataSource={dataSource} pagination={false} />
+                        </TabPane>
                     </Tabs>
                 </Col>
             </Row>
