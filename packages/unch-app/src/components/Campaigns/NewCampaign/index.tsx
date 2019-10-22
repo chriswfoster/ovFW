@@ -11,7 +11,7 @@ class NewCampaign extends React.Component <any, any> {
     constructor(props: any){
         super(props)
         this.state = {
-            current: 3,
+            current: 0,
         }
         
     }

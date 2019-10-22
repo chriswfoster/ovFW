@@ -20,7 +20,7 @@ const Third = () => {
                     <Descriptions.Item label="Calls Per Second">
                         <Input />
                     </Descriptions.Item>
-                    <Descriptions.Item label="AMD Detection">
+                    <Descriptions.Item label="AMD (Answering Machine Detection)">
                         <Switch />
                     </Descriptions.Item>
                     <Descriptions.Item>
