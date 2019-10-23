@@ -1,80 +1,80 @@
 {
     "results": {
-       "pageInfo": {
-          "firstPage": "http://10.2.74.41/unifiedconfig/config/campaign?sort=name%20asc&resultsPerPage=25",
-          "lastPage": "http://10.2.74.41/unifiedconfig/config/campaign?sort=name%20asc&startIndex=0&resultsPerPage=25",
-          "resultsPerPage": "25",
-          "sortTerm": "name asc",
-          "startIndex": "0",
-          "totalResults": "1"
-       },
-       "permissionInfo": {
-          "canCreate": "true",
-          "canUpdate": "true",
-          "canDelete": "true",
-          "role": "Administrator",
-          "departmentAdmin": "false"
-       },
-       "campaigns": {
-          "campaign": {
-             "refURL": "/unifiedconfig/config/campaign/5005",
-             "changeStamp": "15",
-             "abandonEnabled": "true",
-             "abandonPercent": "3.0",
-             "amdTreatmentMode": "abandonCall",
-             "campaignPurposeType": "agentCampaign",
-             "callProgressAnalysis": {
+        "pageInfo": {
+            "firstPage": "http://10.2.74.41/unifiedconfig/config/campaign?sort=name%20asc&resultsPerPage=25",
+            "lastPage": "http://10.2.74.41/unifiedconfig/config/campaign?sort=name%20asc&startIndex=0&resultsPerPage=25",
+            "resultsPerPage": "25",
+            "sortTerm": "name asc",
+            "startIndex": "0",
+            "totalResults": "1"
+        },
+        "permissionInfo": {
+            "canCreate": "true",
+            "canUpdate": "true",
+            "canDelete": "true",
+            "role": "Administrator",
+            "departmentAdmin": "false"
+        },
+        "campaigns": {
+            "campaign": {
+                "refURL": "/unifiedconfig/config/campaign/5005",
+                "changeStamp": "15",
+                "abandonEnabled": "true",
+                "abandonPercent": "3.0",
+                "amdTreatmentMode": "abandonCall",
+                "campaignPurposeType": "agentCampaign",
+                "callProgressAnalysis": {
+                    "enabled": "true",
+                    "record": "false",
+                    "minSilencePeriod": "608",
+                    "analysisPeriod": "2500",
+                    "minimumValidSpeech": "112",
+                    "maxTimeAnalysis": "5000",
+                    "maxTermToneAnalysis": "30000"
+                },
+                "description": "APIONov32",
+                "dialingMode": "PREVIEWONLY",
                 "enabled": "true",
-                "record": "false",
-                "minSilencePeriod": "608",
-                "analysisPeriod": "2500",
-                "minimumValidSpeech": "112",
-                "maxTimeAnalysis": "5000",
-                "maxTermToneAnalysis": "30000"
-             },
-             "description": "APIONov32",
-             "dialingMode": "PREVIEWONLY",
-             "enabled": "true",
-             "endTime": "23:59",
-             "ipAmdEnabled": "true",
-             "ipTerminatingBeepDetect": "false",
-             "linesPerAgent": "1.5",
-             "maxAttempts": "3",
-             "maximumLinesPerAgent": "2.0",
-             "minimumCallDuration": "1",
-             "name": "APIONov32",
-             "noAnswerRingLimit": "4",
-             "personalizedCallbackEnabled": "false",
-             "predictiveCorrectionPace": "70",
-             "predictiveGain": "1.0",
-             "rescheduleCallbackMode": "useCampaignDN",
-             "reservationPercentage": "100",
-             "retries": {
-                "answeringMachineDelay": "60",
-                "busySignalDelay": "60",
-                "customerAbandonedDelay": "30",
-                "customerNotHomeDelay": "60",
-                "dialerAbandonedDelay": "60",
-                "noAnswerDelay": "60"
-             },
-             "skillGroupInfos": {
-                "skillGroupInfo": {
-                   "dialedNumber": "758051",
-                   "ivrPorts": "0",
-                   "overflowAgents": "0",
-                   "recordsToCache": "1",
-                   "skillGroup": {
-                      "refURL": "/unifiedconfig/config/skillgroup/5009",
-                      "name": "CUCM.Cisco_Voice.Agenta_Inbound"
-                   }
+                "endTime": "23:59",
+                "ipAmdEnabled": "true",
+                "ipTerminatingBeepDetect": "false",
+                "linesPerAgent": "1.5",
+                "maxAttempts": "3",
+                "maximumLinesPerAgent": "2.0",
+                "minimumCallDuration": "1",
+                "name": "APIONov32",
+                "noAnswerRingLimit": "4",
+                "personalizedCallbackEnabled": "false",
+                "predictiveCorrectionPace": "70",
+                "predictiveGain": "1.0",
+                "rescheduleCallbackMode": "useCampaignDN",
+                "reservationPercentage": "100",
+                "retries": {
+                    "answeringMachineDelay": "60",
+                    "busySignalDelay": "60",
+                    "customerAbandonedDelay": "30",
+                    "customerNotHomeDelay": "60",
+                    "dialerAbandonedDelay": "60",
+                    "noAnswerDelay": "60"
+                },
+                "skillGroupInfos": {
+                    "skillGroupInfo": {
+                        "dialedNumber": "758051",
+                        "ivrPorts": "0",
+                        "overflowAgents": "0",
+                        "recordsToCache": "1",
+                        "skillGroup": {
+                            "refURL": "/unifiedconfig/config/skillgroup/5009",
+                            "name": "CUCM.Cisco_Voice.Agenta_Inbound"
+                        }
+                    }
+                },
+                "startTime": "00:00",
+                "timeZone": {
+                    "refURL": "/unifiedconfig/config/timezone/UTC",
+                    "displayName": "(UTC) Coordinated Universal Time"
                 }
-             },
-             "startTime": "00:00",
-             "timeZone": {
-                "refURL": "/unifiedconfig/config/timezone/UTC",
-                "displayName": "(UTC) Coordinated Universal Time"
-             }
-          }
-       }
+            }
+        }
     }
- }
+}
