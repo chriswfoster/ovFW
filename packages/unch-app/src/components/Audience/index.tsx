@@ -8,6 +8,7 @@ const Audience = () => {
 
     ///////// Hooks /////////
     const [visible, setVisible] = useState(false)
+    const [manualVisible, setManualVisible] = useState(false)
     const [showNewAudience, setShowNewAudience] = useState(false)
 
     //////////////////
@@ -23,6 +24,20 @@ const Audience = () => {
 
     const handleCancel = (e: any) => {
         setVisible(false)
+    };
+    ////////////////////
+
+    ////////// Manual Entry Modal Methods //////////
+    const manualModal = () => {
+        setManualVisible(true)
+    };
+
+    const manualModalOk = (e: any) => {
+        setManualVisible(false)
+    };
+
+    const manualModalCancel = (e: any) => {
+        setManualVisible(false)
     };
     ////////////////////
 
@@ -218,8 +233,6 @@ const Audience = () => {
     ];
     ////////////////////////////
 
-
-    const { Search } = Input;
     const { TabPane } = Tabs;
     const { Panel } = Collapse;
 
@@ -227,10 +240,9 @@ const Audience = () => {
         <div>
             <Row>
                 <Row type="flex" justify="start" gutter={8}>
-                    <Col span={5}>
+                    <Col span={5} style={{ paddingBottom: "10px" }}>
                         <Button
                             type="primary"
-                            shape="round"
                             icon="plus"
                             size="default"
                             style={{ height: "40px" }}
@@ -242,16 +254,14 @@ const Audience = () => {
                     <Col span={8}>
                         <Button
                             type="danger"
-                            shape="round"
                             icon="delete"
                             size="default"
                             style={{ height: "40px" }}
-                            onClick={showModal}
                         >
                             Delete Audience
                     </Button>
                     </Col>
-                    <Col span={5}>
+                    <Col span={5} style={{ paddingBottom: "10px" }}>
                         <Upload {...props}>
                             <Button
                                 type="primary"
@@ -269,11 +279,25 @@ const Audience = () => {
                             icon="form"
                             size="default"
                             style={{ height: "40px" }}
+                            onClick={manualModal}
                         >
                             Manual Entry
                     </Button>
                     </Col>
                 </Row>
+                <Modal
+                    title="Manual Audience Entry"
+                    visible={manualVisible}
+                    onOk={manualModalOk}
+                    onCancel={manualModalCancel}
+                    width="55vw"
+                    bodyStyle={{ height: "45vh", overflowY: "scroll" }}
+
+                >
+                    <div>
+                        Manual Entry
+                    </div>
+                </Modal>
                 <Col span={12}>
                     <Table rowSelection={campaignRowSelection} columns={campaignColumns} dataSource={campaignData} pagination={false} />
                 </Col>
@@ -285,11 +309,33 @@ const Audience = () => {
                                 Details
                             </span>
                         } key="1">
-                            <h3>Name of Audience: Audience 1</h3>
-                            <h3>Created On: 09/20/2019</h3>
-                            <h3>Created By: Kevin Smith</h3>
-                            <h3>Current Campaign: BSW_Campaign</h3>
-                            <h3>Current State: In Progress</h3>
+                            <div
+                                style={{
+                                    display: "flex",
+                                    flexDirection: "column",
+                                    flexWrap: "nowrap",
+                                    justifyContent: "flex-start",
+                                    alignItems: "stretch",
+                                    alignContent: "flex-start",
+                                    paddingBottom: "15px"
+                                }}
+                            >
+                                <span>
+                                    <b>Name of Audience:</b> Audience 1
+                                </span>
+                                <span>
+                                    <b>Created On: </b> 09/20/2019
+                                </span>
+                                <span>
+                                    <b>Created By: </b> Kevin Smith
+                                </span>
+                                <span>
+                                    <b>Current Campaign: </b> BSW_Campaign
+                                </span>
+                                <span>
+                                    <b>Current State: </b> In Progress
+                                </span>
+                            </div>
                             <Row gutter={12}>
                                 <Col span={5}>
                                     <Button icon="stop" type="danger">Stop</Button>
@@ -302,17 +348,48 @@ const Audience = () => {
                                 </Col>
                             </Row>
                             <Divider />
-                            <AddColumns />
+                            <b>Columns</b>
+                            <p>First_Name</p>
+                            <p>Last_Name</p>
+                            <p>Phone_Number</p>
+                            <p>Type</p>
                             <Divider />
-                            <Collapse onChange={callback}>
-                                <Panel header="FTP" key="1">
-                                    <FTP />
-                                </Panel>
-                                <Panel header="Network Drive" key="2">
-                                    <SharedDrive />
-                                </Panel>
-                            </Collapse>
+                            <b>Uploaded from</b>
+                            <div
+                                style={{
+                                    display: "flex",
+                                    flexDirection: "column",
+                                    flexWrap: "nowrap",
+                                    justifyContent: "flex-start",
+                                    alignItems: "stretch",
+                                    alignContent: "flex-start",
+                                    paddingBottom: "10px"
+                                }}
+                            >
+                                <span>
+                                    <b>FTP Domain:</b> domain.ftp.drive
+                                </span>
+                                <span>
+                                    <b>Port: </b> 833
+                                </span>
+                            </div>
+                            <div
+                                style={{
+                                    display: "flex",
+                                    flexDirection: "column",
+                                    flexWrap: "nowrap",
+                                    justifyContent: "flex-start",
+                                    alignItems: "stretch",
+                                    alignContent: "flex-start",
+                                    paddingBottom: "10px"
+                                }}
+                            >
+                                <span>
+                                    <b>Network File Path:</b> //filepath/files/folder/csv
+                                </span>
+                            </div>
                         </TabPane>
+
                         <TabPane tab={
                             <span>
                                 <Icon type="menu" />
@@ -320,13 +397,33 @@ const Audience = () => {
                             </span>
                         } key="2">
                             <Table columns={columns} dataSource={dataSource} pagination={false} />
-                        </TabPane>
-                        <TabPane tab={
-                            <span>
-                                <Icon type="control" />
-                                Do Not Call List
-                            </span>
-                        } key="3">
+                            <Divider />
+                            <b>Add To Dial List</b>
+                            <Row>
+                                <Col span={6} style={{ paddingBottom: "10px" }}>
+                                    <Upload {...props}>
+                                        <Button
+                                            type="primary"
+                                            icon="upload"
+                                            size="default"
+                                            style={{ height: "40px" }}
+                                        >
+                                            Upload Form
+                    </Button>
+                                    </Upload>
+                                </Col>
+                                <Col span={6}>
+                                    <Button
+                                        type="primary"
+                                        icon="form"
+                                        size="default"
+                                        style={{ height: "40px" }}
+                                        onClick={manualModal}
+                                    >
+                                        Manual Entry
+                    </Button>
+                                </Col>
+                            </Row>
                             <Collapse onChange={callback}>
                                 <Panel header="FTP" key="1">
                                     <FTP />
@@ -335,18 +432,36 @@ const Audience = () => {
                                     <SharedDrive />
                                 </Panel>
                             </Collapse>
+                        </TabPane>
+
+                        <TabPane tab={
+                            <span>
+                                <Icon type="close-circle" />
+                                Do Not Call List
+                            </span>
+                        } key="3">
+                            <b style={{ paddingBottom: "15px" }}>Upload A Do Not Call List</b>
+                            <Collapse onChange={callback}>
+                                <Panel header="FTP" key="1">
+                                    <FTP />
+                                </Panel>
+                                <Panel header="Network Drive" key="2">
+                                    <SharedDrive />
+                                </Panel>
+                            </Collapse>
+                            <Divider />
                             <Table columns={columns} dataSource={dataSource} pagination={false} />
                         </TabPane>
                     </Tabs>
                 </Col>
             </Row>
             <Modal
-                title="Add A New Audience"
+                title="Create A New Audience"
                 visible={visible}
                 onOk={handleOk}
                 onCancel={handleCancel}
-                width="65vw"
-                bodyStyle={{ height: "60vh", overflowY: "scroll" }}
+                width="55vw"
+                bodyStyle={{ height: "45vh", overflowY: "scroll" }}
 
             >
                 <div style={{
@@ -358,19 +473,10 @@ const Audience = () => {
                     aligncontent: "center",
                     paddingBottom: "20px"
                 }}>
-                    Campaign Name:  <Input placeholder="Campaign Name" size="small" style={{ width: "300px" }} />
+                    Audience Name:  <Input placeholder="Campaign Name" size="small" style={{ width: "300px" }} />
                 </div>
                 <Divider />
                 <AddColumns />
-                <Divider />
-                <Collapse onChange={callback}>
-                    <Panel header="FTP" key="1">
-                        <FTP />
-                    </Panel>
-                    <Panel header="Network Drive" key="2">
-                        <SharedDrive />
-                    </Panel>
-                </Collapse>
             </Modal>
         </div >
     )
