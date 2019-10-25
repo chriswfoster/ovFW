@@ -261,7 +261,7 @@ const Audience = () => {
                             Delete Audience
                     </Button>
                     </Col>
-                    <Col span={5} style={{ paddingBottom: "10px" }}>
+                    {/* <Col span={5} style={{ paddingBottom: "10px" }}>
                         <Upload {...props}>
                             <Button
                                 type="primary"
@@ -283,7 +283,7 @@ const Audience = () => {
                         >
                             Manual Entry
                     </Button>
-                    </Col>
+                    </Col> */}
                 </Row>
                 <Modal
                     title="Manual Audience Entry"
@@ -295,7 +295,10 @@ const Audience = () => {
 
                 >
                     <div>
-                        Manual Entry
+                        <b>First_Name</b> <Input placeholder="Add Column" size="small" />
+                        <b>Last_Name</b> <Input placeholder="Add Column" size="small" />
+                        <b>Number</b> <Input placeholder="Add Column" size="small" />
+                        <b>Type</b> <Input placeholder="Add Column" size="small" />
                     </div>
                 </Modal>
                 <Col span={12}>
@@ -397,10 +400,9 @@ const Audience = () => {
                             </span>
                         } key="2">
                             <Table columns={columns} dataSource={dataSource} pagination={false} />
-                            <Divider />
                             <b>Add To Dial List</b>
                             <Row>
-                                <Col span={6} style={{ paddingBottom: "10px" }}>
+                                <Col span={7} style={{ paddingBottom: "10px" }}>
                                     <Upload {...props}>
                                         <Button
                                             type="primary"
@@ -412,7 +414,7 @@ const Audience = () => {
                     </Button>
                                     </Upload>
                                 </Col>
-                                <Col span={6}>
+                                <Col span={7}>
                                     <Button
                                         type="primary"
                                         icon="form"
@@ -441,6 +443,33 @@ const Audience = () => {
                             </span>
                         } key="3">
                             <b style={{ paddingBottom: "15px" }}>Upload A Do Not Call List</b>
+                            <Table columns={columns} dataSource={dataSource} pagination={false} />
+                            <b>Add To Do Not Call List</b>
+                            <Row>
+                                <Col span={7} style={{ paddingBottom: "10px" }}>
+                                    <Upload {...props}>
+                                        <Button
+                                            type="primary"
+                                            icon="upload"
+                                            size="default"
+                                            style={{ height: "40px" }}
+                                        >
+                                            Upload Form
+                    </Button>
+                                    </Upload>
+                                </Col>
+                                <Col span={7}>
+                                    <Button
+                                        type="primary"
+                                        icon="form"
+                                        size="default"
+                                        style={{ height: "40px" }}
+                                        onClick={manualModal}
+                                    >
+                                        Manual Entry
+                    </Button>
+                                </Col>
+                            </Row>
                             <Collapse onChange={callback}>
                                 <Panel header="FTP" key="1">
                                     <FTP />
@@ -449,8 +478,6 @@ const Audience = () => {
                                     <SharedDrive />
                                 </Panel>
                             </Collapse>
-                            <Divider />
-                            <Table columns={columns} dataSource={dataSource} pagination={false} />
                         </TabPane>
                     </Tabs>
                 </Col>
