@@ -1,7 +1,9 @@
 import React from 'react';
-import { Button, Modal, Descriptions, Select, Input, Card } from 'antd';
+import { Upload, Row, Col, Button, Collapse, Descriptions, Select, Input, Card } from 'antd';
+import FTP from '../../../Audience/AudienceComponents/FTP';
+import SharedDrive from '../../../Audience/AudienceComponents/SharedDrive';
 
-const First = () => {
+const First = (props: any) => {
 
     const inputStyles = {
         width: 220
@@ -12,7 +14,7 @@ const First = () => {
         overflow: 'scroll'
     }
     const cardBodyStyles = {
-        height: '100%',
+        height: '120%',
         overflow: 'scroll'
     }
 
@@ -20,6 +22,20 @@ const First = () => {
         width: '50%',
         height: '90%'
     }
+
+    const dbDataTypeSelect = (
+        <Select defaultValue={1}>
+            <Select.Option value={1} key={1}>
+                String/VarChar
+            </Select.Option >
+            <Select.Option value={2} key={2}>
+                Number/Int
+            </Select.Option>
+            <Select.Option value={3} key={3}>
+                Date/Timestamp
+            </Select.Option>
+        </Select>
+    )
 
     const workflows = ["Schedule", "Billing",  "Rx", "Other"]
     const campaignTypes = ["UCCE", "UCCX", "Twillio", "Amazon", "WCC"]
@@ -30,7 +46,7 @@ const First = () => {
                     <Descriptions.Item label="Campaign Name:">
                         <Input style={inputStyles}/>
                     </Descriptions.Item>
-                    <Descriptions.Item label="Workflow Type:">
+                    {/* <Descriptions.Item label="Workflow Type:">
                         <Select style={inputStyles} defaultValue={1}>
                             {workflows.map((wfT, i) => {
                                 return (
@@ -40,7 +56,7 @@ const First = () => {
                                 )
                             })}
                         </Select>
-                    </Descriptions.Item>
+                    </Descriptions.Item> */}
                     <Descriptions.Item label="Campaign Type:">
                         <Select style={inputStyles} defaultValue={0}>
                             {campaignTypes.map((cT, i) => {
@@ -52,7 +68,7 @@ const First = () => {
                             })}
                         </Select>
                     </Descriptions.Item>
-                    <Descriptions.Item label="UCCE Type:">
+                    {/* <Descriptions.Item label="UCCE Type:">
                         <Select style={inputStyles}>
                             <Select.Option key={1}>
                                 Progressive
@@ -64,25 +80,48 @@ const First = () => {
                                 Preview
                             </Select.Option>
                         </Select>
-                    </Descriptions.Item>
+                    </Descriptions.Item> */}
                 </Descriptions>
             </Card>
-            <Card title="Audiences" bodyStyle={cardBodyStyles} style={cardStyles}>
+            <Card title="Dial List Settings" bodyStyle={cardBodyStyles} style={cardStyles}>
+                <Row>
+                    <Col span={7} style={{ paddingBottom: "10px" }}>
+                        <Upload {...props}>
+                            <Button
+                                type="primary"
+                                icon="upload"
+                                size="default"
+                                style={{ height: "40px" }}
+                            >
+                                Upload Form
+                            </Button>
+                        </Upload>
+                    </Col>
+                    <Col span={7}>
+                        <Button
+                            type="primary"
+                            icon="form"
+                            size="default"
+                            style={{ height: "40px" }}
+                            onClick={() => console.log("manualModal")}
+                        >
+                            Manual Entry
+                        </Button>
+                    </Col>
+                </Row>
+                <Collapse onChange={() => console.log("callback")}>
+                    <Collapse.Panel header="FTP" key="1">
+                        <FTP />
+                    </Collapse.Panel>
+                    <Collapse.Panel header="Network Drive" key="2">
+                        <SharedDrive />
+                    </Collapse.Panel>
+                </Collapse>
+            </Card>
+            
+            {/* <Card title="Audiences" bodyStyle={cardBodyStyles} style={cardStyles}>
                 <Card.Grid style={cardGridStyles}>
                     <Descriptions column={1} layout="horizontal" className="descriptionListColumn" title="">
-                        {/* <Descriptions.Item label="ANI:">
-                            <Select style={inputStyles}>
-                            <Select.Option key={1}>
-                            974-424-2384
-                            </Select.Option>
-                            <Select.Option key={2}>
-                            1800-343-4845
-                            </Select.Option>
-                            <Select.Option key={3}>
-                            234-542-5253
-                            </Select.Option>
-                            </Select>
-                        </Descriptions.Item> */}
                         <Descriptions.Item label="Audience:">
                             <Select style={inputStyles}>
                                 <Select.Option key={1}>
@@ -111,11 +150,11 @@ const First = () => {
                 <Card.Grid style={cardGridStyles}>
                     Info
                 </Card.Grid>
-            </Card>
+            </Card> */}
             <Card bodyStyle={cardBodyStyles} title="IVR Application" style={cardStyles}>
                 <Card.Grid style={cardGridStyles}>
                     <Descriptions column={1} layout="horizontal" className="descriptionListColumnNoHeight" title="">
-                        <Descriptions.Item label="Please Select a Survey:">
+                        <Descriptions.Item label="Voice and/or SMS:">
                             <Select style={inputStyles}>
                                 <Select.Option key={1}>
                                     Voice
@@ -129,7 +168,7 @@ const First = () => {
                             </Select>
                         </Descriptions.Item>
                     </Descriptions>
-                    <Button style={{marginBottom: 10}} type="primary">Create New Outbound Message</Button>
+                    {/* <Button style={{marginBottom: 10}} type="primary">Create New Outbound Message</Button> */}
                 </Card.Grid>
                 <Card.Grid style={cardGridStyles}>
                     <Descriptions column={1} layout="horizontal" className="descriptionListColumnNoHeight" title="Outbound Message Variables">
@@ -174,6 +213,19 @@ const First = () => {
                         </Descriptions.Item>
                     </Descriptions>
                 </Card.Grid>
+            </Card>
+            <Card title="Column Definitions" bodyStyle={cardBodyStyles} style={cardStyles}>
+                <Descriptions column={1} layout="vertical" className="descriptionListColumn" title="">
+                    <Descriptions.Item label="First Column:">
+                        <span style={{display: "flex", flexDirection: "row"}}><Input placeholder="First_Name"/>{dbDataTypeSelect}</span>
+                    </Descriptions.Item>
+                    <Descriptions.Item label="Second Column:">
+                        <span style={{display: "flex", flexDirection: "row"}}><Input placeholder="Last_Name"/>{dbDataTypeSelect}</span>
+                    </Descriptions.Item>
+                    <Descriptions.Item label="Third Column:">
+                        <span style={{display: "flex", flexDirection: "row"}}><Input placeholder="Appointment_Date"/>{dbDataTypeSelect}</span>
+                    </Descriptions.Item>
+                </Descriptions>
             </Card>
             <div style={cardStyles} /> {/* Space keeping div */}
         </div>

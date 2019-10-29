@@ -81,19 +81,6 @@ class Fifth extends React.Component<any, any>{
             <div style={{overflowY: 'scroll'}} id="outerCampaignCardDiv" className="divFlexRowsNoWrap">
                 {/* Left side of page */}
                 <div style={{width: 220}}>
-                    <h3>Select Message Type:</h3>
-                    <Radio.Group value={radioSelected} style={{marginLeft: 50}} onChange={e => this.setState({radioSelected: e.target.value})}>
-                        <Radio style={radioStyle} value={1}>
-                            Text
-                        </Radio>
-                        <Radio style={radioStyle} value={2}>
-                            SMS
-                        </Radio>
-                        <Radio style={radioStyle} value={3}>
-                            Other?
-                        </Radio>
-                    </Radio.Group>
-                    <Divider type="horizontal" style={{width: '100%'}}/>
                     <h3>Add Step: </h3>
                     <Select style={{...inputStyles, marginBottom: 20}} onChange={val => this.setState({dataToAdd: val})}>
                             <Select.Option value={"audio"} key={1}>
