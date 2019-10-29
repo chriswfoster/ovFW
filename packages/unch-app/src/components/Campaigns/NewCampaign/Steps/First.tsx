@@ -21,14 +21,14 @@ const First = () => {
         height: '90%'
     }
 
-    const workflows = ["Schedule", "Billing",  "Rx", "Other"]
+    const workflows = ["Schedule", "Billing", "Rx", "Other"]
     const campaignTypes = ["UCCE", "UCCX", "Twillio", "Amazon", "WCC"]
     return (
         <div id="outerCampaignCardDiv" className="divFlexColumns">
             <Card title="Config" style={cardStyles} bodyStyle={cardBodyStyles} >
                 <Descriptions column={1} layout="horizontal" className="descriptionListColumn" title="">
                     <Descriptions.Item label="Campaign Name:">
-                        <Input style={inputStyles}/>
+                        <Input style={inputStyles} />
                     </Descriptions.Item>
                     <Descriptions.Item label="Workflow Type:">
                         <Select style={inputStyles} defaultValue={1}>
@@ -67,7 +67,7 @@ const First = () => {
                     </Descriptions.Item>
                 </Descriptions>
             </Card>
-            <Card title="Audiences" bodyStyle={cardBodyStyles} style={cardStyles}>
+            <Card title="Do Not Call" bodyStyle={cardBodyStyles} style={cardStyles}>
                 <Card.Grid style={cardGridStyles}>
                     <Descriptions column={1} layout="horizontal" className="descriptionListColumn" title="">
                         {/* <Descriptions.Item label="ANI:">
@@ -103,7 +103,7 @@ const First = () => {
                         </Descriptions.Item>
                         <Descriptions.Item label="">
                             <Button>
-                            Add Audience
+                                Add Audience
                             </Button>
                         </Descriptions.Item>
                     </Descriptions>
@@ -129,7 +129,7 @@ const First = () => {
                             </Select>
                         </Descriptions.Item>
                     </Descriptions>
-                    <Button style={{marginBottom: 10}} type="primary">Create New Outbound Message</Button>
+                    <Button style={{ marginBottom: 10 }} type="primary">Create New Outbound Message</Button>
                 </Card.Grid>
                 <Card.Grid style={cardGridStyles}>
                     <Descriptions column={1} layout="horizontal" className="descriptionListColumnNoHeight" title="Outbound Message Variables">

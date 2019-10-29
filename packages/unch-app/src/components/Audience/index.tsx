@@ -221,15 +221,15 @@ const Audience = () => {
         {
             title: 'Number',
             dataIndex: 'number',
-        },
-        {
-            title: 'Type',
-            dataIndex: 'type',
-        },
-        {
-            title: 'Status',
-            dataIndex: 'status',
-        },
+        }
+        // {
+        //     title: 'Type',
+        //     dataIndex: 'type',
+        // },
+        // {
+        //     title: 'Status',
+        //     dataIndex: 'status',
+        // },
     ];
     ////////////////////////////
 
@@ -238,7 +238,41 @@ const Audience = () => {
 
     return (
         <div>
+            <Table columns={columns} dataSource={dataSource} pagination={false} />
             <Row>
+                <Col span={7} style={{ paddingBottom: "10px" }}>
+                    <Upload {...props}>
+                        <Button
+                            type="primary"
+                            icon="upload"
+                            size="default"
+                            style={{ height: "40px" }}
+                        >
+                            Upload Form
+                    </Button>
+                    </Upload>
+                </Col>
+                <Col span={7}>
+                    <Button
+                        type="primary"
+                        icon="form"
+                        size="default"
+                        style={{ height: "40px" }}
+                        onClick={manualModal}
+                    >
+                        Manual Entry
+                    </Button>
+                </Col>
+            </Row>
+            <Collapse onChange={callback}>
+                <Panel header="FTP" key="1">
+                    <FTP />
+                </Panel>
+                <Panel header="Network Drive" key="2">
+                    <SharedDrive />
+                </Panel>
+            </Collapse>
+            {/* <Row>
                 <Row type="flex" justify="start" gutter={8}>
                     <Col span={5} style={{ paddingBottom: "10px" }}>
                         <Button
@@ -260,8 +294,8 @@ const Audience = () => {
                         >
                             Delete Audience
                     </Button>
-                    </Col>
-                    {/* <Col span={5} style={{ paddingBottom: "10px" }}>
+                    </Col> */}
+            {/* <Col span={5} style={{ paddingBottom: "10px" }}>
                         <Upload {...props}>
                             <Button
                                 type="primary"
@@ -284,7 +318,7 @@ const Audience = () => {
                             Manual Entry
                     </Button>
                     </Col> */}
-                </Row>
+            {/* </Row>
                 <Modal
                     title="Manual Audience Entry"
                     visible={manualVisible}
@@ -441,44 +475,8 @@ const Audience = () => {
                                 <Icon type="close-circle" />
                                 Do Not Call List
                             </span>
-                        } key="3">
-                            <b style={{ paddingBottom: "15px" }}>Upload A Do Not Call List</b>
-                            <Table columns={columns} dataSource={dataSource} pagination={false} />
-                            <b>Add To Do Not Call List</b>
-                            <Row>
-                                <Col span={7} style={{ paddingBottom: "10px" }}>
-                                    <Upload {...props}>
-                                        <Button
-                                            type="primary"
-                                            icon="upload"
-                                            size="default"
-                                            style={{ height: "40px" }}
-                                        >
-                                            Upload Form
-                    </Button>
-                                    </Upload>
-                                </Col>
-                                <Col span={7}>
-                                    <Button
-                                        type="primary"
-                                        icon="form"
-                                        size="default"
-                                        style={{ height: "40px" }}
-                                        onClick={manualModal}
-                                    >
-                                        Manual Entry
-                    </Button>
-                                </Col>
-                            </Row>
-                            <Collapse onChange={callback}>
-                                <Panel header="FTP" key="1">
-                                    <FTP />
-                                </Panel>
-                                <Panel header="Network Drive" key="2">
-                                    <SharedDrive />
-                                </Panel>
-                            </Collapse>
-                        </TabPane>
+                        } key="3"> */}
+            {/* </TabPane>
                     </Tabs>
                 </Col>
             </Row>
@@ -504,7 +502,7 @@ const Audience = () => {
                 </div>
                 <Divider />
                 <AddColumns />
-            </Modal>
+            </Modal> */}
         </div >
     )
 }

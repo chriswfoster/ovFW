@@ -53,13 +53,13 @@ class SharedDrive extends React.Component<any, any> {
                     </Col>
                     <Col span={12}>
                         <Radio.Group onChange={this.onChange} value={this.state.value}>
-                            <Radio style={radioStyle} value={1}>
+                            <Radio style={radioStyle} value={1} onClick={this.handleHideUpload}>
                                 One time only
                         </Radio>
-                            <Radio style={radioStyle} value={2}>
+                            <Radio style={radioStyle} value={2} onClick={this.handleShowUpload}>
                                 Updated at specific time(s) of the day
                         </Radio>
-                            <Radio style={radioStyle} value={3}>
+                            <Radio style={radioStyle} value={3} onClick={this.handleShowUpload}>
                                 Updated at regular intervals throughout the day
                         </Radio>
                         </Radio.Group>
