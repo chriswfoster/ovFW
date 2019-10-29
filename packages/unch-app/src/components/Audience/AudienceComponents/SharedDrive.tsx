@@ -5,7 +5,8 @@ class SharedDrive extends React.Component<any, any> {
     constructor(props: any) {
         super(props)
         this.state = {
-            value: 1
+            value: 1,
+            showUpload: false
         };
     }
 
@@ -15,6 +16,18 @@ class SharedDrive extends React.Component<any, any> {
             value: e.target.value,
         });
     };
+
+    handleShowUpload = () => {
+        this.setState({
+            showUpload: true
+        })
+    }
+
+    handleHideUpload = () => {
+        this.setState({
+            showUpload: false
+        })
+    }
 
     render() {
         const radioStyle = {
@@ -50,7 +63,7 @@ class SharedDrive extends React.Component<any, any> {
                                 Updated at regular intervals throughout the day
                         </Radio>
                         </Radio.Group>
-                        <Button type="primary">Upload</Button>
+                        {this.state.showUpload ? <Button type="primary">Upload</Button> : null}
                     </Col>
                 </Row>
             </div>
