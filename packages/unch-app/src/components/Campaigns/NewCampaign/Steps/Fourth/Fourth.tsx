@@ -13,7 +13,7 @@ const Fourth = () => {
 
     return (
         <div style={{overflowY: 'scroll'}} id="outerCampaignCardDiv" className="descriptionListColumn">
-            <Descriptions>
+            {/* <Descriptions>
                 <Descriptions.Item label="Allow Duplicates">
                     <Switch onChange={val => setShowDuplicate(val)} checkedChildren="Yes" unCheckedChildren="No" checked={showDuplicate} />
                 </Descriptions.Item>
@@ -25,7 +25,8 @@ const Fourth = () => {
                 </Descriptions.Item>
             </Descriptions>
             {showTCPA ? <TCPA /> : ''}
-                
+                 */}
+                 TCPA and Duplicate rules and handling
         </div>
     )
 }
