@@ -30,10 +30,9 @@ const AddColumns = (props: any) => {
                     />
                     <Input placeholder="Add Column" size="small" />
                     <Select defaultValue="lucy" style={{ width: 120 }} onChange={handleChange}>
-                        <Option value="jack">Type</Option>
-                        <Option value="lucy">Type</Option>
-                        <Option value="disabled" >Type</Option>
-                        <Option value="Yiminghe">Type</Option>
+                        <Option value="jack">String</Option>
+                        <Option value="lucy">Var Char</Option>
+                        <Option value="disabled" >Intiger</Option>
                     </Select>
                 </div>
 
@@ -52,10 +51,9 @@ const AddColumns = (props: any) => {
                     />
                     <Input placeholder="Add Column" size="small" />
                     <Select defaultValue="lucy" style={{ width: 120 }} onChange={handleChange}>
-                        <Option value="jack">Type</Option>
-                        <Option value="lucy">Type</Option>
-                        <Option value="disabled" >Type</Option>
-                        <Option value="Yiminghe">Type</Option>
+                        <Option value="jack">String</Option>
+                        <Option value="lucy">Var Char</Option>
+                        <Option value="disabled" >Intiger</Option>
                     </Select>
                 </div>
 
@@ -74,10 +72,9 @@ const AddColumns = (props: any) => {
                     />
                     <Input placeholder="Add Column" size="small" />
                     <Select defaultValue="lucy" style={{ width: 120 }} onChange={handleChange}>
-                        <Option value="jack">Type</Option>
-                        <Option value="lucy">Type</Option>
-                        <Option value="disabled" >Type</Option>
-                        <Option value="Yiminghe">Type</Option>
+                        <Option value="jack">String</Option>
+                        <Option value="lucy">Var Char</Option>
+                        <Option value="disabled" >Intiger</Option>
                     </Select>
                 </div>
 

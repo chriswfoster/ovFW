@@ -1,11 +1,11 @@
 import React from "react";
 import Layout from "antd/lib/layout";
 import Menu from "antd/lib/menu";
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './layout.css'
 // import pkgJson from '../../../../../package.json';
 
-const { Header, Content, Sider} = Layout
+const { Header, Content, Sider } = Layout
 const SubMenu = Menu.SubMenu
 
 export default class PortalSideBar extends React.Component<any, any> {
@@ -22,7 +22,7 @@ export default class PortalSideBar extends React.Component<any, any> {
         const collapsed = false;
         return (
             <div className="sideBarMain">
-                <img className="sideBarImg" src={require('../images/spinsciTrans.png')}/>
+                <img className="sideBarImg" src={require('../images/spinsciTrans.png')} />
                 <Menu
                     // style={{width: '100%'}}
                     // onClick={this.scrollToTop}
@@ -30,7 +30,7 @@ export default class PortalSideBar extends React.Component<any, any> {
                     defaultOpenKeys={['sub1']}
                     mode="inline"
                     // inlineCollapsed={collapsed}
-                    style={{background: 'transparent'}}
+                    style={{ background: 'transparent' }}
                     theme="dark"
                 >
                     {/* <Menu.Item key="0"><span>Home</span></Menu.Item>
@@ -38,7 +38,7 @@ export default class PortalSideBar extends React.Component<any, any> {
                     <Menu.Item key="2"><span>Audiences</span></Menu.Item> */}
                     <Menu.Item key="0"><Link to="/">Home</Link></Menu.Item>
                     <Menu.Item key="1"><Link to="/campaigns">Campaigns</Link></Menu.Item>
-                    <Menu.Item key="2"><Link to="/audiences">Audiences</Link></Menu.Item>
+                    <Menu.Item key="2"><Link to="/audiences">Do Not Call</Link></Menu.Item>
 
                 </Menu>
                 <div className="sideBarBottomBox">
@@ -55,7 +55,7 @@ export default class PortalSideBar extends React.Component<any, any> {
                 </div>
 
             </div>
- 
+
         )
     }
 
