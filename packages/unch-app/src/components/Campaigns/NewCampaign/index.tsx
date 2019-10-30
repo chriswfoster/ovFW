@@ -2,8 +2,8 @@ import React, { Fragment } from 'react';
 import First from './Steps/First';
 import Second from './Steps/Second';
 import Third from './Steps/Third';
-import Fourth from './Steps/Fourth';
-import Fifth from './Steps/Fifth';
+import Fourth from './Steps/Fourth/Fourth';
+import Fifth from './Steps/Fifth/Fifth';
 import { Steps, Button, Modal, message } from 'antd';
 
 

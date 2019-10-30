@@ -1,0 +1,15 @@
+node_modules
+./node_modules
+*node_modules
+/node_modules
+
+.cache
+/dist
+dist
+*dist
+dist/*
+/dist/*
+/packages/OBD-Portal/dist/*
+packages/OBD-Portal/dist/*
+./packages/OBD-Portal/dist/*
+./packages/OBD-Portal/dist

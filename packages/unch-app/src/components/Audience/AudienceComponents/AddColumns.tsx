@@ -6,31 +6,6 @@ const AddColumns = (props: any) => {
 
     const [inputs, setInputs] = useState([])
 
-    const addInputs = () => {
-        let tempInputs = inputs
-        tempInputs.push("anwjawnfajnf")
-        setInputs(tempInputs)
-        // console.log(tempInputs)
-    }
-
-    const giveMeData = () => {
-        let arrayData = [];
-        for (let i = 0; i < inputs.length; i++) {
-            arrayData.push("for the love of strings")
-        }
-        // return inputs.map((input, i) => {
-        //     console.log(inputs)
-        //     return (
-        //         <div key={i}>
-        //             <Button>X</Button>
-        //             {input}
-        //         </div>
-        //     )
-        // })
-        console.log(arrayData)
-        return arrayData
-    }
-
     const handleChange = (value) => {
         console.log(`selected ${value}`);
     }
@@ -45,13 +20,15 @@ const AddColumns = (props: any) => {
                     flexwrap: "wrap",
                     justifycontent: "space-around",
                     alignitems: "center",
-                    aligncontent: "center"
+                    aligncontent: "center",
+                    paddingBottom: "10px"
                 }}>
                     <Icon
                         className="dynamic-delete-button"
                         type="minus-circle-o"
+                        style={{ paddingRight: "15px" }}
                     />
-                    <Input placeholder="Basic usage" size="small" />
+                    <Input placeholder="Add Column" size="small" />
                     <Select defaultValue="lucy" style={{ width: 120 }} onChange={handleChange}>
                         <Option value="jack">Type</Option>
                         <Option value="lucy">Type</Option>
@@ -65,13 +42,15 @@ const AddColumns = (props: any) => {
                     flexwrap: "wrap",
                     justifycontent: "space-around",
                     alignitems: "center",
-                    aligncontent: "center"
+                    aligncontent: "center",
+                    paddingBottom: "10px"
                 }}>
                     <Icon
                         className="dynamic-delete-button"
                         type="minus-circle-o"
+                        style={{ paddingRight: "15px" }}
                     />
-                    <Input placeholder="Basic usage" size="small" />
+                    <Input placeholder="Add Column" size="small" />
                     <Select defaultValue="lucy" style={{ width: 120 }} onChange={handleChange}>
                         <Option value="jack">Type</Option>
                         <Option value="lucy">Type</Option>
@@ -85,19 +64,15 @@ const AddColumns = (props: any) => {
                     flexwrap: "wrap",
                     justifycontent: "space-around",
                     alignitems: "center",
-                    aligncontent: "center"
+                    aligncontent: "center",
+                    paddingBottom: "10px"
                 }}>
                     <Icon
                         className="dynamic-delete-button"
                         type="minus-circle-o"
-                        style={{
-                            cursor: "pointer",
-                            position: "relative",
-                            top: "4px",
-                            fontsize: "24px",
-                        }}
+                        style={{ paddingRight: "15px" }}
                     />
-                    <Input placeholder="Basic usage" size="small" />
+                    <Input placeholder="Add Column" size="small" />
                     <Select defaultValue="lucy" style={{ width: 120 }} onChange={handleChange}>
                         <Option value="jack">Type</Option>
                         <Option value="lucy">Type</Option>

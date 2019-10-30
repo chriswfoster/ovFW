@@ -8,6 +8,7 @@ const Audience = () => {
 
     ///////// Hooks /////////
     const [visible, setVisible] = useState(false)
+    const [manualVisible, setManualVisible] = useState(false)
     const [showNewAudience, setShowNewAudience] = useState(false)
 
     //////////////////
@@ -23,6 +24,20 @@ const Audience = () => {
 
     const handleCancel = (e: any) => {
         setVisible(false)
+    };
+    ////////////////////
+
+    ////////// Manual Entry Modal Methods //////////
+    const manualModal = () => {
+        setManualVisible(true)
+    };
+
+    const manualModalOk = (e: any) => {
+        setManualVisible(false)
+    };
+
+    const manualModalCancel = (e: any) => {
+        setManualVisible(false)
     };
     ////////////////////
 
@@ -69,21 +84,43 @@ const Audience = () => {
         {
             title: 'Audience Name',
             dataIndex: 'audienceName',
+        },
+        {
+            title: "Campaign Status",
+            dataIndex: "status"
         }
     ];
 
     const campaignData = [
         {
             key: '1',
-            audienceName: 'Audience 1'
+            audienceName: 'Audience 1',
+            status: (
+                <div>
+                    <Icon type="play-circle" theme="twoTone" twoToneColor="#52c41a" style={{ paddingRight: "5px" }} />
+                    Running
+                </div>
+            )
         },
         {
             key: '2',
-            audienceName: 'Audience 2'
+            audienceName: 'Audience 2',
+            status: (
+                <div>
+                    <Icon type="pause-circle" theme="twoTone" style={{ paddingRight: "5px" }} />
+                    Paused
+                </div>
+            )
         },
         {
             key: '3',
-            audienceName: 'Audience 3'
+            audienceName: 'Audience 3',
+            status: (
+                <div>
+                    <Icon type="close-circle" theme="twoTone" twoToneColor="#eb2f96" style={{ paddingRight: "5px" }} />
+                    Stopped
+                </div>
+            )
         },
         {
             key: '4',
@@ -196,8 +233,6 @@ const Audience = () => {
     ];
     ////////////////////////////
 
-
-    const { Search } = Input;
     const { TabPane } = Tabs;
     const { Panel } = Collapse;
 
@@ -205,10 +240,9 @@ const Audience = () => {
         <div>
             <Row>
                 <Row type="flex" justify="start" gutter={8}>
-                    <Col span={5}>
+                    <Col span={5} style={{ paddingBottom: "10px" }}>
                         <Button
                             type="primary"
-                            shape="round"
                             icon="plus"
                             size="default"
                             style={{ height: "40px" }}
@@ -220,16 +254,14 @@ const Audience = () => {
                     <Col span={8}>
                         <Button
                             type="danger"
-                            shape="round"
                             icon="delete"
                             size="default"
                             style={{ height: "40px" }}
-                            onClick={showModal}
                         >
                             Delete Audience
                     </Button>
                     </Col>
-                    <Col span={5}>
+                    {/* <Col span={5} style={{ paddingBottom: "10px" }}>
                         <Upload {...props}>
                             <Button
                                 type="primary"
@@ -247,46 +279,216 @@ const Audience = () => {
                             icon="form"
                             size="default"
                             style={{ height: "40px" }}
+                            onClick={manualModal}
                         >
                             Manual Entry
                     </Button>
-                    </Col>
+                    </Col> */}
                 </Row>
+                <Modal
+                    title="Manual Audience Entry"
+                    visible={manualVisible}
+                    onOk={manualModalOk}
+                    onCancel={manualModalCancel}
+                    width="55vw"
+                    bodyStyle={{ height: "45vh", overflowY: "scroll" }}
+
+                >
+                    <div>
+                        <b>First_Name</b> <Input placeholder="Add Column" size="small" />
+                        <b>Last_Name</b> <Input placeholder="Add Column" size="small" />
+                        <b>Number</b> <Input placeholder="Add Column" size="small" />
+                        <b>Type</b> <Input placeholder="Add Column" size="small" />
+                    </div>
+                </Modal>
                 <Col span={12}>
                     <Table rowSelection={campaignRowSelection} columns={campaignColumns} dataSource={campaignData} pagination={false} />
-                    <Row gutter={12}>
-                        <Col span={5}>
-                            <Button icon="stop" type="danger">Stop</Button>
-                        </Col>
-                        <Col span={5}>
-                            <Button icon="pause" type="default">Pause</Button>
-                        </Col>
-                        <Col span={5}>
-                            <Button icon="caret-right" type="primary">Resume</Button>
-                        </Col>
-                    </Row>
                 </Col>
                 <Col span={12}>
-                    <Tabs defaultActiveKey="1" onChange={callback}>
-                        <TabPane tab="Tab 1" key="1">
-                            Content of Tab Pane 1
-                    </TabPane>
-                        <TabPane tab="Tab 2" key="2">
-                            Content of Tab Pane 2
-                    </TabPane>
-                        <TabPane tab="Tab 3" key="3">
-                            Content of Tab Pane 3
-                    </TabPane>
+                    <Tabs defaultActiveKey="1" onChange={callback} size="large">
+                        <TabPane tab={
+                            <span>
+                                <Icon type="control" />
+                                Details
+                            </span>
+                        } key="1">
+                            <div
+                                style={{
+                                    display: "flex",
+                                    flexDirection: "column",
+                                    flexWrap: "nowrap",
+                                    justifyContent: "flex-start",
+                                    alignItems: "stretch",
+                                    alignContent: "flex-start",
+                                    paddingBottom: "15px"
+                                }}
+                            >
+                                <span>
+                                    <b>Name of Audience:</b> Audience 1
+                                </span>
+                                <span>
+                                    <b>Created On: </b> 09/20/2019
+                                </span>
+                                <span>
+                                    <b>Created By: </b> Kevin Smith
+                                </span>
+                                <span>
+                                    <b>Current Campaign: </b> BSW_Campaign
+                                </span>
+                                <span>
+                                    <b>Current State: </b> In Progress
+                                </span>
+                            </div>
+                            <Row gutter={12}>
+                                <Col span={5}>
+                                    <Button icon="stop" type="danger">Stop</Button>
+                                </Col>
+                                <Col span={5}>
+                                    <Button icon="pause" type="default">Pause</Button>
+                                </Col>
+                                <Col span={5}>
+                                    <Button icon="caret-right" type="primary">Resume</Button>
+                                </Col>
+                            </Row>
+                            <Divider />
+                            <b>Columns</b>
+                            <p>First_Name</p>
+                            <p>Last_Name</p>
+                            <p>Phone_Number</p>
+                            <p>Type</p>
+                            <Divider />
+                            <b>Uploaded from</b>
+                            <div
+                                style={{
+                                    display: "flex",
+                                    flexDirection: "column",
+                                    flexWrap: "nowrap",
+                                    justifyContent: "flex-start",
+                                    alignItems: "stretch",
+                                    alignContent: "flex-start",
+                                    paddingBottom: "10px"
+                                }}
+                            >
+                                <span>
+                                    <b>FTP Domain:</b> domain.ftp.drive
+                                </span>
+                                <span>
+                                    <b>Port: </b> 833
+                                </span>
+                            </div>
+                            <div
+                                style={{
+                                    display: "flex",
+                                    flexDirection: "column",
+                                    flexWrap: "nowrap",
+                                    justifyContent: "flex-start",
+                                    alignItems: "stretch",
+                                    alignContent: "flex-start",
+                                    paddingBottom: "10px"
+                                }}
+                            >
+                                <span>
+                                    <b>Network File Path:</b> //filepath/files/folder/csv
+                                </span>
+                            </div>
+                        </TabPane>
+
+                        <TabPane tab={
+                            <span>
+                                <Icon type="menu" />
+                                Dial List
+                            </span>
+                        } key="2">
+                            <Table columns={columns} dataSource={dataSource} pagination={false} />
+                            <b>Add To Dial List</b>
+                            <Row>
+                                <Col span={7} style={{ paddingBottom: "10px" }}>
+                                    <Upload {...props}>
+                                        <Button
+                                            type="primary"
+                                            icon="upload"
+                                            size="default"
+                                            style={{ height: "40px" }}
+                                        >
+                                            Upload Form
+                    </Button>
+                                    </Upload>
+                                </Col>
+                                <Col span={7}>
+                                    <Button
+                                        type="primary"
+                                        icon="form"
+                                        size="default"
+                                        style={{ height: "40px" }}
+                                        onClick={manualModal}
+                                    >
+                                        Manual Entry
+                    </Button>
+                                </Col>
+                            </Row>
+                            <Collapse onChange={callback}>
+                                <Panel header="FTP" key="1">
+                                    <FTP />
+                                </Panel>
+                                <Panel header="Network Drive" key="2">
+                                    <SharedDrive />
+                                </Panel>
+                            </Collapse>
+                        </TabPane>
+
+                        <TabPane tab={
+                            <span>
+                                <Icon type="close-circle" />
+                                Do Not Call List
+                            </span>
+                        } key="3">
+                            <b style={{ paddingBottom: "15px" }}>Upload A Do Not Call List</b>
+                            <Table columns={columns} dataSource={dataSource} pagination={false} />
+                            <b>Add To Do Not Call List</b>
+                            <Row>
+                                <Col span={7} style={{ paddingBottom: "10px" }}>
+                                    <Upload {...props}>
+                                        <Button
+                                            type="primary"
+                                            icon="upload"
+                                            size="default"
+                                            style={{ height: "40px" }}
+                                        >
+                                            Upload Form
+                    </Button>
+                                    </Upload>
+                                </Col>
+                                <Col span={7}>
+                                    <Button
+                                        type="primary"
+                                        icon="form"
+                                        size="default"
+                                        style={{ height: "40px" }}
+                                        onClick={manualModal}
+                                    >
+                                        Manual Entry
+                    </Button>
+                                </Col>
+                            </Row>
+                            <Collapse onChange={callback}>
+                                <Panel header="FTP" key="1">
+                                    <FTP />
+                                </Panel>
+                                <Panel header="Network Drive" key="2">
+                                    <SharedDrive />
+                                </Panel>
+                            </Collapse>
+                        </TabPane>
                     </Tabs>
                 </Col>
             </Row>
             <Modal
-                title="Add A New Audience"
+                title="Create A New Audience"
                 visible={visible}
                 onOk={handleOk}
                 onCancel={handleCancel}
-                width="65vw"
-                bodyStyle={{ height: "60vh", overflowY: "scroll" }}
+                width="55vw"
+                bodyStyle={{ height: "45vh", overflowY: "scroll" }}
 
             >
                 <div style={{
@@ -298,19 +500,10 @@ const Audience = () => {
                     aligncontent: "center",
                     paddingBottom: "20px"
                 }}>
-                    Campaign Name:  <Input placeholder="Campaign Name" size="small" style={{ width: "300px" }} />
+                    Audience Name:  <Input placeholder="Campaign Name" size="small" style={{ width: "300px" }} />
                 </div>
                 <Divider />
                 <AddColumns />
-                <Divider />
-                <Collapse onChange={callback}>
-                    <Panel header="FTP" key="1">
-                        <FTP />
-                    </Panel>
-                    <Panel header="Network Drive" key="2">
-                        <SharedDrive />
-                    </Panel>
-                </Collapse>
             </Modal>
         </div >
     )
