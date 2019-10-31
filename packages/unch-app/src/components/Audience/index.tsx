@@ -86,49 +86,36 @@ const Audience = () => {
             dataIndex: 'audienceName',
         },
         {
-            title: "Campaign Status",
-            dataIndex: "status"
+            title: "Date Created",
+            dataIndex: "dateCreated"
         }
     ];
 
     const campaignData = [
         {
             key: '1',
-            audienceName: 'Audience 1',
-            status: (
-                <div>
-                    <Icon type="play-circle" theme="twoTone" twoToneColor="#52c41a" style={{ paddingRight: "5px" }} />
-                    Running
-                </div>
-            )
+            audienceName: 'Baylor Scott and White',
+            dateCreated: "07/17/2019"
         },
         {
             key: '2',
-            audienceName: 'Audience 2',
-            status: (
-                <div>
-                    <Icon type="pause-circle" theme="twoTone" style={{ paddingRight: "5px" }} />
-                    Paused
-                </div>
-            )
+            audienceName: 'Parkland',
+            dateCreated: "10/02/2019"
         },
         {
             key: '3',
-            audienceName: 'Audience 3',
-            status: (
-                <div>
-                    <Icon type="close-circle" theme="twoTone" twoToneColor="#eb2f96" style={{ paddingRight: "5px" }} />
-                    Stopped
-                </div>
-            )
+            audienceName: 'Hospital',
+            dateCreated: "02/19/2019"
         },
         {
             key: '4',
-            audienceName: 'Audience 4'
+            audienceName: 'McKinney Hospital',
+            dateCreated: "04/18/2019"
         },
         {
             key: '5',
-            audienceName: 'Audience 5'
+            audienceName: 'Plano East Clinic',
+            dateCreated: "07/17/2019"
         },
     ];
     ////////////////////
@@ -238,6 +225,9 @@ const Audience = () => {
 
     return (
         <div>
+            <b>Select A Do Not Call List</b>
+            <Table rowSelection={campaignRowSelection} columns={campaignColumns} dataSource={campaignData} pagination={false} />
+            <Divider />
             <Table columns={columns} dataSource={dataSource} pagination={false} />
             <Row>
                 <Col span={7} style={{ paddingBottom: "10px" }}>
