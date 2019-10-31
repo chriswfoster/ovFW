@@ -48,13 +48,13 @@ class NewCampaign extends React.Component <any, any> {
               title: 'Voice/SMS Settings',
               content: <Third />,
             },
+            // {
+            //     key: 4,
+            //   title: 'Campaign Roles',
+            //   content: <Fourth />,
+            // },
             {
                 key: 4,
-              title: 'Campaign Roles',
-              content: <Fourth />,
-            },
-            {
-                key: 5,
                 title: 'Audio',
                 content: <Fifth />
             },

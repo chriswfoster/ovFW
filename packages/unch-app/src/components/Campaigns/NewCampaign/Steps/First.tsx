@@ -1,10 +1,11 @@
-import React from 'react';
-import { Upload, Row, Col, Button, Collapse, Descriptions, Select, Input, Card } from 'antd';
+import React, {useState} from 'react';
+import { Upload, Row, Col, Button, Collapse, Descriptions, Select, Input, Card, Switch } from 'antd';
 import FTP from '../../../Audience/AudienceComponents/FTP';
 import SharedDrive from '../../../Audience/AudienceComponents/SharedDrive';
+import TCPA from './Fourth/TCPA';
 
 const First = (props: any) => {
-
+    const [showTCPA, setShowTCPA] = useState(false)
     const inputStyles = {
         width: 220
     }
@@ -68,6 +69,21 @@ const First = (props: any) => {
                             })}
                         </Select>
                     </Descriptions.Item>
+                    
+                        <Descriptions.Item label="Voice and/or SMS:">
+                            <Select style={inputStyles}>
+                                <Select.Option key={1}>
+                                    Voice
+                                </Select.Option>
+                                <Select.Option key={2}>
+                                    SMS
+                                </Select.Option>
+                                <Select.Option key={3}>
+                                    Voice & SMS
+                                </Select.Option>
+                            </Select>
+                        </Descriptions.Item>
+                    
                     {/* <Descriptions.Item label="UCCE Type:">
                         <Select style={inputStyles}>
                             <Select.Option key={1}>
@@ -152,67 +168,18 @@ const First = (props: any) => {
                 </Card.Grid>
             </Card> */}
             <Card bodyStyle={cardBodyStyles} title="IVR Application" style={cardStyles}>
-                <Card.Grid style={cardGridStyles}>
-                    <Descriptions column={1} layout="horizontal" className="descriptionListColumnNoHeight" title="">
-                        <Descriptions.Item label="Voice and/or SMS:">
-                            <Select style={inputStyles}>
-                                <Select.Option key={1}>
-                                    Voice
-                                </Select.Option>
-                                <Select.Option key={2}>
-                                    SMS
-                                </Select.Option>
-                                <Select.Option key={3}>
-                                    Voice & SMS
-                                </Select.Option>
-                            </Select>
+                    <Descriptions>
+                        <Descriptions.Item label="Allow Duplicates">
+                            <Switch onChange={val => console.log("val")} checkedChildren="Yes" unCheckedChildren="No"  />
                         </Descriptions.Item>
                     </Descriptions>
-                    {/* <Button style={{marginBottom: 10}} type="primary">Create New Outbound Message</Button> */}
-                </Card.Grid>
-                <Card.Grid style={cardGridStyles}>
-                    <Descriptions column={1} layout="horizontal" className="descriptionListColumnNoHeight" title="Outbound Message Variables">
-                        <Descriptions.Item label="First Name">
-                            <Select style={inputStyles}>
-                                <Select.Option key={1}>
-                                    First_Name_Column
-                                </Select.Option>
-                                <Select.Option key={2}>
-                                    Last_Name_Column
-                                </Select.Option>
-                                <Select.Option key={3}>
-                                    Phone_Number_Column
-                                </Select.Option>
-                            </Select>
-                        </Descriptions.Item>
-                        <Descriptions.Item label="Last Name">
-                            <Select style={inputStyles}>
-                                <Select.Option key={1}>
-                                    First_Name_Column
-                                </Select.Option>
-                                <Select.Option key={2}>
-                                    Last_Name_Column
-                                </Select.Option>
-                                <Select.Option key={3}>
-                                    Phone_Number_Column
-                                </Select.Option>
-                            </Select>
-                        </Descriptions.Item>
-                        <Descriptions.Item label="Phone Number">
-                            <Select style={inputStyles}>
-                                <Select.Option key={1}>
-                                    First_Name_Column
-                                </Select.Option>
-                                <Select.Option key={2}>
-                                    Last_Name_Column
-                                </Select.Option>
-                                <Select.Option key={3}>
-                                    Phone_Number_Column
-                                </Select.Option>
-                            </Select>
-                        </Descriptions.Item>
-                    </Descriptions>
-                </Card.Grid>
+                    <Descriptions>
+                    <Descriptions.Item label="Apply TCPA Rules">
+                    <Switch onChange={(val) => setShowTCPA(val)} checkedChildren="Yes" unCheckedChildren="No" checked={showTCPA} />
+                    </Descriptions.Item>
+                </Descriptions>
+                {showTCPA ? <TCPA /> : ''}
+                
             </Card>
             <Card title="Column Definitions" bodyStyle={cardBodyStyles} style={cardStyles}>
                 <Descriptions column={1} layout="vertical" className="descriptionListColumn" title="">
