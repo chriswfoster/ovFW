@@ -208,6 +208,15 @@ const Audience = () => {
         {
             title: 'Number',
             dataIndex: 'number',
+        },
+        {
+            title: 'Action',
+            key: 'action',
+            render: (text, record) => (
+                <span>
+                    <a>Delete</a>
+                </span>
+            )
         }
         // {
         //     title: 'Type',
@@ -225,43 +234,59 @@ const Audience = () => {
 
     return (
         <div>
-            <b>Select A Do Not Call List</b>
-            <Table rowSelection={campaignRowSelection} columns={campaignColumns} dataSource={campaignData} pagination={false} />
-            <Divider />
-            <Table columns={columns} dataSource={dataSource} pagination={false} />
             <Row>
-                <Col span={7} style={{ paddingBottom: "10px" }}>
-                    <Upload {...props}>
-                        <Button
-                            type="primary"
-                            icon="upload"
-                            size="default"
-                            style={{ height: "40px" }}
-                        >
-                            Upload Form
-                    </Button>
-                    </Upload>
+                <Col span={12}>
+                    <Table rowSelection={campaignRowSelection} columns={campaignColumns} dataSource={campaignData} pagination={false} />
                 </Col>
-                <Col span={7}>
-                    <Button
-                        type="primary"
-                        icon="form"
-                        size="default"
-                        style={{ height: "40px" }}
-                        onClick={manualModal}
-                    >
-                        Manual Entry
-                    </Button>
+                <Col span={12}>
+                    <Table columns={columns} dataSource={dataSource} pagination={false} />
                 </Col>
             </Row>
-            <Collapse onChange={callback}>
-                <Panel header="FTP" key="1">
-                    <FTP />
-                </Panel>
-                <Panel header="Network Drive" key="2">
-                    <SharedDrive />
-                </Panel>
-            </Collapse>
+            <Button onClick={showModal}>Add to Do Not Call List</Button>
+            <Modal
+                title="Create A New Audience"
+                visible={visible}
+                onOk={handleOk}
+                onCancel={handleCancel}
+                width="55vw"
+                bodyStyle={{ height: "45vh", overflowY: "scroll" }}
+
+            >
+                <Row>
+                    <Col span={7} style={{ paddingBottom: "10px" }}>
+                        {/* <Button>Add to Do Not Call List</Button> */}
+                        <Upload {...props}>
+                            <Button
+                                type="primary"
+                                icon="upload"
+                                size="default"
+                                style={{ height: "40px" }}
+                            >
+                                Upload Form
+                    </Button>
+                        </Upload>
+                    </Col>
+                    <Col span={7}>
+                        <Button
+                            type="primary"
+                            icon="form"
+                            size="default"
+                            style={{ height: "40px" }}
+                            onClick={manualModal}
+                        >
+                            Manual Entry
+                    </Button>
+                    </Col>
+                </Row>
+                <Collapse onChange={callback}>
+                    <Panel header="FTP" key="1">
+                        <FTP />
+                    </Panel>
+                    <Panel header="Network Drive" key="2">
+                        <SharedDrive />
+                    </Panel>
+                </Collapse>
+            </Modal>
             {/* <Row>
                 <Row type="flex" justify="start" gutter={8}>
                     <Col span={5} style={{ paddingBottom: "10px" }}>
