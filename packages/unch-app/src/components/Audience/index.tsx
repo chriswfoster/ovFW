@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Table, Button, Input, Icon, Modal, Row, Col, Tabs, Upload, message, Collapse, Divider, Menu, Dropdown, Tabs } from 'antd';
+import { Table, Button, Modal, Row, Col, Tabs, Upload, message, Collapse, Divider, Card, Input } from 'antd';
 import FTP from "./AudienceComponents/FTP"
 import AddColumns from "./AudienceComponents/AddColumns"
 import SharedDrive from "./AudienceComponents/SharedDrive"
@@ -218,14 +218,6 @@ const Audience = () => {
                 </span>
             )
         }
-        // {
-        //     title: 'Type',
-        //     dataIndex: 'type',
-        // },
-        // {
-        //     title: 'Status',
-        //     dataIndex: 'status',
-        // },
     ];
     ////////////////////////////
 
@@ -239,22 +231,24 @@ const Audience = () => {
                     <Table rowSelection={campaignRowSelection} columns={campaignColumns} dataSource={campaignData} pagination={false} />
                 </Col>
                 <Col span={12}>
-                    <Table columns={columns} dataSource={dataSource} pagination={false} />
+                    <Card title="Parkland">
+                        <Table columns={columns} dataSource={dataSource} pagination={false} />
+                    </Card>
                 </Col>
             </Row>
-            <Button onClick={showModal}>Add to Do Not Call List</Button>
+            <Button onClick={showModal} type="primary">Add to Do Not Call List</Button>
             <Modal
-                title="Create A New Audience"
+                title="Add Do Not Call List"
                 visible={visible}
                 onOk={handleOk}
                 onCancel={handleCancel}
                 width="55vw"
-                bodyStyle={{ height: "45vh", overflowY: "scroll" }}
+                bodyStyle={{ height: "55vh", overflowY: "scroll" }}
 
             >
+                <b>Upload A Form</b>
                 <Row>
                     <Col span={7} style={{ paddingBottom: "10px" }}>
-                        {/* <Button>Add to Do Not Call List</Button> */}
                         <Upload {...props}>
                             <Button
                                 type="primary"
@@ -277,247 +271,22 @@ const Audience = () => {
                             Manual Entry
                     </Button>
                     </Col>
+                    <Divider />
                 </Row>
-                <Collapse onChange={callback}>
-                    <Panel header="FTP" key="1">
-                        <FTP />
-                    </Panel>
-                    <Panel header="Network Drive" key="2">
-                        <SharedDrive />
-                    </Panel>
-                </Collapse>
-            </Modal>
-            {/* <Row>
-                <Row type="flex" justify="start" gutter={8}>
-                    <Col span={5} style={{ paddingBottom: "10px" }}>
-                        <Button
-                            type="primary"
-                            icon="plus"
-                            size="default"
-                            style={{ height: "40px" }}
-                            onClick={showModal}
-                        >
-                            Add A New Audience
-                    </Button>
-                    </Col>
-                    <Col span={8}>
-                        <Button
-                            type="danger"
-                            icon="delete"
-                            size="default"
-                            style={{ height: "40px" }}
-                        >
-                            Delete Audience
-                    </Button>
-                    </Col> */}
-            {/* <Col span={5} style={{ paddingBottom: "10px" }}>
-                        <Upload {...props}>
-                            <Button
-                                type="primary"
-                                icon="upload"
-                                size="default"
-                                style={{ height: "40px" }}
-                            >
-                                Upload Form
-                    </Button>
-                        </Upload>
-                    </Col>
-                    <Col span={5}>
-                        <Button
-                            type="primary"
-                            icon="form"
-                            size="default"
-                            style={{ height: "40px" }}
-                            onClick={manualModal}
-                        >
-                            Manual Entry
-                    </Button>
-                    </Col> */}
-            {/* </Row>
-                <Modal
-                    title="Manual Audience Entry"
-                    visible={manualVisible}
-                    onOk={manualModalOk}
-                    onCancel={manualModalCancel}
-                    width="55vw"
-                    bodyStyle={{ height: "45vh", overflowY: "scroll" }}
-
-                >
-                    <div>
-                        <b>First_Name</b> <Input placeholder="Add Column" size="small" />
-                        <b>Last_Name</b> <Input placeholder="Add Column" size="small" />
-                        <b>Number</b> <Input placeholder="Add Column" size="small" />
-                        <b>Type</b> <Input placeholder="Add Column" size="small" />
-                    </div>
-                </Modal>
-                <Col span={12}>
-                    <Table rowSelection={campaignRowSelection} columns={campaignColumns} dataSource={campaignData} pagination={false} />
-                </Col>
-                <Col span={12}>
-                    <Tabs defaultActiveKey="1" onChange={callback} size="large">
-                        <TabPane tab={
-                            <span>
-                                <Icon type="control" />
-                                Details
-                            </span>
-                        } key="1">
-                            <div
-                                style={{
-                                    display: "flex",
-                                    flexDirection: "column",
-                                    flexWrap: "nowrap",
-                                    justifyContent: "flex-start",
-                                    alignItems: "stretch",
-                                    alignContent: "flex-start",
-                                    paddingBottom: "15px"
-                                }}
-                            >
-                                <span>
-                                    <b>Name of Audience:</b> Audience 1
-                                </span>
-                                <span>
-                                    <b>Created On: </b> 09/20/2019
-                                </span>
-                                <span>
-                                    <b>Created By: </b> Kevin Smith
-                                </span>
-                                <span>
-                                    <b>Current Campaign: </b> BSW_Campaign
-                                </span>
-                                <span>
-                                    <b>Current State: </b> In Progress
-                                </span>
-                            </div>
-                            <Row gutter={12}>
-                                <Col span={5}>
-                                    <Button icon="stop" type="danger">Stop</Button>
-                                </Col>
-                                <Col span={5}>
-                                    <Button icon="pause" type="default">Pause</Button>
-                                </Col>
-                                <Col span={5}>
-                                    <Button icon="caret-right" type="primary">Resume</Button>
-                                </Col>
-                            </Row>
-                            <Divider />
-                            <b>Columns</b>
-                            <p>First_Name</p>
-                            <p>Last_Name</p>
-                            <p>Phone_Number</p>
-                            <p>Type</p>
-                            <Divider />
-                            <b>Uploaded from</b>
-                            <div
-                                style={{
-                                    display: "flex",
-                                    flexDirection: "column",
-                                    flexWrap: "nowrap",
-                                    justifyContent: "flex-start",
-                                    alignItems: "stretch",
-                                    alignContent: "flex-start",
-                                    paddingBottom: "10px"
-                                }}
-                            >
-                                <span>
-                                    <b>FTP Domain:</b> domain.ftp.drive
-                                </span>
-                                <span>
-                                    <b>Port: </b> 833
-                                </span>
-                            </div>
-                            <div
-                                style={{
-                                    display: "flex",
-                                    flexDirection: "column",
-                                    flexWrap: "nowrap",
-                                    justifyContent: "flex-start",
-                                    alignItems: "stretch",
-                                    alignContent: "flex-start",
-                                    paddingBottom: "10px"
-                                }}
-                            >
-                                <span>
-                                    <b>Network File Path:</b> //filepath/files/folder/csv
-                                </span>
-                            </div>
-                        </TabPane>
-
-                        <TabPane tab={
-                            <span>
-                                <Icon type="menu" />
-                                Dial List
-                            </span>
-                        } key="2">
-                            <Table columns={columns} dataSource={dataSource} pagination={false} />
-                            <b>Add To Dial List</b>
-                            <Row>
-                                <Col span={7} style={{ paddingBottom: "10px" }}>
-                                    <Upload {...props}>
-                                        <Button
-                                            type="primary"
-                                            icon="upload"
-                                            size="default"
-                                            style={{ height: "40px" }}
-                                        >
-                                            Upload Form
-                    </Button>
-                                    </Upload>
-                                </Col>
-                                <Col span={7}>
-                                    <Button
-                                        type="primary"
-                                        icon="form"
-                                        size="default"
-                                        style={{ height: "40px" }}
-                                        onClick={manualModal}
-                                    >
-                                        Manual Entry
-                    </Button>
-                                </Col>
-                            </Row>
-                            <Collapse onChange={callback}>
-                                <Panel header="FTP" key="1">
-                                    <FTP />
-                                </Panel>
-                                <Panel header="Network Drive" key="2">
-                                    <SharedDrive />
-                                </Panel>
-                            </Collapse>
-                        </TabPane>
-
-                        <TabPane tab={
-                            <span>
-                                <Icon type="close-circle" />
-                                Do Not Call List
-                            </span>
-                        } key="3"> */}
-            {/* </TabPane>
-                    </Tabs>
-                </Col>
-            </Row>
-            <Modal
-                title="Create A New Audience"
-                visible={visible}
-                onOk={handleOk}
-                onCancel={handleCancel}
-                width="55vw"
-                bodyStyle={{ height: "45vh", overflowY: "scroll" }}
-
-            >
-                <div style={{
-                    display: "flex",
-                    flexdirection: "row",
-                    flexwrap: "nowrap",
-                    justifycontent: "flex-start",
-                    alignitems: "center",
-                    aligncontent: "center",
-                    paddingBottom: "20px"
-                }}>
-                    Audience Name:  <Input placeholder="Campaign Name" size="small" style={{ width: "300px" }} />
-                </div>
+                <b>Upload a list via FTP</b>
+                <FTP />
                 <Divider />
-                <AddColumns />
-            </Modal> */}
+                <b>Upload a list via Shared Drive</b>
+                <SharedDrive />
+                <Divider />
+                <b>Upload A Contact Manually</b>
+                <div>
+                    <b>Column 1:<Input style={{ width: "200px" }} /></b>
+                    <b>Column 2:<Input style={{ width: "200px" }} /></b>
+                    <b>Column 3:<Input style={{ width: "200px" }} /></b>
+                    <b>Column 4:<Input style={{ width: "200px" }} /></b>
+                </div>
+            </Modal>
         </div >
     )
 }
