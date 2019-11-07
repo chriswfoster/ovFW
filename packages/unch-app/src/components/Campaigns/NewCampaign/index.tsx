@@ -81,11 +81,7 @@ class NewCampaign extends React.Component <any, any> {
                     }
                     footer={[
                         <div key={1} className="steps-action">
-                            {current < componentList.length - 1 && (
-                                <Button type="primary" onClick={() => this.next()}>
-                                    Next
-                                </Button>
-                            )}
+                            
                             {current === componentList.length - 1 && (
                                 <Button type="primary" onClick={() => message.success('Processing complete!')}>
                                     Done
@@ -94,6 +90,11 @@ class NewCampaign extends React.Component <any, any> {
                             {current > 0 && (
                                 <Button style={{ marginLeft: 8 }} onClick={() => this.prev()}>
                                     Previous
+                                </Button>
+                            )}
+                            {current < componentList.length - 1 && (
+                                <Button type="primary" onClick={() => this.next()}>
+                                    Next
                                 </Button>
                             )}
                         </div>

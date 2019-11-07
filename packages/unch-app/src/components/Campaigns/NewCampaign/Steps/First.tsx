@@ -3,13 +3,20 @@ import { Upload, Row, Col, Button, Collapse, Descriptions, Select, Input, Card, 
 import FTP from '../../../Audience/AudienceComponents/FTP';
 import SharedDrive from '../../../Audience/AudienceComponents/SharedDrive';
 import TCPA from './Fourth/TCPA';
+import Papa from 'papaparse';
 
 const First = (props: any) => {
-    const [showTCPA, setShowTCPA] = useState(false)
-    
     const inputStyles = {
         width: 220
     }
+    const [showTCPA, setShowTCPA] = useState(false)
+    const [file, setFile] = useState([])
+    const [dbDataTypeSelect, setdbDataTypeSelect] = useState(
+        <Select style={inputStyles} defaultValue={0}>
+        </Select>
+    )
+    
+
     const cardStyles = {
         width: '50%',
         height: '50%',
@@ -25,19 +32,56 @@ const First = (props: any) => {
         height: '90%'
     }
 
-    const dbDataTypeSelect = (
-        <Select defaultValue={1}>
-            <Select.Option value={1} key={1}>
-                String/VarChar
-            </Select.Option >
-            <Select.Option value={2} key={2}>
-                Number/Int
-            </Select.Option>
-            <Select.Option value={3} key={3}>
-                Date/Timestamp
-            </Select.Option>
-        </Select>
-    )
+    this.handleChange = (event) => {
+        Papa.parse(event.target.files[0], {
+            complete: data => console.log("Data: ", data),
+            header: true
+        });
+    }
+
+    const propsUpload = {
+        name: 'file',
+        accept: '.csv',
+        // action: this.fileHandler,
+        multiple: false,
+        beforeUpload: file => {
+            return false;
+          },
+        headers: {
+            authorization: 'authorization-text',
+        },
+        onChange(data) {
+            
+            Papa.parse(event.target.files[0], {
+                complete: data => {
+                    console.log(data.data)
+                    
+                    // {data.data.map((item, i) => {
+                    //     return (
+                    //         <Select.Option value={i} key={i}>
+                    //             item
+                    //         </Select.Option>
+                    //     )
+                    // })}
+                    let keyz = Object.keys(data.data[0])
+                    setdbDataTypeSelect(
+                        <Select style={inputStyles} defaultValue={1}>
+                            {keyz.map((item, i) => {
+                                return (
+                                        <Select.Option value={i} key={i}>
+                                            {item}
+                                        </Select.Option>
+                                    )
+                                })}
+                        </Select>)
+                    setFile(data.data)    
+            },
+
+                header: true
+            });
+        },
+    };
+
 
     const workflows = ["Schedule", "Billing",  "Rx", "Other"]
     const campaignTypes = ["UCCE", "UCCX", "Twillio", "Amazon", "WCC"]
@@ -102,15 +146,15 @@ const First = (props: any) => {
             </Card>
             <Card title="Dial List Settings" bodyStyle={cardBodyStyles} style={cardStyles}>
                 <Row>
-                    <Col span={7} style={{ paddingBottom: "10px" }}>
-                        <Upload {...props}>
+                    <Col span={7} style={{ paddingBottom: "10px", paddingRight: "20px" }}>
+                        <Upload {...propsUpload}>
                             <Button
                                 type="primary"
                                 icon="upload"
                                 size="default"
                                 style={{ height: "40px" }}
                             >
-                                Upload Form
+                                Upload CSV
                             </Button>
                         </Upload>
                     </Col>
@@ -183,15 +227,24 @@ const First = (props: any) => {
                 
             </Card>
             <Card title="Column Definitions" bodyStyle={cardBodyStyles} style={cardStyles}>
-                <Descriptions column={1} layout="vertical" className="descriptionListColumn" title="">
-                    <Descriptions.Item label="First Column:">
-                        <span style={{display: "flex", flexDirection: "row"}}><Input placeholder="First_Name"/>{dbDataTypeSelect}</span>
+                <Descriptions column={1} layout="horizontal" className="descriptionListColumn" title="">
+                    <Descriptions.Item label="First_Name:">
+                        <span style={{display: "flex", flexDirection: "row"}}>
+                            {/* <Input placeholder="First_Name"/> */}
+                            {dbDataTypeSelect}
+                        </span>
                     </Descriptions.Item>
-                    <Descriptions.Item label="Second Column:">
-                        <span style={{display: "flex", flexDirection: "row"}}><Input placeholder="Last_Name"/>{dbDataTypeSelect}</span>
+                    <Descriptions.Item label="Last_Name:">
+                        <span style={{display: "flex", flexDirection: "row"}}>
+                            {/* <Input placeholder="Last_Name"/> */}
+                            {dbDataTypeSelect}
+                        </span>
                     </Descriptions.Item>
-                    <Descriptions.Item label="Third Column:">
-                        <span style={{display: "flex", flexDirection: "row"}}><Input placeholder="Appointment_Date"/>{dbDataTypeSelect}</span>
+                    <Descriptions.Item label="Phone_Number:">
+                        <span style={{display: "flex", flexDirection: "row"}}>
+                            {/* <Input placeholder="Appointment_Date"/> */}
+                            {dbDataTypeSelect}
+                        </span>
                     </Descriptions.Item>
                 </Descriptions>
             </Card>

@@ -9,12 +9,12 @@ const Third = () => {
         width: 220
     }
     const cardStyles = {
-        width: '50%',
+        width: '49%',
     }
 
 
     return (
-        <div style={{overflowY: 'scroll'}} id="outerCampaignCardDiv" className="descriptionListColumn">
+        <div style={{overflowY: 'scroll'}} id="outerCampaignCardDiv" className="divFlexColumns">
             <Card title="Voice Settings" style={cardStyles}>
                 <Descriptions column={1} layout="horizontal" className="descriptionListColumn">
                     <Descriptions.Item label="Calls Per Second">
@@ -96,6 +96,14 @@ const Third = () => {
                     </Descriptions.Item>
                 </Descriptions> */}
             </Card>
+            {/* <Card title="Upload CSV" style={cardStyles}>
+                <CSVReader 
+                    // cssClass
+                    label="Select CSV with info"
+                    onFileLoaded={data => console.log(data)}
+                
+                />
+            </Card> */}
             {/* <Card title="Config" style={cardStyles}>
 
             </Card> */}
