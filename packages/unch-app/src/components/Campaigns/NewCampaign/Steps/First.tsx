@@ -89,7 +89,7 @@ const First = (props: any) => {
         <div id="outerCampaignCardDiv" className="divFlexColumns">
             <Card title="Config" style={cardStyles} bodyStyle={cardBodyStyles} >
                 <Descriptions column={1} layout="horizontal" className="descriptionListColumn" title="">
-                    <Descriptions.Item label="Campaign Name:">
+                    <Descriptions.Item label="Campaign Name">
                         <Input style={inputStyles} />
                     </Descriptions.Item>
                     {/* <Descriptions.Item label="Workflow Type:">
@@ -103,7 +103,7 @@ const First = (props: any) => {
                             })}
                         </Select>
                     </Descriptions.Item> */}
-                    <Descriptions.Item label="Campaign Type:">
+                    <Descriptions.Item label="Campaign Type">
                         <Select style={inputStyles} defaultValue={0}>
                             {campaignTypes.map((cT, i) => {
                                 return (
@@ -115,7 +115,7 @@ const First = (props: any) => {
                         </Select>
                     </Descriptions.Item>
                     
-                        <Descriptions.Item label="Voice and/or SMS:">
+                        <Descriptions.Item label="Voice and/or SMS">
                             <Select style={inputStyles}>
                                 <Select.Option key={1}>
                                     Voice
@@ -228,19 +228,19 @@ const First = (props: any) => {
             </Card>
             <Card title="Column Definitions" bodyStyle={cardBodyStyles} style={cardStyles}>
                 <Descriptions column={1} layout="horizontal" className="descriptionListColumn" title="">
-                    <Descriptions.Item label="First Name:">
+                    <Descriptions.Item label="First Name">
                         <span style={{display: "flex", flexDirection: "row"}}>
                             {/* <Input placeholder="First_Name"/> */}
                             {dbDataTypeSelect}
                         </span>
                     </Descriptions.Item>
-                    <Descriptions.Item label="Last Name:">
+                    <Descriptions.Item label="Last Name">
                         <span style={{display: "flex", flexDirection: "row"}}>
                             {/* <Input placeholder="Last_Name"/> */}
                             {dbDataTypeSelect}
                         </span>
                     </Descriptions.Item>
-                    <Descriptions.Item label="Phone Number:">
+                    <Descriptions.Item label="Phone Number">
                         <span style={{display: "flex", flexDirection: "row"}}>
                             {/* <Input placeholder="Appointment_Date"/> */}
                             {dbDataTypeSelect}

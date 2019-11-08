@@ -36,17 +36,17 @@ const Third = () => {
                     <Descriptions.Item label="Retries">
                         <Card>
                             <Descriptions column={1}>
-                                <Descriptions.Item label="Attempt 1: " >
+                                <Descriptions.Item label="Attempt 1" >
                                     <div className="buttonSliders">
                                         <Input style={{display: "inline"}}/> <span style={{display: "inline"}}> minutes</span>
                                     </div>
                                 </Descriptions.Item>
-                                <Descriptions.Item label="Attempt 2: ">
+                                <Descriptions.Item label="Attempt 2">
                                     <div className="buttonSliders">
                                         <Input style={{display: "inline"}}/> <span style={{display: "inline"}}> minutes</span>
                                     </div>
                                 </Descriptions.Item>
-                                <Descriptions.Item label="Last Attempt: ">
+                                <Descriptions.Item label="Last Attempt">
                                     <div className="buttonSliders">
                                         <Input style={{display: "inline"}}/> <span style={{display: "inline"}}> minutes</span>
                                     </div>
