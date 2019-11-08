@@ -228,19 +228,19 @@ const First = (props: any) => {
             </Card>
             <Card title="Column Definitions" bodyStyle={cardBodyStyles} style={cardStyles}>
                 <Descriptions column={1} layout="horizontal" className="descriptionListColumn" title="">
-                    <Descriptions.Item label="First_Name:">
+                    <Descriptions.Item label="First Name:">
                         <span style={{display: "flex", flexDirection: "row"}}>
                             {/* <Input placeholder="First_Name"/> */}
                             {dbDataTypeSelect}
                         </span>
                     </Descriptions.Item>
-                    <Descriptions.Item label="Last_Name:">
+                    <Descriptions.Item label="Last Name:">
                         <span style={{display: "flex", flexDirection: "row"}}>
                             {/* <Input placeholder="Last_Name"/> */}
                             {dbDataTypeSelect}
                         </span>
                     </Descriptions.Item>
-                    <Descriptions.Item label="Phone_Number:">
+                    <Descriptions.Item label="Phone Number:">
                         <span style={{display: "flex", flexDirection: "row"}}>
                             {/* <Input placeholder="Appointment_Date"/> */}
                             {dbDataTypeSelect}
