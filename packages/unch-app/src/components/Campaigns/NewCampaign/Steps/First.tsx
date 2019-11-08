@@ -44,7 +44,7 @@ const First = (props: any) => {
             <Card title="Config" style={cardStyles} bodyStyle={cardBodyStyles} >
                 <Descriptions column={1} layout="horizontal" className="descriptionListColumn" title="">
                     <Descriptions.Item label="Campaign Name:">
-                        <Input style={inputStyles}/>
+                        <Input style={inputStyles} />
                     </Descriptions.Item>
                     {/* <Descriptions.Item label="Workflow Type:">
                         <Select style={inputStyles} defaultValue={1}>
@@ -142,7 +142,7 @@ const First = (props: any) => {
                         </Descriptions.Item>
                         <Descriptions.Item label="">
                             <Button>
-                            Add Audience
+                                Add Audience
                             </Button>
                         </Descriptions.Item>
                     </Descriptions>
