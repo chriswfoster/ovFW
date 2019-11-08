@@ -57,7 +57,7 @@ const Second = () => {
     return (
         <div style={{overflowY: 'scroll'}} id="outerCampaignCardDiv" className="descriptionListColumn">
             <Descriptions layout="vertical" >
-                <Descriptions.Item label="Campaign Start and End Date: ">
+                <Descriptions.Item label="Campaign Start and End Date">
                     <RangePicker onChange={() => console.log("Date picked")} />
                 </Descriptions.Item>
             </Descriptions>

@@ -14,16 +14,16 @@ export default class DataElement extends React.Component<any, any>{
         return (
             <Card style={{width: '30vw', minWidth: 405}}>
                 <Descriptions column={1} layout="horizontal" className="descriptionListColumn" title="">
-                    <Descriptions.Item label="Data: ">
+                    <Descriptions.Item label="Data">
                         <Select style={inputStyles}>
                             <Select.Option key={1}>
-                                First_Name
+                                First Name
                             </Select.Option>
                             <Select.Option key={2}>
-                                Last_Name
+                                Last Name
                             </Select.Option>
                             <Select.Option key={3}>
-                                Appointment_Date
+                                Appointment Date
                             </Select.Option>
                         </Select>
                     </Descriptions.Item>

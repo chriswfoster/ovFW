@@ -6,6 +6,7 @@ import campaigns from './NewCampaign/data.json';
 import './campaign.css'
 import NewCampaign from './NewCampaign';
 import ViewCampaign from './ViewCampaign';
+import ButtonComponent from './ButtonComponent';
 
 class Campaigns extends React.Component<any, any> {
     constructor(props: any){
@@ -40,19 +41,15 @@ class Campaigns extends React.Component<any, any> {
                         let randomDisable = Math.floor(Math.random()*2);
                         return (
                             <Card 
-                                onClick={() => this.setState({viewCampaign: pharm, showEditModal: true})}
+                                // onClick={() => this.setState({viewCampaign: pharm, showEditModal: true})}
                                 key={key}
                                 title={`${campaigns.results.campaigns.campaign.name + Math.floor(Math.random()*100)}`}
                                 // title={`${pharm.name} - ${pharm.type}`}
                                 style={{width: "25%", marginRight: 20, marginLeft: 20, marginBottom: 20}}
                             >
                                 <div className="cardsInnerFlex">
-                                    <div  className="cardsFlex">
-                                        <Button disabled={!randomDisable} style={{marginRight: '50px'}} icon="stop" type="danger"></Button>
-                                        <Button disabled={!!randomDisable}icon="caret-right" type="primary"></Button>
-                                    </div>
-                                       
-                                    <span><b>Enabled:</b> {Math.floor(Math.random()*2) ? <Tag color="green">TRUE</Tag> : <Tag color="red">FALSE</Tag>}</span>
+                                    <ButtonComponent />
+                                    {/* <span><b>Enabled:</b> {Math.floor(Math.random()*2) ? <Tag color="green">TRUE</Tag> : <Tag color="red">FALSE</Tag>}</span> */}
                                     <span><b>Description:</b> {"This is the "+ campaigns.results.campaigns.campaign.description + " campaign."}</span>
                                     {/* <span><b>Type:</b> {pharm.type}</span> */}
                                     <span><b>Dialing Mode:</b> {this.dialingModeHandler()}</span>
