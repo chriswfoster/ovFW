@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Table, Button, Modal, Row, Col, Tabs, Upload, message, Collapse, Divider, Card, Input } from 'antd';
 import FTP from "./AudienceComponents/FTP"
-import AddColumns from "./AudienceComponents/AddColumns"
 import SharedDrive from "./AudienceComponents/SharedDrive"
 
 const Audience = () => {
@@ -9,7 +8,7 @@ const Audience = () => {
     ///////// Hooks /////////
     const [visible, setVisible] = useState(false)
     const [manualVisible, setManualVisible] = useState(false)
-    const [showNewAudience, setShowNewAudience] = useState(false)
+    // const [showNewAudience, setShowNewAudience] = useState(false)
 
     //////////////////
 
@@ -32,19 +31,19 @@ const Audience = () => {
         setManualVisible(true)
     };
 
-    const manualModalOk = (e: any) => {
-        setManualVisible(false)
-    };
+    // const manualModalOk = (e: any) => {
+    //     setManualVisible(false)
+    // };
 
-    const manualModalCancel = (e: any) => {
-        setManualVisible(false)
-    };
+    // const manualModalCancel = (e: any) => {
+    //     setManualVisible(false)
+    // };
     ////////////////////
 
     ////////// Collapse Methods //////////
-    function callback(key) {
-        console.log(key);
-    }
+    // function callback(key) {
+    //     console.log(key);
+    // }
     ////////////////////
 
 
@@ -221,8 +220,8 @@ const Audience = () => {
     ];
     ////////////////////////////
 
-    const { TabPane } = Tabs;
-    const { Panel } = Collapse;
+    // const { TabPane } = Tabs;
+    // const { Panel } = Collapse;
 
     return (
         <div>
@@ -281,10 +280,24 @@ const Audience = () => {
                 <Divider />
                 <b>Upload A Contact Manually</b>
                 <div>
-                    <b>Column 1:<Input style={{ width: "200px" }} /></b>
-                    <b>Column 2:<Input style={{ width: "200px" }} /></b>
-                    <b>Column 3:<Input style={{ width: "200px" }} /></b>
-                    <b>Column 4:<Input style={{ width: "200px" }} /></b>
+                    <table>
+                        <tr>
+                            <td>
+                                <b>Column 1:<Input style={{ width: "200px" }} /></b>
+                            </td>
+                            <td>
+                                <b>Column 2:<Input style={{ width: "200px" }} /></b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b>Column 3:<Input style={{ width: "200px" }} /></b>
+                            </td>
+                            <td>
+                                <b>Column 4:<Input style={{ width: "200px" }} /></b>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
             </Modal>
         </div >

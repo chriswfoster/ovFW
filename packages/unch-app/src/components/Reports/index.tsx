@@ -150,63 +150,63 @@ const Reports = () => {
             firstName: 'John',
             lastName: "Smith",
             type: 'SMS',
-            status: "Called"
+            callStatus: "Inion"
         },
         {
             number: "(214) 842-1337",
             firstName: 'Jacob',
             lastName: "Smith",
             type: 'SMS',
-            status: "Information"
+            callStatus: "Inion"
         },
         {
             number: "(214) 842-1337",
             firstName: 'Kevin',
             lastName: "Smith",
             type: 'SMS',
-            status: "Information"
+            callStatus: "Inion"
         },
         {
             number: "(214) 842-1337",
             firstName: 'Matt',
             lastName: "Smith",
             type: 'SMS',
-            status: "Information"
+            callStatus: "Inion"
         },
         {
             number: "(214) 842-1337",
             firstName: 'Dave',
             lastName: "Smith",
             type: 'SMS',
-            status: "Information"
+            callStatus: "Inion"
         },
         {
             number: "(214) 842-1337",
             firstName: 'John',
             lastName: "Smith",
             type: 'SMS',
-            status: "Information"
+            callStatus: "Inion"
         },
         {
             number: "(214) 842-1337",
             firstName: 'Jacob',
             lastName: "Smith",
             type: 'SMS',
-            status: "Information"
+            callStatus: "Inion"
         },
         {
             number: "(214) 842-1337",
             firstName: 'Kevin',
             lastName: "Smith",
             type: 'SMS',
-            status: "Information"
+            callStatus: "Inion"
         },
         {
             number: "(214) 842-1337",
             firstName: 'Matt',
             lastName: "Smith",
             type: 'SMS',
-            status: "Information"
+            callStatus: "Inion"
         },
         {
             number: "(214) 842-1337",
@@ -216,6 +216,8 @@ const Reports = () => {
             callStatus: "Inion"
         },
     ];
+
+    const callStatus = ["Answered", "Voicemail", "Failed"];
 
     const columns = [
         {
@@ -233,6 +235,8 @@ const Reports = () => {
         {
             title: 'Call Status',
             key: 'callStatus',
+            //dataIndex: "callStatus"
+            render: () => (callStatus[Math.floor(Math.random() * callStatus.length)])
         }
     ];
     ////////////////////////////

@@ -17,10 +17,10 @@ const AddColumns = (props: any) => {
             <div style={{ width: "500px" }}>
                 <div style={{
                     display: "flex",
-                    flexwrap: "wrap",
-                    justifycontent: "space-around",
-                    alignitems: "center",
-                    aligncontent: "center",
+                    flexWrap: "wrap",
+                    justifyContent: "space-around",
+                    alignItems: "center",
+                    alignContent: "center",
                     paddingBottom: "10px"
                 }}>
                     <Icon
@@ -38,10 +38,10 @@ const AddColumns = (props: any) => {
 
                 <div style={{
                     display: "flex",
-                    flexwrap: "wrap",
-                    justifycontent: "space-around",
-                    alignitems: "center",
-                    aligncontent: "center",
+                    flexWrap: "wrap",
+                    justifyContent: "space-around",
+                    alignItems: "center",
+                    alignContent: "center",
                     paddingBottom: "10px"
                 }}>
                     <Icon
@@ -59,10 +59,10 @@ const AddColumns = (props: any) => {
 
                 <div style={{
                     display: "flex",
-                    flexwrap: "wrap",
-                    justifycontent: "space-around",
-                    alignitems: "center",
-                    aligncontent: "center",
+                    flexWrap: "wrap",
+                    justifyContent: "space-around",
+                    alignItems: "center",
+                    alignContent: "center",
                     paddingBottom: "10px"
                 }}>
                     <Icon
