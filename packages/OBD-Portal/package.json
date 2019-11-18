@@ -10,7 +10,8 @@
     "unch-app": "^1.0.0"
   },
   "scripts": {
-    "start": "rimraf ./dist && parcel ./src/index.html --port=9090 --open"
+    "start": "rimraf ./dist && parcel ./src/index.html --port=9090 --open",
+    "build": "rimraf ./dist && parcel build ./src/index.ts --no-minify"
   },
   "devDependencies": {
     "less": "^2.7.1",

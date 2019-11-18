@@ -42283,6 +42283,8 @@ body {
 	align-content: stretch;
 }
 
+
+
 .divFlexRowsNoWrap {
 	width: 100%;
 	height: 100%;
@@ -42321,11 +42323,12 @@ body {
 .audioColumnsAlternative{
 	width: 100%;
 	height: 100%;
+	padding-left: 30px;
 	overflow-y: scroll;
 	display: flex;
 	flex-direction: row;
 	flex-wrap: nowrap;
-	justify-content: center;
+	justify-content: flex-start;
 	align-items: stretch;
 	align-content: stretch;
 }

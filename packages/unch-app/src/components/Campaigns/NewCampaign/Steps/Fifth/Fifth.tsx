@@ -45,19 +45,19 @@ class Fifth extends React.Component<any, any>{
     compListBuilder = (typeOfComp, i) => {
         switch (typeOfComp) {
             case "audio":
-            return  <Timeline.Item dot={<Icon type="sound" style={{ fontSize: '16px' }} />}>
+            return  <Timeline.Item key={i} dot={<Icon type="sound" style={{ fontSize: '16px' }} />}>
                         {/* {typeOfComp} */}
                         <AudioElement key={i} index={i} delete={this.removeCompFromList}/>
                     </Timeline.Item>
 
             case "data":
-            return  <Timeline.Item dot={<Icon type="file-unknown" style={{ fontSize: '16px' }} />}>
+            return  <Timeline.Item key={i} dot={<Icon type="file-unknown" style={{ fontSize: '16px' }} />}>
                         {/* {typeOfComp} */}
                         <DataElement key={i} index={i} delete={this.removeCompFromList}/>
                     </Timeline.Item>
 
             case "audio-options":
-            return  <Timeline.Item dot={<Icon type="sound" style={{ fontSize: '16px' }} />}>
+            return  <Timeline.Item key={i} dot={<Icon type="sound" style={{ fontSize: '16px' }} />}>
                         {/* {typeOfComp} */}
                         <AudioOptionsElement key={i} index={i} delete={this.removeCompFromList}/>
                     </Timeline.Item>
