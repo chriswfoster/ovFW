@@ -1,15 +1,21 @@
 import React, {useState} from 'react';
-import { Upload, Row, Col, Button, Collapse, Descriptions, Select, Input, Card, Switch } from 'antd';
-import FTP from '../../../Audience/AudienceComponents/FTP';
-import SharedDrive from '../../../Audience/AudienceComponents/SharedDrive';
-import TCPA from './Fourth/TCPA';
+import {Card, Descriptions, Input, Switch, Select, Row, Col, Upload, Button, Collapse} from 'antd';
 import Papa from 'papaparse';
+import FTP from '../../Audience/AudienceComponents/FTP';
+import SharedDrive from '../../Audience/AudienceComponents/SharedDrive';
+import UCCEColumnDefs from '../BACKUP-NewCampaign/Steps/First/UCCEColumnDefs';
+import TwillioColumnDefs from '../BACKUP-NewCampaign/Steps/First/TwillioColumnDefs';
+import TCPA from '../BACKUP-NewCampaign/Steps/Fourth/TCPA';
+import Scheduling from './Scheduling/Scheduling';
+import VoiceSettings from './VoiceSettings/VoiceSettings';
+import SmsAudioConfig from './SmsAudioConfig/SmsAudioConfig';
 
-const First = (props: any) => {
+const NewCampaign = (props: any) => {
     const inputStyles = {
         width: 220
     }
     const [showTCPA, setShowTCPA] = useState(false)
+    const [campaignType, setCampaignType] = useState('UCCE')
     const [file, setFile] = useState([])
     const [dbDataTypeSelect, setdbDataTypeSelect] = useState(
         <Select style={inputStyles} defaultValue={0}>
@@ -18,20 +24,20 @@ const First = (props: any) => {
     
 
     const cardStyles = {
-        width: '50%',
-        height: '50%',
+        width: '100%',
+        // height: '50%',
+        marginBottom: 20,
         overflow: 'scroll'
     }
     const cardBodyStyles = {
         height: '120%',
-        overflow: 'scroll'
+        // overflow: 'scroll' // I don't think card bodies should have overflow
     }
 
     const cardGridStyles = {
         width: '50%',
         height: '90%'
     }
-
     this.handleChange = (event) => {
         Papa.parse(event.target.files[0], {
             complete: data => console.log("Data: ", data),
@@ -86,7 +92,7 @@ const First = (props: any) => {
     const workflows = ["Schedule", "Billing",  "Rx", "Other"]
     const campaignTypes = ["UCCE", "UCCX", "Twillio", "Amazon", "WCC"]
     return (
-        <div id="outerCampaignCardDiv" className="divFlexColumns">
+        <div>
             <Card title="Config" style={cardStyles} bodyStyle={cardBodyStyles} >
                 <Descriptions column={1} layout="horizontal" className="descriptionListColumn" title="">
                     <Descriptions.Item label="Campaign Name">
@@ -104,10 +110,10 @@ const First = (props: any) => {
                         </Select>
                     </Descriptions.Item> */}
                     <Descriptions.Item label="Campaign Type">
-                        <Select style={inputStyles} defaultValue={0}>
+                        <Select style={inputStyles} defaultValue={campaignType} onChange={val => setCampaignType(val)}>
                             {campaignTypes.map((cT, i) => {
                                 return (
-                                    <Select.Option value={i} key={i}>
+                                    <Select.Option value={cT} key={i}>
                                         {cT}
                                     </Select.Option>
                                 )
@@ -115,19 +121,19 @@ const First = (props: any) => {
                         </Select>
                     </Descriptions.Item>
                     
-                        <Descriptions.Item label="Voice and/or SMS">
-                            <Select style={inputStyles}>
-                                <Select.Option key={1}>
-                                    Voice
-                                </Select.Option>
-                                <Select.Option key={2}>
-                                    SMS
-                                </Select.Option>
-                                <Select.Option key={3}>
-                                    Voice & SMS
-                                </Select.Option>
-                            </Select>
-                        </Descriptions.Item>
+                    <Descriptions.Item label="Voice and/or SMS">
+                        <Select style={inputStyles}>
+                            <Select.Option key={1}>
+                                Voice
+                            </Select.Option>
+                            <Select.Option key={2}>
+                                SMS
+                            </Select.Option>
+                            <Select.Option key={3}>
+                                Voice & SMS
+                            </Select.Option>
+                        </Select>
+                    </Descriptions.Item>
                     
                     {/* <Descriptions.Item label="UCCE Type:">
                         <Select style={inputStyles}>
@@ -179,39 +185,6 @@ const First = (props: any) => {
                     </Collapse.Panel>
                 </Collapse>
             </Card>
-            
-            {/* <Card title="Audiences" bodyStyle={cardBodyStyles} style={cardStyles}>
-                <Card.Grid style={cardGridStyles}>
-                    <Descriptions column={1} layout="horizontal" className="descriptionListColumn" title="">
-                        <Descriptions.Item label="Audience:">
-                            <Select style={inputStyles}>
-                                <Select.Option key={1}>
-                                    First Audience
-                                </Select.Option>
-                                <Select.Option key={2}>
-                                    Second Audience
-                                </Select.Option>
-                                <Select.Option key={3}>
-                                    Third Audience
-                                </Select.Option>
-                            </Select>
-                        </Descriptions.Item>
-                        <Descriptions.Item label="">
-                            <Button>
-                                View Audience
-                            </Button>
-                        </Descriptions.Item>
-                        <Descriptions.Item label="">
-                            <Button>
-                                Add Audience
-                            </Button>
-                        </Descriptions.Item>
-                    </Descriptions>
-                </Card.Grid>
-                <Card.Grid style={cardGridStyles}>
-                    Info
-                </Card.Grid>
-            </Card> */}
             <Card bodyStyle={cardBodyStyles} title="IVR Application" style={cardStyles}>
                     <Descriptions>
                         <Descriptions.Item label="Allow Duplicates">
@@ -227,29 +200,19 @@ const First = (props: any) => {
                 
             </Card>
             <Card title="Column Definitions" bodyStyle={cardBodyStyles} style={cardStyles}>
-                <Descriptions column={1} layout="horizontal" className="descriptionListColumn" title="">
-                    <Descriptions.Item label="First Name">
-                        <span style={{display: "flex", flexDirection: "row"}}>
-                            {/* <Input placeholder="First_Name"/> */}
-                            {dbDataTypeSelect}
-                        </span>
-                    </Descriptions.Item>
-                    <Descriptions.Item label="Last Name">
-                        <span style={{display: "flex", flexDirection: "row"}}>
-                            {/* <Input placeholder="Last_Name"/> */}
-                            {dbDataTypeSelect}
-                        </span>
-                    </Descriptions.Item>
-                    <Descriptions.Item label="Phone Number">
-                        <span style={{display: "flex", flexDirection: "row"}}>
-                            {/* <Input placeholder="Appointment_Date"/> */}
-                            {dbDataTypeSelect}
-                        </span>
-                    </Descriptions.Item>
-                </Descriptions>
+                {campaignType === "UCCE" ? <UCCEColumnDefs dbDataTypeSelect={dbDataTypeSelect} /> : ''}
+                {campaignType == "Twillio" ? <TwillioColumnDefs dbDataTypeSelect={dbDataTypeSelect} /> : ''}
             </Card>
-            <div style={cardStyles} /> {/* Space keeping div */}
+            <Card title="Scheduling" bodyStyle={cardBodyStyles} style={cardStyles}>
+                <Scheduling />
+            </Card>
+            <Card title="VoiceSettings" bodyStyle={cardBodyStyles} style={cardStyles}>
+                <VoiceSettings />
+            </Card>
+            <Card title="SMS and Audio Config" bodyStyle={cardBodyStyles} style={cardStyles}>
+                    <SmsAudioConfig />
+            </Card>
         </div>
     )
 }
-export default First
+export default NewCampaign;

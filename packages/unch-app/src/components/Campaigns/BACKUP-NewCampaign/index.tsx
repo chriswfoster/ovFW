@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
-import First from './Steps/First';
-import Second from './Steps/Second';
+import First from './Steps/First/First';
+import Second from './Steps/Second/Second';
 import Third from './Steps/Third';
 import Fourth from './Steps/Fourth/Fourth';
 import Fifth from './Steps/Fifth/Fifth';

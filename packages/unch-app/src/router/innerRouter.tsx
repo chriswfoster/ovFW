@@ -5,6 +5,7 @@ import Audience from '../components/Audience';
 import Reports from "../components/Reports"
 import Main from '../ui/main';
 import Home from '../components/Home';
+import NewCampaign from '../components/Campaigns/NewCampaign/NewCampaign';
 
 export default (
     <Switch>
@@ -21,6 +22,10 @@ export default (
         <Route
             path="/reports"
             component={Reports}
+        />
+        <Route
+            path="/newCampaign"
+            component={NewCampaign}
         />
         <Route
             path="/"

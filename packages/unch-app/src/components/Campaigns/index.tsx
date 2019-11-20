@@ -3,8 +3,9 @@ import Main from '../../ui/main';
 import { Row, Col, Card, Button, Tag } from 'antd';
 import pharmNames from './staticCampaignData.json';
 import campaigns from './NewCampaign/data.json';
+import {Link} from 'react-router-dom';
 import './campaign.css'
-import NewCampaign from './NewCampaign';
+import NewCampaign from './NewCampaign/NewCampaign';
 import ViewCampaign from './ViewCampaign';
 import ButtonComponent from './ButtonComponent';
 
@@ -35,13 +36,13 @@ class Campaigns extends React.Component<any, any> {
         console.log('campaigns: ', campaigns.results.campaigns.campaign.name)
         return(
             <div style={{height: '100vh', overflowY: "scroll"}}>
-                <NewCampaign showModal={() => this.setState({showNewModal: !this.state.showNewModal})} visible={this.state.showNewModal}/>
+                <Button type="primary"><Link to="/newCampaign">New Campaign</Link></Button>
                 <div className="cardsFlex">
                     {pharmNames.map((pharm, key) => {
                         let randomDisable = Math.floor(Math.random()*2);
                         return (
                             <Card 
-                                // onClick={() => this.setState({viewCampaign: pharm, showEditModal: true})}
+
                                 key={key}
                                 title={`${campaigns.results.campaigns.campaign.name + Math.floor(Math.random()*100)}`}
                                 // title={`${pharm.name} - ${pharm.type}`}
@@ -49,13 +50,13 @@ class Campaigns extends React.Component<any, any> {
                             >
                                 <div className="cardsInnerFlex">
                                     <ButtonComponent />
-                                    {/* <span><b>Enabled:</b> {Math.floor(Math.random()*2) ? <Tag color="green">TRUE</Tag> : <Tag color="red">FALSE</Tag>}</span> */}
+
                                     <span><b>Description:</b> {"This is the "+ campaigns.results.campaigns.campaign.description + " campaign."}</span>
-                                    {/* <span><b>Type:</b> {pharm.type}</span> */}
+
                                     <span><b>Dialing Mode:</b> {this.dialingModeHandler()}</span>
                                     <span><b>Start Date:</b> {pharm.start}</span>
                                     <span><b>End Date:</b> {pharm.end}</span>
-                                    {/* <span><b>Audience:</b> {pharm.audience}</span> */}
+
                                     <span><b>Skill Group:</b> {campaigns.results.campaigns.campaign.skillGroupInfos.skillGroupInfo.skillGroup.refURL}</span>
                                 </div>
                             </Card>
