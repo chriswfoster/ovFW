@@ -36,10 +36,10 @@ export default class PortalSideBar extends React.Component<any, any> {
                     {/* <Menu.Item key="0"><span>Home</span></Menu.Item>
                     <Menu.Item key="1"><span>Campaigns</span></Menu.Item>
                     <Menu.Item key="2"><span>Audiences</span></Menu.Item> */}
-                    <Menu.Item key="0"><Link to="/">Home</Link></Menu.Item>
-                    <Menu.Item key="1"><Link to="/campaigns">Campaigns</Link></Menu.Item>
-                    <Menu.Item key="2"><Link to="/audiences">Do Not Call</Link></Menu.Item>
-                    <Menu.Item key="3"><Link to="/reports">Reports</Link></Menu.Item>
+                    <Menu.Item key="0"><Link to="/main/home">Imaging</Link></Menu.Item>
+                    {/* <Menu.Item key="1"><Link to="/campaigns">Campaigns</Link></Menu.Item> */}
+                    {/* <Menu.Item key="2"><Link to="/audiences">Do Not Call</Link></Menu.Item> */}
+                    <Menu.Item key="3"><Link to="/main/reports">Access Center</Link></Menu.Item>
 
                 </Menu>
                 <div className="sideBarBottomBox">

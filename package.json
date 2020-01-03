@@ -18,5 +18,8 @@
     "_packages/packages/*",
     "_packages/plugins/*",
     "_packages/tools/*"
-  ]
+  ],
+  "dependencies": {
+    "axios": "^0.19.0"
+  }
 }

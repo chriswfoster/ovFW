@@ -1,523 +1,325 @@
-import React, { useState } from 'react';
-import { Table, Button, Modal, Row, Col, Tabs, Upload, message, Collapse, Divider, Card, Input, Icon } from 'antd';
-import FTP from "../Audience/AudienceComponents/FTP"
-import AddColumns from "../Audience/AudienceComponents/AddColumns"
-import SharedDrive from "../Audience/AudienceComponents/SharedDrive"
+import React, { Component } from 'react';
+import axios from "axios";
+import AccessCenterCancel from "../AccessCenterCancel/index"
+import { Modal, Button, Tabs } from 'antd';
+import "./AccessCenter.css";
 
-const Reports = () => {
+class Home extends Component {
+    constructor() {
+        super()
+        this.state = {
+            addVisible: false,
+            editVisible: false,
+            uploadVisible: false,
+            newVisitId: "",
+            newVisitName: "",
+            editVisitIndex: null,
+            editVisitId: "",
+            editVisitName: "",
+            fileUpload: "",
+            imagingVisitCodes: []
+        }
+    }
 
-    ///////// Hooks /////////
-    const [visible, setVisible] = useState(false)
-    const [manualVisible, setManualVisible] = useState(false)
-    const [showNewAudience, setShowNewAudience] = useState(false)
 
-    //////////////////
+    // // // GET requets // // //
+    componentDidMount() {
+        axios.get("https://10be1d15.ngrok.io/agenta/v1/Departments?clientTypeId=57c908e8-fd28-4f95-8edb-659b73971a63", {
+            headers: {
+                Accept: "application/json"
+            }
+        })
+            .then(res => {
+                this.setState({ imagingVisitCodes: res.data.results })
+                console.log(res.data.results)
+            })
+    }
 
-    ////////// Modal Methods //////////
-    const showModal = () => {
-        setVisible(true)
+    // // // GET Method to refresh tables // // //
+    getDepartments = (clientTypeId) => {
+        axios.get("https://10be1d15.ngrok.io/agenta/v1/Departments?clientTypeId=57c908e8-fd28-4f95-8edb-659b73971a63", {
+            headers: {
+                Accept: "application/json"
+            }
+        })
+            .then(res => {
+                this.setState({ imagingVisitCodes: res.data.results })
+                console.log(res.data.results)
+            })
+    }
+
+    // // // POST requests // // //
+    postDepartments = (clientTypeId, body) => {
+        axios.post(`https://10be1d15.ngrok.io/agenta/v1/Departments?clientTypeId=${clientTypeId}`,
+            body,
+            {
+                headers: {
+                    "Content-Type": "text/plain",
+                    Accept: "application/json"
+                }
+            })
+            .then(() => this.getDepartments(clientTypeId)).catch((err) => console.log(err))
+    }
+
+    // // // DELETE requests // // //
+    deleteDepartments = (clientTypeId, body) => {
+        axios.delete(`https://10be1d15.ngrok.io/agenta/v1/Departments?clientTypeId=${clientTypeId}`,
+            {
+                data: body,
+                headers: {
+                    "Content-Type": "text/plain",
+                    Accept: "application/json"
+                }
+            }
+        )
+            .then(() => this.getDepartments(clientTypeId)).catch((err) => console.log(err))
+    }
+
+    // // //
+
+
+    // // // xml parser // // //
+
+    handleFileSelect = () => {
+        if (!window.File || !window.FileReader || !window.FileList || !window.Blob) {
+            alert('The File APIs are not fully supported in this browser.');
+            return;
+        }
+
+        var input = document.getElementById('fileInput');
+        if (!input) {
+            alert("Um, couldn't find the fileinput element.");
+        }
+        else if (!input.files) {
+            alert("This browser doesn't seem to support the `files` property of file inputs.");
+        }
+        else if (!input.files[0]) {
+            alert("Please select a file before clicking 'Load'");
+        }
+        else {
+            var file = input.files[0];
+            var fr = new FileReader();
+            fr.onload = (e) => {
+                var readXml = e.target.result;
+                this.postDepartments("57c908e8-fd28-4f95-8edb-659b73971a63", readXml)
+            }
+            fr.readAsText(file);
+            this.setState({ uploadVisible: false })
+        }
+    }
+
+    // // //
+
+    // // // Renders the Table with the information from state // // //
+    imagingTableData = () => {
+        return this.state.imagingVisitCodes.map((imagingVisitId, index) => {
+            const { departmentId, departmentName } = imagingVisitId
+            return (
+                <tr>
+                    <td>{departmentId} </td>
+                    <td>{departmentName}</td>
+                    <td>
+                        <Button type="danger" icon="delete" style={{ marginRight: "15px" }} onClick={() => this.handleRemoveRow(departmentId)}>Delete</Button>
+                        <Button type="primary" icon="edit" onClick={() => this.showEditImagingModal(index)}>Edit</Button>
+                    </td>
+                </tr>
+            )
+        })
+    }
+    // // // Renders the header of the Table // // //
+    imagingTableHeader = () => {
+        let header = Object.keys(this.state.imagingVisitCodes[0])
+        return header.map((key, index) => {
+            return <th key={index}>{key.toUpperCase()}</th>
+        })
+    }
+
+    // // // // // //
+
+    // // // Deletes a value off of the row // // //
+    handleRemoveRow = (departmentId) => {
+        this.deleteDepartments("57c908e8-fd28-4f95-8edb-659b73971a63", departmentId)
     };
 
-    const handleOk = (e: any) => {
-        setVisible(false)
+    // // //
+
+    // // // Add New Modal Functions // // //
+    showAddNewImagingModal = () => {
+        this.setState({
+            addVisible: true,
+        });
     };
 
-    const handleCancel = (e: any) => {
-        setVisible(false)
-    };
-    ////////////////////
-
-    ////////// Manual Entry Modal Methods //////////
-    const manualModal = () => {
-        setManualVisible(true)
+    AddNewImagingModalhandleOk = e => {
+        console.log(e);
+        this.setState({
+            addVisible: false,
+        });
     };
 
-    const manualModalOk = (e: any) => {
-        setManualVisible(false)
+    AddNewImagingModalhandleCancel = e => {
+        console.log(e);
+        this.setState({
+            addVisible: false,
+        });
     };
 
-    const manualModalCancel = (e: any) => {
-        setManualVisible(false)
-    };
-    ////////////////////
+    // // //
 
-    ////////// Collapse Methods //////////
-    function callback(key) {
+
+    // // // Upload File Modal Functions // // //
+    showUploadModal = () => {
+        this.setState({
+            uploadVisible: true,
+        });
+    };
+
+    uploadModalhandleOk = e => {
+        console.log(e);
+        this.setState({
+            uploadVisible: false,
+        });
+    };
+
+    uploadModalhandleCancel = e => {
+        console.log(e);
+        this.setState({
+            uploadVisible: false,
+        });
+    };
+
+    // // //
+
+    // // // Edit Modal Functions // // //
+    showEditImagingModal = (index) => {
+        let rowData = this.state.imagingVisitCodes[index];
+        this.setState({
+            editVisitIndex: index,
+            editVisitId: rowData.visitId,
+            editVisitName: rowData.visitName,
+            editVisible: true,
+
+        });
+    };
+
+    EditImagingModalhandleOk = e => {
+        console.log(e);
+        this.setState({
+            editVisible: false,
+        });
+    };
+
+    EditImagingModalhandleCancel = e => {
+        console.log(e);
+        this.setState({
+            editVisible: false,
+        });
+    };
+
+    // // //
+
+    // // // save new data to the array // // //
+    handleAddVisitingCode = () => {
+        let tempArr = this.state.imagingVisitCodes
+        let tempNewName = this.state.newVisitName
+        let tempNewID = this.state.newVisitId
+        tempArr.push({
+            visitId: tempNewID, visitName: tempNewName
+        })
+        this.setState({ imagingVisitCodes: tempArr })
+        this.setState({
+            addVisible: false,
+        });
+    }
+
+    handleNewVisitID = event => {
+        this.setState({ newVisitId: event.target.value });
+    };
+
+    handleNewVisitName = event => {
+        this.setState({ newVisitName: event.target.value });
+    };
+
+    // // //
+
+    // // // Edit Table Data // // //
+
+    handleEditVisitingCode = () => {
+        let tempArr = this.state.imagingVisitCodes
+        let tempNewName = this.state.editVisitName
+        let tempNewID = this.state.editVisitId
+        tempArr[this.state.editVisitIndex] = {
+            visitId: tempNewID, visitName: tempNewName
+        }
+        this.setState({ imagingVisitCodes: tempArr })
+        this.setState({
+            editVisible: false,
+            editVisitIndex: null,
+            editVisitId: "",
+            editVisitName: ""
+        });
+    }
+
+    handleEditVisitID = event => {
+        this.setState({ editVisitId: event.target.value });
+    };
+
+    handleEditVisitName = event => {
+        this.setState({ editVisitName: event.target.value });
+    };
+
+    // // //
+
+    // // // Manage Tabs Key // // //
+
+    callback = (key) => {
         console.log(key);
     }
-    ////////////////////
 
+    // // //
 
-    ////////// New Audience Methods //////////
-    const campaignRowSelection = {
-        onChange: (selectedRowKeys, selectedRows) => {
-            console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
-        },
-        getCheckboxProps: record => ({
-            disabled: record.name === 'Disabled User', // Column configuration not to be checked
-            name: record.name,
-        }),
-    };
-    ////////////////////
+    render() {
 
-    const props = {
-        name: 'file',
-        action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
-        headers: {
-            authorization: 'authorization-text',
-        },
-        onChange(info) {
-            if (info.file.status !== 'uploading') {
-                console.log(info.file, info.fileList);
-            }
-            if (info.file.status === 'done') {
-                message.success(`${info.file.name} file uploaded successfully`);
-            } else if (info.file.status === 'error') {
-                message.error(`${info.file.name} file upload failed.`);
-            }
-        },
-    };
-
-
-    ////////// Campaign Data //////////
-    const campaignColumns = [
-        {
-            title: 'Campaign Name',
-            dataIndex: 'campaignName',
-        },
-        {
-            title: "Date Created",
-            dataIndex: "dateCreated"
-        },
-        {
-            title: "Time Ran",
-            dataIndex: "timeRan"
-        },
-        {
-            title: "Status",
-            dataIndex: "status"
-        }
-    ];
-
-    const campaignStatus = ["Complete", "Failed", "Queued"]
-
-    const campaignData = [
-        {
-            key: '1',
-            campaignName: 'New Appointments',
-            dateCreated: "07/17/2019",
-            timeRan: "8:00",
-            status: campaignStatus[(Math.floor(Math.random() * campaignStatus.length))]
-        },
-        {
-            key: '2',
-            campaignName: 'Prescription Pickup',
-            dateCreated: "07/17/2019",
-            timeRan: "13:00",
-            status: campaignStatus[(Math.floor(Math.random() * campaignStatus.length))]
-        },
-        {
-            key: '3',
-            campaignName: 'Confirm Appointment',
-            dateCreated: "07/17/2019",
-            timeRan: "15:00",
-            status: campaignStatus[(Math.floor(Math.random() * campaignStatus.length))]
-        },
-        {
-            key: '4',
-            campaignName: 'Follow Up Appointment',
-            dateCreated: "07/17/2019",
-            timeRan: "4:00",
-            status: campaignStatus[(Math.floor(Math.random() * campaignStatus.length))]
-
-        },
-        {
-            key: '5',
-            campaignName: 'Survey',
-            dateCreated: "07/17/2019",
-            timeRan: "18:00",
-            status: campaignStatus[(Math.floor(Math.random() * campaignStatus.length))]
-        },
-    ];
-    ////////////////////
-
-
-
-    ///////////// Columns and Data for Audience ///////////////
-    const dataSource = [
-        {
-            number: "(214) 842-1337",
-            firstName: 'John',
-            lastName: "Smith",
-            type: 'SMS',
-            status: "Called"
-        },
-        {
-            number: "(214) 842-1337",
-            firstName: 'Jacob',
-            lastName: "Smith",
-            type: 'SMS',
-            status: "Information"
-        },
-        {
-            number: "(214) 842-1337",
-            firstName: 'Kevin',
-            lastName: "Smith",
-            type: 'SMS',
-            status: "Information"
-        },
-        {
-            number: "(214) 842-1337",
-            firstName: 'Matt',
-            lastName: "Smith",
-            type: 'SMS',
-            status: "Information"
-        },
-        {
-            number: "(214) 842-1337",
-            firstName: 'Dave',
-            lastName: "Smith",
-            type: 'SMS',
-            status: "Information"
-        },
-        {
-            number: "(214) 842-1337",
-            firstName: 'John',
-            lastName: "Smith",
-            type: 'SMS',
-            status: "Information"
-        },
-        {
-            number: "(214) 842-1337",
-            firstName: 'Jacob',
-            lastName: "Smith",
-            type: 'SMS',
-            status: "Information"
-        },
-        {
-            number: "(214) 842-1337",
-            firstName: 'Kevin',
-            lastName: "Smith",
-            type: 'SMS',
-            status: "Information"
-        },
-        {
-            number: "(214) 842-1337",
-            firstName: 'Matt',
-            lastName: "Smith",
-            type: 'SMS',
-            status: "Information"
-        },
-        {
-            number: "(214) 842-1337",
-            firstName: 'Dave',
-            lastName: "Smith",
-            type: 'SMS',
-            callStatus: "Inion"
-        },
-    ];
-
-    const columns = [
-        {
-            title: 'First Name',
-            dataIndex: 'firstName',
-        },
-        {
-            title: 'Last Name',
-            dataIndex: 'lastName',
-        },
-        {
-            title: 'Number',
-            dataIndex: 'number',
-        },
-        {
-            title: 'Call Status',
-            key: 'callStatus',
-        }
-    ];
-    ////////////////////////////
-
-    const { TabPane } = Tabs;
-    const { Panel } = Collapse;
-
-    return (
-        <div>
-            <Row>
-                <Row type="flex" justify="start" gutter={8}>
-                    {/* <Col span={5} style={{ paddingBottom: "10px" }}>
-                        <Button
-                            type="primary"
-                            icon="plus"
-                            size="default"
-                            style={{ height: "40px" }}
-                            onClick={showModal}
-                        >
-                            Add A New Audience
-                    </Button>
-                    </Col> */}
-                    {/* <Col span={8}>
-                        <Button
-                            type="danger"
-                            icon="delete"
-                            size="default"
-                            style={{ height: "40px" }}
-                        >
-                            Delete Audience
-                    </Button>
-                    </Col> */}
-                    {/* <Col span={5} style={{ paddingBottom: "10px" }}>
-                        <Upload {...props}>
-                            <Button
-                                type="primary"
-                                icon="upload"
-                                size="default"
-                                style={{ height: "40px" }}
-                            >
-                                Upload Form
-                    </Button>
-                        </Upload>
-                    </Col>
-                    <Col span={5}>
-                        <Button
-                            type="primary"
-                            icon="form"
-                            size="default"
-                            style={{ height: "40px" }}
-                            onClick={manualModal}
-                        >
-                            Manual Entry
-                    </Button>
-                    </Col> */}
-                </Row>
+        const { TabPane } = Tabs
+        return (
+            < div >
                 <Modal
-                    title="Manual Audience Entry"
-                    visible={manualVisible}
-                    onOk={manualModalOk}
-                    onCancel={manualModalCancel}
-                    width="55vw"
-                    bodyStyle={{ height: "45vh", overflowY: "scroll" }}
-
+                    title="Edit Visit"
+                    visible={this.state.editVisible}
+                    onOk={this.handleEditVisitingCode}
+                    onCancel={this.EditImagingModalhandleCancel}
                 >
-                    <div>
-                        <b>First_Name</b> <Input placeholder="Add Column" size="small" />
-                        <b>Last_Name</b> <Input placeholder="Add Column" size="small" />
-                        <b>Number</b> <Input placeholder="Add Column" size="small" />
-                        <b>Type</b> <Input placeholder="Add Column" size="small" />
-                    </div>
+                    <p>Visit ID: </p><input value={this.state.editVisitId} onChange={(e) => this.handleEditVisitID(e)} />
+                    <p>Visit Name: </p><input value={this.state.editVisitName} onChange={(e) => this.handleEditVisitName(e)} />
                 </Modal>
-                <Col span={12}>
-                    <Table rowSelection={campaignRowSelection} columns={campaignColumns} dataSource={campaignData} pagination={false} />
-                </Col>
-                <Col span={12}>
-                    <Tabs defaultActiveKey="1" onChange={callback} size="large">
-                        <TabPane tab={
-                            <span>
-                                <Icon type="control" />
-                                Details
-                            </span>
-                        } key="1">
-                            <div
-                                style={{
-                                    display: "flex",
-                                    flexDirection: "column",
-                                    flexWrap: "nowrap",
-                                    justifyContent: "flex-start",
-                                    alignItems: "stretch",
-                                    alignContent: "flex-start",
-                                    paddingBottom: "15px"
-                                }}
-                            >
-                                <span>
-                                    <b>Name of Audience:</b> Audience 1
-                                </span>
-                                <span>
-                                    <b>Created On: </b> 09/20/2019
-                                </span>
-                                <span>
-                                    <b>Created By: </b> Kevin Smith
-                                </span>
-                                <span>
-                                    <b>Current Campaign: </b> BSW_Campaign
-                                </span>
-                                <span>
-                                    <b>Current State: </b> In Progress
-                                </span>
-                            </div>
-                            {/* <Row gutter={12}>
-                                <Col span={5}>
-                                    <Button icon="stop" type="danger">Stop</Button>
-                                </Col>
-                                <Col span={5}>
-                                    <Button icon="pause" type="default">Pause</Button>
-                                </Col>
-                                <Col span={5}>
-                                    <Button icon="caret-right" type="primary">Resume</Button>
-                                </Col>
-                            </Row> */}
-                            <Divider />
-                            <b>Columns</b>
-                            <p>First_Name</p>
-                            <p>Last_Name</p>
-                            <p>Phone_Number</p>
-                            <p>Type</p>
-                            <Divider />
-                            <b>Uploaded from</b>
-                            <div
-                                style={{
-                                    display: "flex",
-                                    flexDirection: "column",
-                                    flexWrap: "nowrap",
-                                    justifyContent: "flex-start",
-                                    alignItems: "stretch",
-                                    alignContent: "flex-start",
-                                    paddingBottom: "10px"
-                                }}
-                            >
-                                <span>
-                                    <b>FTP Domain:</b> domain.ftp.drive
-                                </span>
-                                <span>
-                                    <b>Port: </b> 833
-                                </span>
-                            </div>
-                            <div
-                                style={{
-                                    display: "flex",
-                                    flexDirection: "column",
-                                    flexWrap: "nowrap",
-                                    justifyContent: "flex-start",
-                                    alignItems: "stretch",
-                                    alignContent: "flex-start",
-                                    paddingBottom: "10px"
-                                }}
-                            >
-                                <span>
-                                    <b>Network File Path:</b> //filepath/files/folder/csv
-                                </span>
-                            </div>
-                        </TabPane>
-
-                        <TabPane tab={
-                            <span>
-                                <Icon type="menu" />
-                                Dial List
-                            </span>
-                        } key="2">
-                            <Table columns={columns} dataSource={dataSource} pagination={false} />
-                            <Row>
-                                {/* <Col span={7} style={{ paddingBottom: "10px" }}>
-                                    <Upload {...props}>
-                                        <Button
-                                            type="primary"
-                                            icon="upload"
-                                            size="default"
-                                            style={{ height: "40px" }}
-                                        >
-                                            Upload Form
-                    </Button>
-                                    </Upload>
-                                </Col> */}
-                                {/* <Col span={7}>
-                                    <Button
-                                        type="primary"
-                                        icon="form"
-                                        size="default"
-                                        style={{ height: "40px" }}
-                                        onClick={manualModal}
-                                    >
-                                        Manual Entry
-                    </Button>
-                                </Col> */}
-                            </Row>
-                            {/* <Collapse onChange={callback}>
-                                <Panel header="FTP" key="1">
-                                    <FTP />
-                                </Panel>
-                                <Panel header="Network Drive" key="2">
-                                    <SharedDrive />
-                                </Panel>
-                            </Collapse> */}
-                        </TabPane>
-
-                        {/* <TabPane tab={
-                            <span>
-                                <Icon type="close-circle" />
-                                Do Not Call List
-                            </span>
-                        } key="3">
-                            <Table columns={columns} dataSource={dataSource} pagination={false} />
-                            <Row>
-                                <Col span={7} style={{ paddingBottom: "10px" }}> */}
-                        {/* <Upload {...props}>
-                                        <Button
-                                            type="primary"
-                                            icon="upload"
-                                            size="default"
-                                            style={{ height: "40px" }}
-                                        >
-                                            Upload Form
-                    </Button>
-                                    </Upload> */}
-                        {/* </Col> */}
-                        {/* <Col span={7}>
-                                    <Button
-                                        type="primary"
-                                        icon="form"
-                                        size="default"
-                                        style={{ height: "40px" }}
-                                        onClick={manualModal}
-                                    >
-                                        Manual Entry
-                    </Button>
-                                </Col> */}
-                        {/* </Row> */}
-                        {/* <Collapse onChange={callback}>
-                                <Panel header="FTP" key="1">
-                                    <FTP />
-                                </Panel>
-                                <Panel header="Network Drive" key="2">
-                                    <SharedDrive />
-                                </Panel>
-                            </Collapse> */}
-                        {/* </TabPane> */}
-                    </Tabs>
-                </Col>
-            </Row >
-            {/* <Modal
-                title="Create A New Audience"
-                visible={visible}
-                onOk={handleOk}
-                onCancel={handleCancel}
-                width="55vw"
-                bodyStyle={{ height: "45vh", overflowY: "scroll" }}
-
-            >
-                <div style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    flexWrap: "nowrap",
-                    justifyContent: "flex-start",
-                    alignItems: "center",
-                    alignContent: "center",
-                    paddingBottom: "20px"
-                }}>
-                    Audience Name:  <Input placeholder="Campaign Name" size="small" style={{ width: "300px" }} />
-                </div>
-                <Divider />
-                <AddColumns />
-            </Modal> */}
-        </div >
-    )
+                <Tabs defaultActiveKey="1" onChange={this.callback}>
+                    <TabPane tab="Listing" key="1">
+                        <Button type="primary" icon="plus" onClick={this.showUploadModal} style={{ marginBottom: "15px" }}> Upload A File </Button>
+                        <Modal
+                            title="Upload a File"
+                            visible={this.state.uploadVisible}
+                            onOk={this.uploadModalhandleOk}
+                            onCancel={this.uploadModalhandleCancel}
+                        >
+                            <input type="file" id="fileInput" />
+                            <input type="button" value="Upload File" onClick={this.handleFileSelect} />
+                        </Modal>
+                        <table id='imagingVisit'>
+                            <tbody>
+                                <th>Visit ID</th>
+                                <th>Visit Name</th>
+                                <th width="300">Actions</th>
+                                {this.imagingTableData()}
+                            </tbody>
+                        </table>
+                    </TabPane>
+                    <TabPane tab="Cancelation" key="2">
+                        <AccessCenterCancel />
+                    </TabPane>
+                </Tabs>
+            </div >
+        )
+    }
 }
 
-export default Reports;
-
-
-
-
-
-
-
-
-
-
+export default Home;

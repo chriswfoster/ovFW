@@ -1,0 +1,60 @@
+.login-card{
+	height: 100vh;
+	width: 36vw;
+	background-color: #ffffff;
+}
+
+.login-input-container{
+	margin-top: 150px;
+	display: flex; 
+	flex-direction: column; 
+	flex-wrap: nowrap; 
+	justify-content: flex-start; 
+	align-items: center; 
+	align-content: stretch;
+	overflow-x: auto;
+}
+
+.login-input{
+	margin-bottom: 20px;
+    margin: 20px;
+	width: 40vw;
+	max-width: 100%;
+}
+
+.login-top-bar {
+	background-color: #1890ff;
+	width: 36vw;
+	height: 54px;
+	align-content: center;
+	text-align: center;
+}
+.login-top-bar img {
+	height: 54px;
+	vertical-align: middle;
+}
+
+.login-left-logo {
+	height: 105px;
+	width: 211px;
+	margin-left: 50px;
+}
+
+.loginBackground {
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: flex-start;
+	align-items: stretch;
+	align-content: stretch;
+  }
+
+  .spinsciBgImage {
+	width: 64vw;
+	background-image: url('./spinsciWoman.jpg');
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+  }
+

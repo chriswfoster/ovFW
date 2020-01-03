@@ -42233,104 +42233,116 @@ body {
 	align-content: stretch;
 }
 
-.cardsFlex {
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	justify-content: space-around;
-	align-items: center;
-    align-content: stretch;
+#imagingVisit {
+    text-align: center;
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    border: 3px solid #ddd;
+    width: 100%;
+  }
+  
+  #imagingVisit td, #imagingVisit th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  #imagingVisit tr:nth-child(even){background-color: #f2f2f2;}
+  
+  #imagingVisit tr:hover {background-color: #ddd;}
+  
+  #imagingVisit th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: slategray;
+    color: white;
+  }
+  
+#imagingVisit {
+    text-align: center;
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    border: 3px solid #ddd;
+    width: 100%;
+  }
+  
+  #imagingVisit td, #imagingVisit th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  #imagingVisit tr:nth-child(even){background-color: #f2f2f2;}
+  
+  #imagingVisit tr:hover {background-color: #ddd;}
+  
+  #imagingVisit th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: slategray;
+    color: white;
+  }
+  
+.login-card{
+	height: 100vh;
+	width: 36vw;
+	background-color: #ffffff;
 }
 
-.cardsInnerFlex {
-	display: flex;
-	flex-direction: column;
-	flex-wrap: nowrap;
-	justify-content: flex-start;
-	align-items: flex-start;
+.login-input-container{
+	margin-top: 150px;
+	display: flex; 
+	flex-direction: column; 
+	flex-wrap: nowrap; 
+	justify-content: flex-start; 
+	align-items: center; 
 	align-content: stretch;
+	overflow-x: auto;
 }
 
-.descriptionListColumn {
-	width: 100%;
-	height: 100%;
-	display: flex;
-	flex-direction: column;
-	flex-wrap: nowrap;
-	justify-content: flex-start;
-	align-items: flex-start;
-	align-content: stretch;
-}
-
-.descriptionListColumnNoHeight {
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	flex-wrap: nowrap;
-	justify-content: flex-start;
-	align-items: flex-start;
-	align-content: stretch;
-}
-
-.divFlexColumns {
-	width: 100%;
-	height: 100%;
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	justify-content: space-around;
-	align-items: stretch;
-	align-content: stretch;
-}
-
-
-
-.divFlexRowsNoWrap {
-	width: 100%;
-	height: 100%;
-	display: flex;
-	flex-direction: row;
-	flex-wrap: nowrap;
-	justify-content: flex-start;
-	align-items: stretch;
-	align-content: stretch;
-}
-
-.buttonSliders {
-	width: 100%;
-	display: flex;
-	flex-direction: row;
-	flex-wrap: nowrap;
-	justify-content: flex-start;
-	align-items: stretch;
-	align-content: stretch;
+.login-input{
 	margin-bottom: 20px;
-}
-.sliders {
-	width: 80%;
-}
-
-.audioColumns {
-	height: 100%;
-	display: flex;
-	flex-direction: column;
-	flex-wrap: wrap;
-	justify-content: flex-start;
-	align-items: stretch;
-	align-content: stretch;
+    margin: 20px;
+	width: 40vw;
+	max-width: 100%;
 }
 
-.audioColumnsAlternative{
-	width: 100%;
-	height: 100%;
-	padding-left: 30px;
-	overflow-y: scroll;
+.login-top-bar {
+	background-color: #1890ff;
+	width: 36vw;
+	height: 54px;
+	align-content: center;
+	text-align: center;
+}
+.login-top-bar img {
+	height: 54px;
+	vertical-align: middle;
+}
+
+.login-left-logo {
+	height: 105px;
+	width: 211px;
+	margin-left: 50px;
+}
+
+.loginBackground {
+	width: 100vw;
+	height: 100vh;
 	display: flex;
 	flex-direction: row;
 	flex-wrap: nowrap;
 	justify-content: flex-start;
 	align-items: stretch;
 	align-content: stretch;
-}
+  }
+
+  .spinsciBgImage {
+	width: 64vw;
+	background-image: url('/spinsciWoman.e7fc0115.jpg');
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+  }
+
+
 
 /*# sourceMappingURL=/src.77de5100.css.map */

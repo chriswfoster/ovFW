@@ -5,31 +5,36 @@ import Audience from '../components/Audience';
 import Reports from "../components/Reports"
 import Main from '../ui/main';
 import Home from '../components/Home';
+import Login from "../components/Login/index"
 import NewCampaign from '../components/Campaigns/NewCampaign/NewCampaign';
 
 export default (
     <Switch>
+        {/* <Route
+            path="/login"
+            component={Login}
+        /> */}
         <Route
-            path="/campaigns"
-            component={Campaigns}
-        // render={() => <Campaigns />}
-        />
-        <Route
-            path="/audiences"
-            component={Audience}
-        // render={() => <Audience />}
-        />
-        <Route
-            path="/reports"
-            component={Reports}
-        />
-        <Route
-            path="/newCampaign"
-            component={NewCampaign}
-        />
-        <Route
-            path="/"
+            path="/main/home"
             component={Home}
         />
+        {/* <Route
+            path="/main/home"
+            component={Campaigns}
+        // render={() => <Campaigns />}
+        /> */}
+        {/* <Route
+            path="/home/audiences"
+            component={Audience}
+        // render={() => <Audience />}
+        /> */}
+        <Route
+            path="/main/reports"
+            component={Reports}
+        />
+        {/* <Route
+            path="/home/newCampaign"
+            component={NewCampaign}
+        /> */}
     </Switch>
 )

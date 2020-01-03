@@ -3,14 +3,14 @@ import Main from '../../ui/main';
 import { Row, Col, Card, Button, Tag } from 'antd';
 import pharmNames from './staticCampaignData.json';
 import campaigns from './NewCampaign/data.json';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './campaign.css'
 import NewCampaign from './NewCampaign/NewCampaign';
 import ViewCampaign from './ViewCampaign';
 import ButtonComponent from './ButtonComponent';
 
 class Campaigns extends React.Component<any, any> {
-    constructor(props: any){
+    constructor(props: any) {
         super(props)
         this.state = {
             showNewModal: false,
@@ -21,22 +21,22 @@ class Campaigns extends React.Component<any, any> {
 
     dialingModeHandler = () => {
         let numb = Math.floor(Math.random() * 3);
-        switch (numb){
+        switch (numb) {
             case 0:
-            return "Progressive";
+                return "Progressive";
             case 1:
-            return "Predictive";
-            case 2: 
-            return "Preview"
+                return "Predictive";
+            case 2:
+                return "Preview"
             default: break;
         }
     }
 
-    render(){
+    render() {
         console.log('campaigns: ', campaigns.results.campaigns.campaign.name)
-        return(
-            <div style={{height: '100vh', overflowY: "scroll"}}>
-                <Button type="primary"><Link to="/newCampaign">New Campaign</Link></Button>
+        return (
+            <div style={{ height: '100vh', overflowY: "scroll" }}>
+                {/* <Button type="primary"><Link to="/newCampaign">New Campaign</Link></Button>
                 <div className="cardsFlex">
                     {pharmNames.map((pharm, key) => {
                         let randomDisable = Math.floor(Math.random()*2);
@@ -67,7 +67,8 @@ class Campaigns extends React.Component<any, any> {
                     data={this.state.viewCampaign} 
                     showModal={() => this.setState({showEditModal: !this.state.showEditModal})} 
                     visible={this.state.showEditModal}
-                />
+                /> */}
+                <h1> Campaigns Component</h1>
             </div>
         )
     }
